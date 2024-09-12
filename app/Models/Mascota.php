@@ -9,17 +9,22 @@ class Mascota extends Model
 {
     use HasFactory;
 
+    // defino el identificador de la tabla como 'mascotas'.
     protected $table = 'mascotas';
-    protected $fillable = ['nombre','raza','sexo','color','peso','fecha_nacimiento','rut_cliente']; //rut_cliente es la foranea en 'mascotas' que apunta al dueño de la mascota :)
+    // defino los atributos de la tabla con '$fillable' para permitir el uso de las funciones 'Illuminate'.
+    protected $fillable = ['nombre','raza','sexo','color','peso','fecha_nacimiento','rut_cliente'];
+    // desactivo los 'timestamps' de la tabla.
     public $timestamps = false;
+
+    //**omito la primary-key ya que automaticamente se define como un atributo auto-incrementable, de tipo unsignedBigInteger, con nombre 'id'.**
     
 
 
-    public function cliente(){
+    public function cliente(){ // defino la relacion 1 a 1, entre la tabla 'mascotas' y la tabla 'clientes'.
         return $this->belongsTo('App\Models\Cliente','rut_cliente','rut');
     }
 
-    public function citas(){
+    public function citas(){ // defino la relacion 1 a M, entre la tabla 'mascotas' y la tabla 'citas.
         return $this->hasMany('App\Models\Cita','id_mascota','id');
     }
 
