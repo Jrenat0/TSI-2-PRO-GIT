@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cita;
+use App\Models\Cliente;
+use App\Models\Mascota;
 use Illuminate\Http\Request;
 
 class MascotasController extends Controller
@@ -11,7 +14,12 @@ class MascotasController extends Controller
      */
     public function index()
     {
-        return view('mascotas.index');
+
+        $clientes = Cliente::Get();
+
+        $mascotas = Mascota::limit(4)->orderBy('id','desc')->get();
+
+        return view('mascotas.index',compact(['clientes','mascotas']));
     }
 
     /**
@@ -33,9 +41,12 @@ class MascotasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function show(Mascota $mascota)
+    {   
+        
+        $citas = Cita::where('id_mascota', $mascota->id)->orderBy('fecha', 'asc')->get();
+
+        return view('mascotas.show',compact(['mascota','citas']));
     }
 
     /**
@@ -49,16 +60,25 @@ class MascotasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Mascota $mascota)
     {
-        //
+        $mascota->update([
+            'nombre' => $request->nombreInput,
+            'raza' => $request->razaInput,
+            'sexo' => $request->sexoInput,
+            'color' => $request->colorInput,
+            'peso' => $request->pesoInput, 
+        ]);
+
+        return view('mascotas.show',compact('mascota'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Mascota $mascota)
     {
-        //
+        $mascota->delete();
+        return redirect()->route('mascotas.index');
     }
 }
