@@ -6,76 +6,46 @@ use App\Models\Cita;
 use App\Models\Cliente;
 use App\Models\Mascota;
 use Illuminate\Http\Request;
+use App\Http\Requests\MascotaRequest;
 
 class MascotasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-
         $clientes = Cliente::Get();
-
         $mascotas = Mascota::limit(4)->orderBy('id','desc')->get();
 
         return view('mascotas.index',compact(['clientes','mascotas']));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $clientes = Cliente::all();
+        return view('mascotas.create', compact('clientes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(MascotaRequest $request)
+    {   
+        Mascota::create($request->validated());
+
+        return redirect()->route('mascotas.index')->with('success', 'Mascota creada de manera exitosa!');
+
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Mascota $mascota)
     {   
-        
         $citas = Cita::where('id_mascota', $mascota->id)->orderBy('fecha', 'asc')->get();
 
         return view('mascotas.show',compact(['mascota','citas']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Mascota $mascota, MascotaRequest $request)
     {
-        //
+        $mascota->update($request->validated());
+
+        return redirect()->route('mascotas.index')->with('success', 'Mascota Editada de manera exitosa!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Mascota $mascota)
-    {
-        $mascota->update([
-            'nombre' => $request->nombreInput,
-            'raza' => $request->razaInput,
-            'sexo' => $request->sexoInput,
-            'color' => $request->colorInput,
-            'peso' => $request->pesoInput, 
-        ]);
-
-        return view('mascotas.show',compact('mascota'));
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Mascota $mascota)
     {
         $mascota->delete();

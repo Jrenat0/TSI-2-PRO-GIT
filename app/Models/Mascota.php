@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Mascota extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     // defino el identificador de la tabla como 'mascotas'.
     protected $table = 'mascotas';

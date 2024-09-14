@@ -1,11 +1,11 @@
 $(document).ready(function () {
     // Maneja el cambio de cliente
-    $('#clientesSelect').change(function () {
-        $('#razaInput').val('');
-        $('#sexoInput').val('');
-        $('#colorInput').val('');
-        $('#pesoInput').val('');
-        $('#fecha_nacimientoInput').val('');
+    $('#rut_cliente').change(function () {
+        $('#raza').val('');
+        $('#sexo').val('');
+        $('#color').val('');
+        $('#peso').val('');
+        $('#fecha_nacimiento').val('');
 
         var clienteRut = $(this).val();
         if (clienteRut) {
@@ -14,20 +14,20 @@ $(document).ready(function () {
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
-                    $('#mascotasSelect').empty();
-                    $('#mascotasSelect').append('<option value="0">Seleccione una mascota</option>');
+                    $('#id').empty();
+                    $('#id').append('<option value="0">Seleccione una mascota</option>');
                     $.each(data, function (key, value) {
-                        $('#mascotasSelect').append('<option value="' + value.id + '">' + value.nombre + '</option>');
+                        $('#id').append('<option value="' + value.id + '">' + value.nombre + '</option>');
                     });
                 }
             });
         } else {
-            $('#mascotasSelect').empty();
+            $('#id').empty();
         }
     });
 
     // Maneja el cambio de mascota
-    $('#mascotasSelect').change(function () {
+    $('#id').change(function () {
         var mascotaId = $(this).val();
         if (mascotaId) {
             $.ajax({
@@ -35,11 +35,11 @@ $(document).ready(function () {
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
-                    $('#razaInput').val(data.raza);
-                    $('#sexoInput').val(data.sexo);
-                    $('#colorInput').val(data.color);
-                    $('#pesoInput').val(data.peso);
-                    $('#fecha_nacimientoInput').val(data.fecha_nacimiento);
+                    $('#raza').val(data.raza);
+                    $('#sexo').val(data.sexo);
+                    $('#color').val(data.color);
+                    $('#peso').val(data.peso);
+                    $('#fecha_nacimiento').val(data.fecha_nacimiento);
 
                     var gestionarUrl = '/mascotas/show/' + data.id;
                     $('#gestionarButton').empty();
@@ -50,11 +50,11 @@ $(document).ready(function () {
                 }
             });
         } else {
-            $('#razaInput').val('');
-            $('#sexoInput').val('');
-            $('#colorInput').val('');
-            $('#pesoInput').val('');
-            $('#fecha_nacimientoInput').val('');
+            $('#raza').val('');
+            $('#sexo').val('');
+            $('#color').val('');
+            $('#peso').val('');
+            $('#fecha_nacimiento').val('');
         }
     });
 });

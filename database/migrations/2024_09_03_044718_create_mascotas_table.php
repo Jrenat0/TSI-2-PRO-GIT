@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('mascotas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre',20);
-            $table->string('raza',20);
+            $table->string('raza',50);
             $table->string('sexo',1);
-            $table->string('color',10);
-            $table->decimal('peso', 8, 2)->nullable();
-            $table->date('fecha_nacimiento')->nullable();
+            $table->string('color',50);
+            $table->decimal('peso', 5, 2);
+            $table->date('fecha_nacimiento');
+            $table->softDeletes(); 
 
 
             //Foreign Key

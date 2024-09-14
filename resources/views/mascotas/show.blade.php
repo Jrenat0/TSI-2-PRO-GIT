@@ -28,7 +28,7 @@
 
     <div class="collapse show" id="informacionCollapse">
         <div class="col-12 mb-3 p-3 rounded" id="formEditarMascota">
-            <form action="{{route('mascotas.update',$mascota)}}" method="POST">
+            <form action="{{route('mascotas.update',$mascota->id)}}" method="POST">
                 @csrf
 
                 @method('PUT')
@@ -41,44 +41,40 @@
 
                     <div class="col-12 col-md-8">
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="nombreInput">Nombre</label>
-                            <input class="form-control" id="nombreInput" name="nombreInput" type="text"
+                            <label class="form-label" for="nombre">Nombre</label>
+                            <input class="form-control" id="nombre" name="nombre" type="text"
                                 value="{{$mascota->nombre}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="razaInput">Raza</label>
-                            <input class="form-control" id="razaInput" name="razaInput" type="text"
-                                value="{{$mascota->raza}}">
+                            <label class="form-label" for="raza">Raza</label>
+                            <input class="form-control" id="raza" name="raza" type="text" value="{{$mascota->raza}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="sexoInput">Sexo</label>
-                            <input class="form-control" id="sexoInput" name="sexoInput" type="text"
-                                value="{{$mascota->sexo}}">
+                            <label class="form-label" for="sexo">Sexo</label>
+                            <input class="form-control" id="sexo" name="sexo" type="text" value="{{$mascota->sexo}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="colorInput">Color</label>
-                            <input class="form-control" id="colorInput" name="colorInput" type="text"
-                                value="{{$mascota->color}}">
+                            <label class="form-label" for="color">Color</label>
+                            <input class="form-control" id="color" name="color" type="text" value="{{$mascota->color}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="pesoInput">Peso</label>
-                            <input class="form-control" id="pesoInput" name="pesoInput" type="number"
-                                value="{{$mascota->peso}}">
+                            <label class="form-label" for="peso">Peso</label>
+                            <input class="form-control" id="peso" name="peso" type="number" value="{{$mascota->peso}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="fecha_nacimientoInput">Fecha de nacimiento</label>
-                            <input class="form-control" id="fecha_nacimientoInput" name="fecha_nacimientoInput"
-                                type="date" value="{{$mascota->fecha_nacimiento}}" readonly>
+                            <label class="form-label" for="fecha_nacimiento">Fecha de nacimiento</label>
+                            <input class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" type="date"
+                                value="{{$mascota->fecha_nacimiento}}" readonly>
                         </div>
 
                         <div class="col-12 mb-3">
-                            <label class="form-label" for="clientesSelect">Dueño de la mascota</label>
-                            <select class="form-select" id="clientesSelect" name="clientesSelect" readonly>
+                            <label class="form-label" for="rut_cliente">Dueño de la mascota</label>
+                            <select class="form-select" id="rut_cliente" name="rut_cliente" readonly>
                                 <option selected>{{$mascota->cliente->nombre}}</option>
                             </select>
                         </div>
@@ -88,6 +84,16 @@
                                 data-bs-target="#confirmacionModal">Actualizar
                                 informacion</button>
                         </div>
+
+                        @if ($errors->any())
+                        <div>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
 
                     </div>
 

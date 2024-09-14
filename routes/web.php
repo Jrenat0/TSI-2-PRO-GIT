@@ -26,6 +26,10 @@ Route::get('/mascotas',[MascotasController::class,'index'])->name('mascotas.inde
 
 Route::get('/mascotas/show/{mascota}',[MascotasController::class,'show'])->name('mascotas.show');
 
+Route::get('/mascotas/create', [MascotasController::class, 'create'])->name('mascotas.create');
+
+Route::post('/mascotas/store', [MascotasController::class, 'store'])->name('mascotas.store');
+
 Route::put('/mascotas/update/{mascota}', [MascotasController::class, 'update'])->name('mascotas.update');
 
 Route::delete('/mascotas/destroy/{mascota}', [MascotasController::class, 'destroy'])->name('mascotas.destroy');
