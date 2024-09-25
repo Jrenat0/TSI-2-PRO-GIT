@@ -86,11 +86,13 @@ body {
 
 
 #logoutButton {
+    position: relative;
     background-color: #ff4271;
     color: #fff;
     margin-left: 8px;
-    border-radius: 10px;
+    border-radius: 20px;
 }
+
 
 #logoutButton small {
     opacity: 0;
@@ -100,8 +102,10 @@ body {
     transition: font-size 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 }
 
-#logoutButton:hover small {
+#logoutButton:hover small, #logoutButton i{
+    color: #fff;
     opacity: 1;
     font-size: 15px;
     visibility: visible;
 }
+
