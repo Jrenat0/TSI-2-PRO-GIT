@@ -54,20 +54,22 @@ body {
     border-radius: 40px;
 }
 
-#userButton:hover{
+#userButton:hover {
     border-radius: 20px;
 }
 
-#userButton small{
+#userButton small {
     opacity: 0;
     font-size: 0;
     font-weight: 0;
-    transition: font-size 0.3s ease, opacity 0.3s ease;
+    visibility: hidden;
+    transition: font-size 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 }
 
-#userButton:hover small{
+#userButton:hover small {
     opacity: 1;
     font-size: 15px;
+    visibility: visible;
 }
 
 
@@ -75,3 +77,31 @@ body {
     background-color: #fb6f92;
 }
 
+/* #userButton:focus,
+#userButton:focus small {
+    background-color: #fb6f92;
+    opacity: 1;
+    font-size: 15px;
+} */
+
+
+#logoutButton {
+    background-color: #ff4271;
+    color: #fff;
+    margin-left: 8px;
+    border-radius: 10px;
+}
+
+#logoutButton small {
+    opacity: 0;
+    font-size: 0;
+    font-weight: 0;
+    visibility: hidden;
+    transition: font-size 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#logoutButton:hover small {
+    opacity: 1;
+    font-size: 15px;
+    visibility: visible;
+}

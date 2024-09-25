@@ -199,12 +199,16 @@
         </div>
 
         {{-- Seccion Usuarios --}}
+
+        @if(Gate::allows('admin-gestion'))
         <div class="col-12">
             {{-- Boton --}}
             <a href="{{ route('usuarios.index') }}" class="btn" id="widget">
                 <h2 class="" id="btnUsuarios"><i class="fa-solid fa-user-group"></i></h2>
             </a>
-        </div>
+        </div> 
+        @endif
+        
 
 
 

@@ -49,10 +49,12 @@
                             <li><a class="dropdown-item" href="{{ route('citas.index') }}">Citas</a></li>
                             <li><a class="dropdown-item" href="{{ route('clientes.index') }}">Clientes</a></li>
                             <li><a class="dropdown-item" href="{{ route('servicios.index') }}">Servicios</a></li>
+                            @if(Gate::allows('admin-gestion'))
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Usuarios</a></li>
+                            @endif
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -68,6 +70,11 @@
                 <small>{{ Auth::user()->nombre }} ({{ Auth::user()->nombreRol() }})</small>
                 @endauth
             </button>
+
+            <a class="btn" id="logoutButton" href="{{route('auth.logout')}}">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <small>Cerrar Sesion</small>
+            </a>
         </div>
     </nav>
 
