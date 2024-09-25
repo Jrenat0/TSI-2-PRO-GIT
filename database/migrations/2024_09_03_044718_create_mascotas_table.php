@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('color',50);
             $table->decimal('peso', 5, 2);
             $table->date('fecha_nacimiento');
-            $table->softDeletes(); 
+            $table->softDeletes();
+            $table->timestamps(); 
 
 
             //Foreign Key

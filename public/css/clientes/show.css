@@ -1,0 +1,81 @@
+/* Information Container Toggler */
+#infoContainer a {
+    text-decoration: none;
+    color: rgb(43, 43, 43);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Information Container Toggler Icon */
+#infoContainer a i {
+    margin-right: 10px;
+}
+
+/* Information Container Labels */
+#infoContainer label {
+    color: grey;
+}
+
+/* Information Container Inputs */
+#infoContainer input {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid rgba(43, 43, 43, 0.2);
+}
+
+/* Pets Container Toggler */
+#petsContainer a {
+    text-decoration: none;
+    color: rgb(43, 43, 43);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Pets Container Toggler Icon */
+#petsContainer a i {
+    margin-right: 10px;
+}
+
+#collapsePets table {
+    border-top: 1px solid grey;
+}
+
+/* Pets table headers */
+#collapsePets table thead th {
+    font-weight: bold;
+    color: rgb(43, 43, 43);
+}
+
+/* Pets table items */
+#collapsePets table tbody td {
+    color: rgb(43, 43, 43);
+}
+
+/* Dates Container Toggler */
+#datesContainer a {
+    text-decoration: none;
+    color: rgb(43, 43, 43);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Dates Container Toggler icon */
+#datesContainer a i {
+    margin-right: 10px;
+}
+
+/* Dates Table */
+#collapseDates table {
+    border-top: 1px solid grey;
+}
+
+/* Dates Table headers */
+#collapseDates table thead th {
+    font-weight: bold;
+    color: rgb(43, 43, 43);
+}
+
+/* Dates table items */
+#collapseDates table tbody td {
+    color: rgb(43, 43, 43);
+}

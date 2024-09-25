@@ -3,139 +3,218 @@
 @section('title', 'Inicio')
 
 
+@push('style')
+<link rel="stylesheet" href="{{ asset('css/home/index.css') }}">
+@endpush
+
 @section('content')
 
+<div class="container">
 
-<div class="row">
+    <div class="row">
 
-    {{-- Calendario --}}
-    <div class="col-12 mb-3" id="calendario">
+        {{-- Seccion Mascotas --}}
+        <div class="col-12 col-md-6 mb-3">
+            {{-- Tabla de las mascotas nuevas --}}
+            <div class="card px-3 py-2 mb-2">
+                <!-- Card Title -->
+                <h3 class="">Mascotas Nuevas</h3>
+                <!-- Card Body -->
+                <div class="card-body p-0">
+                    <!-- Table Container -->
+                    <div class="table-responsive">
+                        <table class="table table-hover border rounded">
+                            <!-- Table head -->
+                            <thead>
+                                <tr>
+                                    <!-- Head labels -->
+                                    <th>Nombre</th>
+                                    <th class="">Raza</th>
+                                    <th class="">Sexo</th>
+                                    <th class="">Color</th>
+                                </tr>
+                            </thead>
+                            <!-- Table body -->
+                            <tbody>
+                                @foreach($mascotas as $mascota)
+                                <tr>
+                                    <!-- Name -->
+                                    <td>{{$mascota->nombre}}</td>
+                                    <!-- Breed -->
+                                    <td>{{$mascota->raza}}</td>
+                                    <!-- Genre -->
+                                    <td>{{$mascota->sexo}}</td>
+                                    <!-- Colour -->
+                                    <td>{{$mascota->color}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-        <div class="container">
-            <img src="{{asset('images/calendar.jpg')}}" alt="" class="img-fluid">
+            {{-- Boton --}}
+            <a href="{{ route('mascotas.index') }}" class="btn" id="widget">
+                <h2 class="" id="btnMascotas"><i class="fa-solid fa-paw"></i></h2>
+            </a>
         </div>
-        
 
-    </div>
-    {{-- /Calendario --}}
-
-    {{-- Botones --}}
-    <div class="col-6 col-md-3 mb-3" id="boton">
-        <a href="{{route('citas.index')}}" class="text-decoration-none card border-0"
-            style="background: linear-gradient(#eb2f6a, #ff5ec1)">
-            <div class="card-body">
-                <h3 class="card-title text-white"><span class=""></span> Citas</h3>
+        {{-- Seccion Clientes --}}
+        <div class="col-12 col-md-6 mb-3">
+            {{-- Tabla de los clientes nuevos --}}
+            <div class="card px-3 py-2 mb-2">
+                <!-- Card Title -->
+                <h3 class="">Clientes Nuevos</h3>
+                <!-- Card Body -->
+                <div class="card-body p-0">
+                    <!-- Table Container -->
+                    <div class="table-responsive">
+                        <table class="table table-hover border rounded">
+                            <!-- Table head -->
+                            <thead>
+                                <tr>
+                                    <!-- Head labels -->
+                                    <th>Nombre</th>
+                                    <th class="">Rut</th>
+                                    <th class="">Fono</th>
+                                    <th class="">Email</th>
+                                </tr>
+                            </thead>
+                            <!-- Table body -->
+                            <tbody>
+                                @foreach($clientes as $cliente)
+                                <tr>
+                                    <!-- Name -->
+                                    <td>{{$cliente->nombre}}</td>
+                                    <!-- Rut -->
+                                    <td>{{$cliente->rut}}</td>
+                                    <!-- Phone -->
+                                    <td>{{$cliente->fono}}</td>
+                                    <!-- Email -->
+                                    <td>{{$cliente->email}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </a>
-    </div>
+            {{-- Boton --}}
+            <a href="{{ route('clientes.index') }}" class="btn" id="widget">
+                <h2 class="" id="btnClientes"><i class="fa-solid fa-person"></i></h2>
+            </a>
+        </div>
 
-    <div class="col-6 col-md-3 mb-3" id="boton">
-        <a href="{{route('clientes.index')}}" class="text-decoration-none card border-0"
-            style="background: linear-gradient(#612BCE, #a557dd)">
-            <div class="card-body">
-                <h3 class="card-title text-white"><span class=""></span> Clientes</h3>
+        {{-- Seccion Citas --}}
+        <div class="col-12 col-md-6 mb-3">
+            {{-- Tabla de las citas para hoy --}}
+            <div class="card px-3 py-2 mb-2">
+                <!-- Card Title -->
+                <h3 class="">Citas para Hoy</h3>
+                <!-- Card Body -->
+                <div class="card-body p-0">
+                    <!-- Table Container -->
+                    <div class="table-responsive">
+                        <table class="table table-hover border rounded">
+                            <!-- Table head -->
+                            <thead>
+                                <tr>
+                                    <!-- Head labels -->
+                                    <th>Mascota</th>
+                                    <th>Peluquero</th>
+                                    <th>Horario</th>
+                                    <th>Tipo de atencion</th>
+                                </tr>
+                            </thead>
+                            <!-- Table body -->
+                            <tbody>
+                                @foreach($citas as $cita)
+                                <tr>
+                                    <td>{{$cita->mascota->nombre}}</td>
+                                    <td>{{$cita->usuario->nombre}}</td>
+                                    <td>{{$cita->hora}}</td>
+                                    <td>
+                                        @foreach($cita->detalle_cita as $detalle)
+                                        {{$detalle->servicio->nombre}}{{ $loop->last ? '.' : ',' }}
+                                        @endforeach
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </a>
-    </div>
+            {{-- Boton --}}
+            <a href="{{ route('citas.index') }}" class="btn" id="widget">
+                <h2 class="" id="btnCitas"><i class="fa-solid fa-calendar-check"></i></h2>
+            </a>
+        </div>
 
-
-    <div class="col-6 col-md-3 mb-3" id="boton">
-        <a href="{{route('mascotas.index')}}" class="text-decoration-none card border-0"
-            style="background: linear-gradient(#1D73CF ,#0DA1C4)">
-            <div class="card-body">
-                <h3 class="card-title text-white"><span class=""></span> Mascotas</h3>
+        {{-- Seccion Servicios --}}
+        <div class="col-12 col-md-6 mb-3">
+            {{-- Tabla de los servicios disponibles --}}
+            <div class="card px-3 py-2 mb-2">
+                <!-- Card Title -->
+                <h3 class="">Servicios Disponibles</h3>
+                <!-- Card Body -->
+                <div class="card-body p-0">
+                    <!-- Table Container -->
+                    <div class="table-responsive">
+                        <table class="table table-hover border rounded">
+                            <!-- Table head -->
+                            <thead>
+                                <tr>
+                                    <!-- Head labels -->
+                                    <th>Nombre</th>
+                                    <th>Costo</th>
+                                    <th>Duracion</th>
+                                    <th>Descripcion</th>
+                                </tr>
+                            </thead>
+                            <!-- Table body -->
+                            <tbody>
+                                @foreach($servicios as $servicio)
+                                <tr>
+                                    <!-- Name -->
+                                    <td>{{$servicio->nombre}}</td>
+                                    <!-- Breed -->
+                                    <td>{{$servicio->costo}}</td>
+                                    <!-- Genre -->
+                                    <td>{{$servicio->duracion_estimada}}</td>
+                                    <!-- Colour -->
+                                    <td><em>"{{$servicio->descripcion}}"</em></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </a>
+            {{-- Boton --}}
+            <a href="{{ route('servicios.index') }}" class="btn" id="widget">
+                <h2 class="" id="btnServicios"><i class="fa-solid fa-scissors"></i></h2>
+            </a>
+        </div>
+
+        {{-- Seccion Usuarios --}}
+        <div class="col-12">
+            {{-- Boton --}}
+            <a href="{{ route('usuarios.index') }}" class="btn" id="widget">
+                <h2 class="" id="btnUsuarios"><i class="fa-solid fa-user-group"></i></h2>
+            </a>
+        </div>
+
+
+
+
     </div>
 
-
-    <div class="col-6 col-md-3 mb-3" id="boton">
-        <a href="{{route('servicios.index')}}" class="text-decoration-none card border-0"
-            style="background: linear-gradient(#ffa631,#ffd42a)">
-            <div class="card-body">
-                <h3 class="card-title text-white"><span class=""></span> Servicios</h3>
-            </div>
-        </a>
-    </div>
-
-    <div class="col-12 mb-3" id="boton">
-        <a href="{{route('usuarios.index')}}" class="text-decoration-none card border-0"
-            style="background: linear-gradient(#af0808, #FF7B7B)">
-            <div class="card-body">
-                <h3 class="card-title text-white"><span class=""></span> Usuarios</h3>
-            </div>
-        </a>
-    </div>
-
-    {{-- /Botones --}}
-
-
-    {{-- Tabla de citas para hoy --}}
-    <div class="col-12 col-md-6" id="tabla-citasHoy">
-
-        <h3>Citas para hoy</h3>
-
-        <table class="table table-striped table-hover border rounded shadow">
-            <thead>
-                <tr>
-                    <th scope="col">Mascota</th>
-                    <th scope="col">Peluquero</th>
-                    <th scope="col">Horario</th>
-                    <th scope="col">Tipo de atencion</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($citas as $cita)
-                <tr>
-                    <td>{{$cita->mascota->nombre}}</td>
-                    <td>{{$cita->usuario->nombre}}</td>
-                    <td>{{$cita->hora}}</td>
-                    <td>
-                        @foreach($cita->detalle_cita as $detalle)
-                        {{$detalle->servicio->nombre}}{{ $loop->last ? '.' : ',' }}
-                        @endforeach
-                    </td>
-                </tr>
-                @endforeach
-
-            </tbody>
-        </table>
-    </div>
-    {{-- /Tabla de citas para hoy --}}
-
-    {{-- Tabla de servicios disponibles --}}
-    <div class="col-12 col-md-6" id="tabla-serviciosDisponibles">
-        <h3>Servicios disponibles</h3>
-
-        <table class="table table-striped table-hover border rounded shadow">
-            <thead>
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Costo</th>
-                    <th scope="col">Duracion estimada</th>
-                    <th scope="col">Descripcion</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($servicios as $servicio)
-                <tr>
-                    <td>{{$servicio->nombre}}</td>
-                    <td>${{$servicio->costo}}</td>
-                    <td>{{$servicio->duracion_estimada}}</td>
-                    <td><em>"{{$servicio->descripcion}}"</em></td>
-                </tr>
-                @endforeach
-
-            </tbody>
-        </table>
-    </div>
-    {{-- /Tabla de servicios disponibles --}}
 
 
 
 </div>
-
-
 
 
 @endsection

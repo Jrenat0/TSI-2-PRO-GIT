@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+    font-family: "Archivo", 'sans-serif';
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+
+body {
+    background: linear-gradient(#ffc2d1, #fb6f92);
+    min-height: 100vh;
+}
+
+/* Navbar Container */
+#navbar-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+}
+
+/* Navbar items */
+#navbar-container ul li a {
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+/* Navbar items hover */
+#navbar-container a:hover {
+    transition: 0.3s;
+    color: #fb6f92;
+    opacity: 1;
+}
+
+/* Navbar icon hover */
+#navbar-container a:hover #logo-text {
+    transition: 0.3s;
+    color: #fb6f92;
+    opacity: 1;
+}
+
+/* Navbar Icon text */
+#navbar-container #logo-text {
+    position: absolute;
+    margin-left: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* User Button */
+#userButton {
+    color: white;
+    background-color: black;
+    border-radius: 40px;
+}
+
+#userButton:hover{
+    border-radius: 20px;
+}
+
+#userButton small{
+    opacity: 0;
+    font-size: 0;
+    font-weight: 0;
+    transition: font-size 0.3s ease, opacity 0.3s ease;
+}
+
+#userButton:hover small{
+    opacity: 1;
+    font-size: 15px;
+}
+
+
+#userButton:hover {
+    background-color: #fb6f92;
+}
+

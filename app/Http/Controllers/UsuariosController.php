@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class UsuariosController extends Controller
 {
@@ -11,6 +13,9 @@ class UsuariosController extends Controller
      */
     public function index()
     {
+        if (Gate::denies('admin-gestion')) {
+            return redirect()->route('home.index');
+        }
         return view('usuarios.index');
     }
 
@@ -19,7 +24,9 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        //
+        if (Gate::denies('admin-gestion')) {
+            return redirect()->route('home.index');
+        }
     }
 
     /**
@@ -27,7 +34,9 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Gate::denies('admin-gestion')) {
+            return redirect()->route('home.index');
+        }
     }
 
     /**
@@ -35,7 +44,9 @@ class UsuariosController extends Controller
      */
     public function show(string $id)
     {
-        //
+        if (Gate::denies('admin-gestion')) {
+            return redirect()->route('home.index');
+        }
     }
 
     /**
@@ -43,7 +54,9 @@ class UsuariosController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        if (Gate::denies('admin-gestion')) {
+            return redirect()->route('home.index');
+        }
     }
 
     /**
@@ -51,7 +64,9 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        if (Gate::denies('admin-gestion')) {
+            return redirect()->route('home.index');
+        }
     }
 
     /**
@@ -59,6 +74,8 @@ class UsuariosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        if (Gate::denies('admin-gestion')) {
+            return redirect()->route('home.index');
+        }
     }
 }

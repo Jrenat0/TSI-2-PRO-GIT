@@ -14,8 +14,8 @@ class Mascota extends Model
     protected $table = 'mascotas';
     // defino los atributos de la tabla con '$fillable' para permitir el uso de las funciones 'Illuminate'.
     protected $fillable = ['nombre','raza','sexo','color','peso','fecha_nacimiento','rut_cliente'];
-    // desactivo los 'timestamps' de la tabla.
-    public $timestamps = false;
+    //activo los timestamps
+    public $timestamps = true;
 
     //**omito la primary-key ya que automaticamente se define como un atributo auto-incrementable, de tipo unsignedBigInteger, con nombre 'id'.**
     

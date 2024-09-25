@@ -41,59 +41,53 @@
 
                     <div class="col-12 col-md-8">
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="nombre">Nombre</label>
-                            <input class="form-control" id="nombre" name="nombre" type="text"
+                            <label class="form-label" for="nombreInput">Nombre</label>
+                            <input class="form-control" id="nombreInput" name="nombreInput" type="text"
                                 value="{{$mascota->nombre}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="raza">Raza</label>
-                            <input class="form-control" id="raza" name="raza" type="text" value="{{$mascota->raza}}">
+                            <label class="form-label" for="razaInput">Raza</label>
+                            <input class="form-control" id="razaInput" name="razaInput" type="text"
+                                value="{{$mascota->raza}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="sexo">Sexo</label>
-                            <input class="form-control" id="sexo" name="sexo" type="text" value="{{$mascota->sexo}}">
+                            <label class="form-label" for="sexoInput">Sexo</label>
+                            <input class="form-control" id="sexoInput" name="sexoInput" type="text"
+                                value="{{$mascota->sexo}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="color">Color</label>
-                            <input class="form-control" id="color" name="color" type="text" value="{{$mascota->color}}">
+                            <label class="form-label" for="colorInput">Color</label>
+                            <input class="form-control" id="colorInput" name="colorInput" type="text"
+                                value="{{$mascota->color}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="peso">Peso</label>
-                            <input class="form-control" id="peso" name="peso" type="number" value="{{$mascota->peso}}">
+                            <label class="form-label" for="pesoInput">Peso</label>
+                            <input class="form-control" id="pesoInput" name="pesoInput" type="number"
+                                value="{{$mascota->peso}}">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <label class="form-label" for="fecha_nacimiento">Fecha de nacimiento</label>
-                            <input class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" type="date"
-                                value="{{$mascota->fecha_nacimiento}}" readonly>
+                            <label class="form-label" for="fecha_nacimientoInput">Fecha de nacimiento</label>
+                            <input class="form-control" id="fecha_nacimientoInput" name="fecha_nacimientoInput"
+                                type="date" value="{{$mascota->fecha_nacimiento}}" readonly>
                         </div>
 
                         <div class="col-12 mb-3">
-                            <label class="form-label" for="rut_cliente">Dueño de la mascota</label>
-                            <select class="form-select" id="rut_cliente" name="rut_cliente" readonly>
+                            <label class="form-label" for="clientesSelect">Dueño de la mascota</label>
+                            <select class="form-select" id="clientesSelect" name="clientesSelect" readonly>
                                 <option selected>{{$mascota->cliente->nombre}}</option>
                             </select>
                         </div>
 
                         <div class="col-12 d-flex justify-content-end">
-                            <button class="btn btn-primary w-100" type="button" data-bs-toggle="modal"
+                            <button class="btn btn-outline-primary w-100" type="button" data-bs-toggle="modal"
                                 data-bs-target="#confirmacionModal">Actualizar
                                 informacion</button>
                         </div>
-
-                        @if ($errors->any())
-                        <div>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
 
                     </div>
 
@@ -169,7 +163,15 @@
 
 <div class="container shadow p-0">
 
-    <form action="{{route('mascotas.destroy',$mascota)}}" method="POST">
+    <div class="col-12 mb-3" id="boton">
+        <button class="btn border-0 rounded text-white w-100" type="button" data-bs-toggle="modal" data-bs-target="#borrarModal" style="background-color:#af0808;">
+            <h3>
+                <i class="bi bi-trash-fill"></i> Eliminar a {{$mascota->nombre}}
+            </h3>
+        </button>
+    </div>
+
+    {{-- <form action="{{route('mascotas.destroy',$mascota)}}" method="POST">
 
         @csrf
         @method('DELETE')
@@ -182,8 +184,30 @@
             </button>
         </div>
 
-    </form>
+    </form> --}}
 
+    <div class="modal fade" id="borrarModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Eliminación EEE</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Desea eliminar permanentemente a {{$mascota->nombre}}?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+                    <form action="{{route('mascotas.destroy', $mascota)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger">Confirmar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+    font-family: "Archivo", 'sans-serif';
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+
+body {
+    background: linear-gradient(#ffc2d1, #fb6f92);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Container de Login */
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+/* Boton de login */
+#login {
+    border-radius: 12px;
+    color: #fb6f92;
+    background-color: #fff;
+    outline: auto;
+    outline-color: #fb6f92;
+    margin-bottom: 20px;
+}
+
+#login:hover {
+    color: #fff;
+    background-color: #fb6f92;
+    transition-delay: 0.05s;
+}
+
+#email:focus,
+#password:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+
+/* Input form del nombre y la password */
+#email,
+#password {
+    border: none;
+    border-bottom: 1px solid grey;
+    border-radius: 0px;
+    margin-bottom: 0.6rem;
+    outline: none;
+    background: transparent;
+}
+
+/* Etiquetas del login */
+label {
+    color: grey;
+}
+
+/* Remember me checkbox */
+#remember {
+    margin-right: 4px;
+}
+
+/* Olvidaste tu contraseña? */
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fb6f92;
+}
+
+
+/* Textos del Login */
+#textos {
+    margin-bottom: 40px;
+}
+
+#textos p {
+    color: grey;
+}
+
+/* Logo del Login */
+#logo {
+    margin-bottom: 40px;
+}
+
+
+#logo:hover {
+    color: #fb6f92;
+    transition-delay: 0.05s;
+}
+
+
+#images {
+    flex-wrap: wrap;
+}
+
+/* Images */
+
+#images img {
+    flex-grow: 1;
+    flex-basis: 200;
+    border-radius: 6px;
+    filter: grayscale(1);
+    transition: .5s ease-in-out;
+}
+
+#images img:hover {
+    filter: grayscale(0);
+}

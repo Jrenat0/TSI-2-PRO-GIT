@@ -13,9 +13,9 @@ class MascotasController extends Controller
     public function index()
     {
         $clientes = Cliente::Get();
-        $mascotas = Mascota::limit(4)->orderBy('id','desc')->get();
+        $mascotas = Mascota::limit(4)->orderBy('id', 'desc')->get();
 
-        return view('mascotas.index',compact(['clientes','mascotas']));
+        return view('mascotas.index', compact(['clientes', 'mascotas']));
     }
 
     public function create()
@@ -25,18 +25,17 @@ class MascotasController extends Controller
     }
 
     public function store(MascotaRequest $request)
-    {   
+    {
         Mascota::create($request->validated());
 
         return redirect()->route('mascotas.index')->with('success', 'Mascota creada de manera exitosa!');
-
     }
 
     public function show(Mascota $mascota)
-    {   
+    {
         $citas = Cita::where('id_mascota', $mascota->id)->orderBy('fecha', 'asc')->get();
 
-        return view('mascotas.show',compact(['mascota','citas']));
+        return view('mascotas.show', compact(['mascota', 'citas']));
     }
 
     public function update(Mascota $mascota, MascotaRequest $request)

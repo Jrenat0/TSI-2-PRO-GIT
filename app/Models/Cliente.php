@@ -21,7 +21,7 @@ class Cliente extends Model
     //desactivo el 'auto-incremento' de la primaryKey.
     public $incrementing = false;
     //desactivo los 'timestamps' de la tabla.
-    public $timestamps = false;
+    public $timestamps = true;
 
 
     public function mascotas(){ // defino la relacion 1 a M entre la tabla 'clientes' y la tabla 'mascotas'.

@@ -1,0 +1,75 @@
+#widget {
+    background: linear-gradient(#272727, #111111);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    width: 100%;
+    transition: 0.3s;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+#widget:hover {
+    color: #ffc2d1;
+}
+
+#widget i {
+    margin-right: 10px;
+}
+
+#widget h2::after{
+    content: '';
+    font-weight: 0;
+    font-size: 0px;
+    opacity: 0;
+    transition: font-size 0.3s ease, opacity 0.3s ease;
+}
+
+
+#widget:hover #btnMascotas::after{
+    content: 'Mascotas';
+    font-size: 30px;
+    font-weight: 600;
+    opacity: 1;
+}
+
+#widget:hover #btnClientes::after{
+    content: 'Clientes';
+    font-size: 30px;
+    font-weight: 600;
+    opacity: 1;
+}
+
+#widget:hover #btnCitas::after{
+    content: 'Citas';
+    font-size: 30px;
+    font-weight: 600;
+    opacity: 1;
+}
+
+#widget:hover #btnServicios::after{
+    content: 'Servicios';
+    font-size: 30px;
+    font-weight: 600;
+    opacity: 1;
+}
+
+#widget:hover #btnUsuarios::after{
+    content: 'Usuarios';
+    font-size: 30px;
+    font-weight: 600;
+    opacity: 1;
+}
+
+
+/* Table */
+
+table th {
+    font-weight: bold;
+}
+
+table td{
+    vertical-align: middle;
+}

@@ -6,12 +6,16 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class MascotaRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
     public function rules(): array
     {
         // Definimos las reglas comunes
@@ -23,15 +27,12 @@ class MascotaRequest extends FormRequest
             'peso' => 'required|numeric|min:0.1|max:999.99',
             'fecha_nacimiento' => 'required|date|before:today',
         ];
-
         // Reglas adicionales para el store
         if ($this->isMethod('post')) {
             $rules['rut_cliente'] = 'required|string|alpha_dash|min:9|max:10';
         }
-
         return $rules;
     }
-
     public function messages()
     {
         return [

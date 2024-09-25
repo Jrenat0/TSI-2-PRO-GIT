@@ -1,0 +1,24 @@
+
+/* Table */
+
+table th {
+    font-weight: bold;
+}
+
+table td{
+    vertical-align: middle;
+}
+
+table #options{
+    text-align: center;
+}
+
+#options button:hover, #options button:focus{
+    background-color: #fb6f92;
+    color: white;
+}
+
+.navbar-toggler i{
+    color: black;
+}
+
