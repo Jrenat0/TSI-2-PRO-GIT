@@ -3,18 +3,6 @@
 @section('title', 'Mascotas')
 
 
-@push('styles')
-<style>
-    body {
-        background: linear-gradient(#ffcbe9, #FF5EC0);
-        background-position: absolute;
-        background-size: cover;
-        background-repeat: no-repeat;
-        min-height: 100vh;
-    }
-</style>
-@endpush
-
 @section('content')
 <div class="container">
     {{-- Botón para ir a la vista create --}}
@@ -115,7 +103,7 @@
 </div>
 @endsection
 
-@push('scripts')
+@push('script')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{{asset('/js/mascotas.js')}}"></script>
 @endpush
