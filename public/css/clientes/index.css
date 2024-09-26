@@ -7,6 +7,9 @@ table th {
 
 table td{
     vertical-align: middle;
+    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;     /* Oculta el desbordamiento */
+    text-overflow: ellipsis;
 }
 
 table #options{

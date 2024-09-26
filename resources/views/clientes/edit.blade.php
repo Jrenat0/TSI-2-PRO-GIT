@@ -8,7 +8,7 @@
 @endpush
 
 @section('content')
-<div class="container mb-5 bg-light rounded">
+<div class="container-fluid col-10 mb-5 bg-light rounded">
 
     <form action="" method="POST" id="formEdit">
         @csrf
@@ -59,7 +59,7 @@
 
 </div>
 
-<div class="container p-0">
+<div class="container-fluid col-10 p-0">
     <form action="" method="POST" id="formDelete">
         @csrf
 
@@ -70,9 +70,8 @@
             <div class="col-12">
 
                 <button class="btn" type="submit">
-                    <h2 class="fb6f92"><i class="fa-solid fa-trash"></i>Eliminar al Cliente</h2>
+                    <h2 class=""><i class="fa-solid fa-trash"></i>Eliminar al Cliente</h2>
                 </button>
-
 
             </div>
 

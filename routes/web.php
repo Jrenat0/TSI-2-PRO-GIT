@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/mascotas/store', [MascotasController::class, 'store'])->name('mascotas.store');
 
+    Route::get('/mascotas/edit/{mascota}',[MascotasController::class, 'edit'])->name('mascotas.edit');
+
     Route::put('/mascotas/update/{mascota}', [MascotasController::class, 'update'])->name('mascotas.update');
 
     Route::delete('/mascotas/destroy/{mascota}', [MascotasController::class, 'destroy'])->name('mascotas.destroy');

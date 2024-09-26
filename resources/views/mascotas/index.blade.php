@@ -2,27 +2,30 @@
 
 @section('title', 'Mascotas')
 
+@push('style')
+    <link rel="stylesheet" href="{{asset('css/mascotas/index.css')}}">
+@endpush
 
 @section('content')
-<div class="container">
+<div class="container-fluid col-10">
     {{-- Botón para ir a la vista create --}}
     <div class="col-12 mb-3 text-end">
-        <a href="{{route('mascotas.create')}}" class="btn btn-primary">Agregar Nueva Mascota</a>
+        <a href="{{route('mascotas.create')}}" class="btn" id="addButton">Agregar Nueva Mascota</a>
     </div>
     {{-- /Botón para ir a la vista create --}}
     <div class="row">
 
         {{-- Form para consultar una mascota --}}
-        <div class="col-12 mb-3 p-3 border rounded" id="formEditarMascota" style="background: linear-gradient(rgb(253, 215, 237),#F9CEE7)">
+        <div class="col-12 mb-3 p-3 bg-light rounded" id="formEditarMascota">
 
             <div class="mb-3">
                 <h3>Consultar por una mascota</h3>
             </div>
-            
+
             <form action="" method="GET">
                 @csrf
                 <div class="row">
-                    <div class="col-12 col-md-6 mb-2">
+                    <div class="col-12 col-lg-6 mb-2">
                         <label class="form-label" for="clientesSelect">Dueño de la mascota</label>
                         <select class="form-select" id="clientesSelect">
                             <option selected>Seleccione al dueño de la mascota</option>
@@ -32,7 +35,7 @@
                         </select>
                     </div>
 
-                    <div class="col-12 col-md-6 mb-2">
+                    <div class="col-12 col-lg-6 mb-2">
                         <label class="form-label" for="mascotasSelect">Mascota</label>
                         <select class="form-select" id="mascotasSelect">
                         </select>
@@ -69,33 +72,38 @@
         </div>
         {{-- /Form para consultar una mascota --}}
 
-         
-        
+
+
         {{-- Mascotas Nuevas --}}
+        <div class="container-fluid bg-light rounded py-3">
 
-        <div class="col-12 mb-3">
-            <h3 class="">Mascotas Nuevas</h3>
-        </div>
+            <h3>Mascotas Nuevas</h3>
 
-        @foreach($mascotas as $mascota)
-        <div class="col-12 col-sm-12 col-md-6 col-lg-3 d-flex justify-content-center mt-2">
-            <div class="card" style="width: 18rem;">
-                {{-- <img src="..." class="card-img-top" alt="..."> --}}
-                <div class="card-body" style="background: linear-gradient(rgb(253, 215, 237),#F9CEE7)">
-                    <h5 class="card-title">{{$mascota->nombre}}</h5>
-                    <p class="card-text">
-                        <strong>Raza: </strong>{{$mascota->raza}} <br>
-                        <strong>Sexo: </strong>{{$mascota->sexo}} <br>
-                        <strong>Color: </strong>{{$mascota->color}} <br>
-                        <strong>Peso: </strong>{{$mascota->peso}} kg. <br>
-                        <strong>Nacimiento: </strong>{{$mascota->fecha_nacimiento}} <br>
-                        <strong>Dueño: </strong>{{$mascota->cliente->nombre}}
-                    </p>
-                    <a href="{{route('mascotas.show',$mascota)}}" class="btn btn-outline-primary">Gestionar</a>
+            <div class="row">
+                @foreach($mascotas as $mascota)
+                <div class="col-12 col-lg-6 col-xxl-3 d-flex justify-content-center mb-3">
+                    <div class="card border-0 shadow w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$mascota->nombre}}</h5>
+                            <p class="card-text">
+                                <strong>Raza: </strong>{{$mascota->raza}} <br>
+                                <strong>Sexo: </strong>{{$mascota->sexo}} <br>
+                                <strong>Color: </strong>{{$mascota->color}} <br>
+                                <strong>Peso: </strong>{{$mascota->peso}} kg. <br>
+                                <strong>Nacimiento: </strong>{{$mascota->fecha_nacimiento}} <br>
+                                <strong>Dueño: </strong>{{$mascota->cliente->nombre}}
+                            </p>
+                            <a href="{{route('mascotas.show',$mascota)}}" class="btn" id="gestionButton">Gestionar</a>
+                        </div>
+                    </div>
                 </div>
+                @endforeach
             </div>
+
         </div>
-        @endforeach
+
+
+
         {{-- /Mascotas Nuevas --}}
 
 

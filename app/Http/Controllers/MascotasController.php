@@ -38,6 +38,12 @@ class MascotasController extends Controller
         return view('mascotas.show', compact(['mascota', 'citas']));
     }
 
+
+    public function edit(Mascota $mascota){
+        return view('mascotas.edit', compact('mascota'));
+    }
+
+
     public function update(Mascota $mascota, MascotaRequest $request)
     {
         $mascota->update($request->validated());

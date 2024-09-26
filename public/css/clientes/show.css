@@ -44,11 +44,17 @@
 #collapsePets table thead th {
     font-weight: bold;
     color: rgb(43, 43, 43);
+    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;     /* Oculta el desbordamiento */
+    text-overflow: ellipsis;
 }
 
 /* Pets table items */
 #collapsePets table tbody td {
     color: rgb(43, 43, 43);
+    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;     /* Oculta el desbordamiento */
+    text-overflow: ellipsis;
 }
 
 /* Dates Container Toggler */
@@ -73,9 +79,15 @@
 #collapseDates table thead th {
     font-weight: bold;
     color: rgb(43, 43, 43);
+    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;     /* Oculta el desbordamiento */
+    text-overflow: ellipsis;
 }
 
 /* Dates table items */
 #collapseDates table tbody td {
     color: rgb(43, 43, 43);
+    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;     /* Oculta el desbordamiento */
+    text-overflow: ellipsis;
 }

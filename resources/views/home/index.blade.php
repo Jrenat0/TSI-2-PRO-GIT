@@ -9,12 +9,12 @@
 
 @section('content')
 
-<div class="container">
+<div class="container-fluid col-10">
 
     <div class="row">
 
         {{-- Seccion Mascotas --}}
-        <div class="col-12 col-md-6 mb-3">
+        <div class="col-12 col-xxl-6 mb-3">
             {{-- Tabla de las mascotas nuevas --}}
             <div class="card px-3 py-2 mb-2">
                 <!-- Card Title -->
@@ -61,7 +61,7 @@
         </div>
 
         {{-- Seccion Clientes --}}
-        <div class="col-12 col-md-6 mb-3">
+        <div class="col-12 col-xxl-6 mb-3">
             {{-- Tabla de los clientes nuevos --}}
             <div class="card px-3 py-2 mb-2">
                 <!-- Card Title -->
@@ -107,7 +107,7 @@
         </div>
 
         {{-- Seccion Citas --}}
-        <div class="col-12 col-md-6 mb-3">
+        <div class="col-12 col-xxl-6 mb-3">
             {{-- Tabla de las citas para hoy --}}
             <div class="card px-3 py-2 mb-2">
                 <!-- Card Title -->
@@ -153,7 +153,7 @@
         </div>
 
         {{-- Seccion Servicios --}}
-        <div class="col-12 col-md-6 mb-3">
+        <div class="col-12 col-xxl-6 mb-3">
             {{-- Tabla de los servicios disponibles --}}
             <div class="card px-3 py-2 mb-2">
                 <!-- Card Title -->

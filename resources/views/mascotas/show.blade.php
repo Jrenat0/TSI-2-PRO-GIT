@@ -3,134 +3,94 @@
 @section('title', 'Informacion de una mascota')
 
 
-@push('styles')
-<style>
-    body {
-        background: linear-gradient(#ffcbe9, #FF5EC0);
-        background-position: absolute;
-        background-size: cover;
-        background-repeat: no-repeat;
-        min-height: 100vh;
-    }
-</style>
+@push('style')
+<link rel="stylesheet" href="{{asset('css/mascotas/show.css')}}">
 @endpush
+
 
 @section('content')
 
 
-<div class="container p-3 mb-3 shadow rounded" style="background: linear-gradient(rgb(253, 215, 237),#F9CEE7)">
-    <div class="mb-3">
-        <a href="#informacionCollapse" data-bs-toggle="collapse" data-bs-target="#informacionCollapse"
-            class="text-decoration-none text-dark">
-            <h3 class=""><i class="bi bi-caret-down-fill"></i></i> Informacion de {{$mascota->nombre}}</h3>
-        </a>
-    </div>
+<div class="container-fluid col-10 bg-light rounded shadow py-2 mb-3" id="infoContainer">
+    <a href="#informacionCollapse" data-bs-toggle="collapse" data-bs-target="#informacionCollapse">
+        <i class="fa-solid fa-caret-down"></i>
+        Informacion de {{$mascota->nombre}}
+    </a>
 
     <div class="collapse show" id="informacionCollapse">
-        <div class="col-12 mb-3 p-3 rounded" id="formEditarMascota">
-            <form action="{{route('mascotas.update',$mascota->id)}}" method="POST">
-                @csrf
+        <div class="row">
+            <div class="col-4 d-none d-md-block ">
+                <img src="{{asset('images/perrito.png')}}" alt="" class="img-fluid rounded shadow border">
+            </div>
 
-                @method('PUT')
-
-                <div class="row">
-
-                    <div class="col-4 d-none d-md-block ">
-                        <img src="{{asset('images/perrito.png')}}" alt="" class="img-fluid rounded shadow border">
-                    </div>
-
-                    <div class="col-12 col-md-8">
-                        <div class="col-12 mb-2">
-                            <label class="form-label" for="nombreInput">Nombre</label>
-                            <input class="form-control" id="nombreInput" name="nombreInput" type="text"
-                                value="{{$mascota->nombre}}">
-                        </div>
-
-                        <div class="col-12 mb-2">
-                            <label class="form-label" for="razaInput">Raza</label>
-                            <input class="form-control" id="razaInput" name="razaInput" type="text"
-                                value="{{$mascota->raza}}">
-                        </div>
-
-                        <div class="col-12 mb-2">
-                            <label class="form-label" for="sexoInput">Sexo</label>
-                            <input class="form-control" id="sexoInput" name="sexoInput" type="text"
-                                value="{{$mascota->sexo}}">
-                        </div>
-
-                        <div class="col-12 mb-2">
-                            <label class="form-label" for="colorInput">Color</label>
-                            <input class="form-control" id="colorInput" name="colorInput" type="text"
-                                value="{{$mascota->color}}">
-                        </div>
-
-                        <div class="col-12 mb-2">
-                            <label class="form-label" for="pesoInput">Peso</label>
-                            <input class="form-control" id="pesoInput" name="pesoInput" type="number"
-                                value="{{$mascota->peso}}">
-                        </div>
-
-                        <div class="col-12 mb-2">
-                            <label class="form-label" for="fecha_nacimientoInput">Fecha de nacimiento</label>
-                            <input class="form-control" id="fecha_nacimientoInput" name="fecha_nacimientoInput"
-                                type="date" value="{{$mascota->fecha_nacimiento}}" readonly>
-                        </div>
-
-                        <div class="col-12 mb-3">
-                            <label class="form-label" for="clientesSelect">Dueño de la mascota</label>
-                            <select class="form-select" id="clientesSelect" name="clientesSelect" readonly>
-                                <option selected>{{$mascota->cliente->nombre}}</option>
-                            </select>
-                        </div>
-
-                        <div class="col-12 d-flex justify-content-end">
-                            <button class="btn btn-outline-primary w-100" type="button" data-bs-toggle="modal"
-                                data-bs-target="#confirmacionModal">Actualizar
-                                informacion</button>
-                        </div>
-
-                    </div>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Cambios</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>¿¿Desea confirmar los cambios hechos a {{$mascota->nombre}}??</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-success">Confirmar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
+            <div class="col-12 col-md-8">
+                
+                <div class="col-12 mb-2">
+                    <label class="form-label" for="nombreInput">Nombre</label>
+                    <input class="form-control" id="nombreInput" name="nombreInput" type="text"
+                        value="{{$mascota->nombre}}" readonly>
                 </div>
-            </form>
+
+                <div class="col-12 mb-2">
+                    <label class="form-label" for="razaInput">Raza</label>
+                    <input class="form-control" id="razaInput" name="razaInput" type="text" value="{{$mascota->raza}}" readonly>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <label class="form-label" for="sexoInput">Sexo</label>
+                    <input class="form-control" id="sexoInput" name="sexoInput" type="text" value="{{$mascota->sexo}}" readonly>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <label class="form-label" for="colorInput">Color</label>
+                    <input class="form-control" id="colorInput" name="colorInput" type="text"
+                        value="{{$mascota->color}}" readonly>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <label class="form-label" for="pesoInput">Peso</label>
+                    <input class="form-control" id="pesoInput" name="pesoInput" type="number"
+                        value="{{$mascota->peso}}" readonly>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <label class="form-label" for="fecha_nacimientoInput">Fecha de nacimiento</label>
+                    <input class="form-control" id="fecha_nacimientoInput" name="fecha_nacimientoInput" type="date"
+                        value="{{$mascota->fecha_nacimiento}}" readonly>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <label class="form-label" for="clientesSelect">Dueño de la mascota</label>
+                    <select class="form-select" id="clientesSelect" name="clientesSelect" readonly>
+                        <option selected>{{$mascota->cliente->nombre}}</option>
+                    </select>
+                </div>
+
+                <form action="{{route('mascotas.edit',$mascota)}}" method="GET">
+                    @csrf
+                    <button class="btn w-100" id="buttonEdit" type="submit">Editar a {{$mascota->nombre}}</button>
+                </form>
+                
+                
+            </div>
+
+            
+
+
+
         </div>
     </div>
 </div>
 
 
-<div class="container p-3 mb-3 shadow rounded" style="background: linear-gradient(rgb(253, 215, 237),#F9CEE7)">
-    <div class="mb-3">
-        <a href="#citasCollapse" data-bs-toggle="collapse" data-bs-target="#citasCollapse"
-            class="text-decoration-none text-dark">
-            <h3 class=""><i class="bi bi-caret-down-fill"></i></i> Citas pendientes de {{$mascota->nombre}}</h3>
-        </a>
-    </div>
+<div class="container-fluid col-10 py-2 mb-3 bg-light shadow rounded" id="citasContainer">
+    <a href="#citasCollapse" data-bs-toggle="collapse" data-bs-target="#citasCollapse">
+        <i class="fa-solid fa-caret-down"></i> Citas pendientes de {{$mascota->nombre}}
+    </a>
 
     <div class="collapse" id="citasCollapse">
         <div class="col-12" id="tabla-citasPendientes">
-            <table class="table table-striped table-hover border rounded">
+            <table class="table table-hover mt-2">
                 <thead>
                     <tr>
                         <th scope="col">Mascota</th>
@@ -159,60 +119,5 @@
     </div>
 
 </div>
-
-
-<div class="container shadow p-0">
-
-    <div class="col-12 mb-3" id="boton">
-        <button class="btn border-0 rounded text-white w-100" type="button" data-bs-toggle="modal" data-bs-target="#borrarModal" style="background-color:#af0808;">
-            <h3>
-                <i class="bi bi-trash-fill"></i> Eliminar a {{$mascota->nombre}}
-            </h3>
-        </button>
-    </div>
-
-    {{-- <form action="{{route('mascotas.destroy',$mascota)}}" method="POST">
-
-        @csrf
-        @method('DELETE')
-
-        <div class="col-12 mb-3" id="boton">
-            <button class="btn border-0 rounded text-white w-100" type="submit" style="background-color:#af0808;">
-                <h3>
-                    <i class="bi bi-trash-fill"></i> Eliminar a {{$mascota->nombre}}
-                </h3>
-            </button>
-        </div>
-
-    </form> --}}
-
-    <div class="modal fade" id="borrarModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Eliminación EEE</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Desea eliminar permanentemente a {{$mascota->nombre}}?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-
-                    <form action="{{route('mascotas.destroy', $mascota)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-outline-danger">Confirmar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-
-
 
 @endsection

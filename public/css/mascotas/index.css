@@ -1,0 +1,30 @@
+#addButton{
+    outline: solid 2px #F8F9FA;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#addButton:hover{
+    background: #F8F9FA;
+    color: #fb6f92;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+#gestionButton {
+    border-radius: 12px;
+    color: #fb6f92;
+    background-color: #fff;
+    outline: auto;
+    outline-color: #fb6f92;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+#gestionButton:hover{
+    color: #fff;
+    background-color: #fb6f92;
+    transition-delay: 0.05s;
+}

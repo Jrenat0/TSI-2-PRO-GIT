@@ -1,0 +1,82 @@
+
+#infoContainer a {
+    text-decoration: none;
+    color: rgb(43, 43, 43);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#infoContainer a i {
+    margin-right: 10px;
+}
+
+#infoContainer label {
+    color: grey;
+}
+
+#infoContainer input {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid rgba(43, 43, 43, 0.2);
+}
+
+
+
+#citasContainer a {
+    text-decoration: none;
+    color: rgb(43, 43, 43);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#citasContainer a i {
+    margin-right: 10px;
+}
+
+#citasContainer label {
+    color: grey;
+}
+
+#citasContainer input {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid rgba(43, 43, 43, 0.2);
+}
+
+
+#citasCollapse table {
+    border-top: 1px solid grey;
+}
+
+/* Pets table headers */
+#citasCollapse table thead th {
+    font-weight: bold;
+    color: rgb(43, 43, 43);
+    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;     /* Oculta el desbordamiento */
+    text-overflow: ellipsis;
+}
+
+/* Pets table items */
+#citasCollapse table tbody td {
+    color: rgb(43, 43, 43);
+    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;     /* Oculta el desbordamiento */
+    text-overflow: ellipsis;
+}
+
+
+#buttonEdit {
+    border-radius: 12px;
+    color: #fb6f92;
+    background-color: #fff;
+    outline: auto;
+    outline-color: #fb6f92;
+    margin-bottom: 20px;
+}
+
+#buttonEdit:hover{
+    color: #fff;
+    background-color: #fb6f92;
+    transition-delay: 0.05s;
+}

@@ -77,14 +77,6 @@ body {
     background-color: #fb6f92;
 }
 
-/* #userButton:focus,
-#userButton:focus small {
-    background-color: #fb6f92;
-    opacity: 1;
-    font-size: 15px;
-} */
-
-
 #logoutButton {
     position: relative;
     background-color: #ff4271;

@@ -21,7 +21,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light">
 
-        <div class="container py-2 px-4 shadow" id="navbar-container">
+        <div class="container-fluid col-10 py-2 px-4 shadow" id="navbar-container">
             <!-- Navbar Logo -->
             <a class="navbar-brand" href="{{ route('home.index') }}">
                 <i class="fa-solid fa-dog"></i>
@@ -60,18 +60,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Exportar</a>
                     </li>
+
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link" href="#">Cerrar sesion</a>
+                    </li>
+
                 </ul>
             </div>
 
             <!-- User Button -->
-            <button class="btn d-none d-md-block" type="button" id="userButton">
+            <button class="btn d-none d-lg-block" type="button" id="userButton">
                 <i class="fa-solid fa-user"></i>
                 @auth
                 <small>{{ Auth::user()->nombre }} ({{ Auth::user()->nombreRol() }})</small>
                 @endauth
             </button>
 
-            <a class="btn" id="logoutButton" href="{{route('auth.logout')}}">
+            <a class="btn d-none d-md-block" id="logoutButton" href="{{route('auth.logout')}}">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <small>Cerrar Sesion</small>
             </a>

@@ -3,12 +3,15 @@
 @section('title', 'Crear Mascota')
 
 
-@section('content')
-<div class="container">
-    <div class="row">
+@push('style')
+    <link rel="stylesheet" href="{{asset('css/mascotas/create.css')}}">
+@endpush
 
+@section('content')
+<div class="container-fluid col-10 bg-light rounded shadow">
+    <div class="row">
         {{-- Formulario para crear una nueva mascota --}}
-        <div class="col-12 mb-3 p-3 border rounded" style="background: linear-gradient(rgb(253, 215, 237),#F9CEE7)">
+        <div class="col-12 mb-3 p-3">
 
             <div class="mb-3">
                 <h3>Crear una nueva mascota</h3>
@@ -25,12 +28,12 @@
                 </div>
             @endif
 
-            <form action="{{route('mascotas.store')}}" enctype="multipart/form-data" method="POST">
+            <form action="{{route('mascotas.store')}}" enctype="multipart/form-data" method="POST" id="formCreate">
                 @csrf
                 <div class="row">
                     <div class="col-12 col-md-6 mb-2">
-                        <label class="form-label" for="cliente_id">Dueño de la mascota</label>
-                        <select class="form-select @error('cliente_id') is-invalid @enderror" id="cliente_id" name="cliente_id" required>
+                        <label class="form-label" for="rut_cliente">Dueño de la mascota</label>
+                        <select class="form-select @error('rut_cliente') is-invalid @enderror" id="rut_cliente" name="rut_cliente" required>
                             <option value="" selected>Seleccione al dueño de la mascota</option>
                             @foreach($clientes as $cliente)
                             <option value="{{$cliente->rut}}">{{$cliente->rut}}:{{$cliente->nombre}}</option>
