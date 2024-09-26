@@ -41,19 +41,44 @@
                         <p class="mt-0 d-none d-md-block">Ingrese sus detalles de cuenta para acceder</p>
                     </div>
 
+
+                    @if ($errors->any())
+                    <div class="alert alert-danger py-2 border-0 shadow-sm">
+                        <ul class="mb-1">
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
                     <form action="{{route('auth.autenticar')}}" method="POST">
+                        
                         @csrf
 
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="example@mail.cl">
+                        <input type="email" class="form-control @error('email')is-invalid @enderror" id="email"
+                            name="email" placeholder="example@mail.cl" value="{{ old('email') }}">
+
+                        @error('email')
+                        <div class="invalid-feedback mb-2">
+                            {{$message}}
+                        </div>
+                        @enderror
 
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" name="password"
-                            placeholder="********">
+                        <input type="password" class="form-control @error('password')is-invalid @enderror"
+                            id="password" name="password" placeholder="********">
+                        @error('password')
+                        <div class="invalid-feedback mb-2">
+                            {{$message}}
+                        </div>
+                        @enderror
+
 
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div>
-                                <input type="checkbox" class="form-check-input" id="remember">
+                                <input type="checkbox" class="form-check-input" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                 <label for="remember" class="form-check-label">Recordarme</label>
                             </div>
                             <a href="#">Olvidaste tu contraseña?</a>

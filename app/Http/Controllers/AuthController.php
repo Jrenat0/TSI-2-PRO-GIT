@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\AuthRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -19,16 +19,17 @@ class AuthController extends Controller
         return redirect()->route('auth.login');
     }
 
-    public function autenticar(Request $request)
+    public function autenticar(AuthRequest $request)
     {
         // $credenciales = ['email'=>$request->email,'password'=>$request->password];
-        $credenciales = $request->only(['email', 'password']);
+        $credenciales = $request->validated();
+        $remember = $request->has('remember');
 
-        if (Auth::attempt($credenciales)) {
+        if (Auth::attempt($credenciales, $remember)) {
             //credenciales correctas
             $request->session()->regenerate();
             return redirect()->route('home.index');
         }
-        return back()->withErrors('Credenciales incorrectas :(')->onlyInput('email');
+        return back()->withErrors('Las credenciales ingresadas son incorrectas.')->onlyInput('email');
     }
 }

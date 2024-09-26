@@ -59,14 +59,15 @@ Route::middleware(['auth'])->group(function () {
 });
 // Auth routes
 
-Route::middleware(['guest'])->group(function () {
+Route::middleware(['web'])->group(function () {
     Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');
     Route::post('/auth/autenticar', [AuthController::class, 'autenticar'])->name('auth.autenticar');
+    Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
 
 
 
-Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');
+
 
 
 //Api routes

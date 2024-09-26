@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('fono',10);
             $table->string('rol',20);
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 
