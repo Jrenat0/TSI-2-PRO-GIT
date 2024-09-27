@@ -59,11 +59,19 @@ Route::middleware(['auth'])->group(function () {
 });
 // Auth routes
 
-Route::middleware(['web'])->group(function () {
+Route::middleware(['guest'])->group(function () {
     Route::get('/auth/login', [AuthController::class, 'login'])->name('auth.login');
-    Route::post('/auth/autenticar', [AuthController::class, 'autenticar'])->name('auth.autenticar');
-    Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::post('/auth/login', [AuthController::class, 'autenticar'])->name('auth.autenticar');
+
+    Route::get('/auth/forgot', [AuthController::class, 'forgot'])->name('auth.forgot');
+    Route::post('/auth/forgot', [AuthController::class, 'forgotEmail'])->name('auth.forgotEmail');
+
+    Route::get('/auth/change/{usuario}', [AuthController::class, 'changePass'])->name('auth.changePass');
+    Route::put('/auth/change/{usuario}', [AuthController::class, 'storePass'])->name('auth.storePass');
 });
+
+
+Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');
 
 
 
