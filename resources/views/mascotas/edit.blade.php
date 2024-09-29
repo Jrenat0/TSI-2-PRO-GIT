@@ -80,7 +80,7 @@
 
 
 
-<div class="container-fluid col-10 shadow p-0">
+<div class="container-fluid col-lg-10 col-12 shadow p-0">
 
     <div class="col-12 mb-3">
         <button class="btn" type="button" id="buttonDelete" data-bs-toggle="modal" data-bs-target="#borrarModal">
