@@ -11,7 +11,7 @@
 @section('content')
 
 
-<div class="container-fluid col-10 bg-light rounded shadow py-2 mb-3" id="infoContainer">
+<div class="container-fluid col-lg-10 col-12 bg-light rounded shadow py-2 mb-3" id="infoContainer">
     <a href="#informacionCollapse" data-bs-toggle="collapse" data-bs-target="#informacionCollapse">
         <i class="fa-solid fa-caret-down"></i>
         Informacion de {{$mascota->nombre}}
@@ -83,13 +83,13 @@
 </div>
 
 
-<div class="container-fluid col-10 py-2 mb-3 bg-light shadow rounded" id="citasContainer">
+<div class="container-fluid col-lg-10 col-12 py-2 mb-3 bg-light shadow rounded" id="citasContainer">
     <a href="#citasCollapse" data-bs-toggle="collapse" data-bs-target="#citasCollapse">
         <i class="fa-solid fa-caret-down"></i> Citas pendientes de {{$mascota->nombre}}
     </a>
 
     <div class="collapse" id="citasCollapse">
-        <div class="col-12" id="tabla-citasPendientes">
+        <div class="col-12 table-responsive" id="tabla-citasPendientes">
             <table class="table table-hover mt-2">
                 <thead>
                     <tr>

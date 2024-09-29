@@ -3,7 +3,7 @@
 @section('title', 'Usuarios')
 
 @push('style')
-    <link rel="stylesheet" href="{{ asset('css/usuarios/index.css')}}">
+<link rel="stylesheet" href="{{ asset('css/usuarios/index.css')}}">
 @endpush
 
 @section('content')
@@ -46,7 +46,7 @@
                                         <th class="d-none d-md-table-cell">Email</th>
                                         <th class="d-none d-md-table-cell">Fono</th>
                                         <th>Rol</th>
-                                        <th id="options">Opciones</th>
+                                        <th>Opciones</th>
                                     </tr>
                                 </thead>
                                 <!-- Table body -->
@@ -64,20 +64,13 @@
                                         <!-- Role -->
                                         <td>Administrador</td>
                                         <!-- Manage options -->
-                                        <td id="options">
-                                            <div class="dropdown">
-                                                <!-- Dropdown toggle button -->
-                                                <button class="btn" type="button" data-bs-toggle="dropdown"
-                                                    aria-expanded="false">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                                </button>
-                                                <!-- Dropdown items -->
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Más detalles</a></li>
-                                                    <li><a class="dropdown-item" href="#">Editar usuario</a></li>
-                                                    <li><a class="dropdown-item" href="#">Borrar usuario</a></li>
-                                                </ul>
-                                            </div>
+                                        <td>
+                                            <a class="btn" id="options" href="">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            <a class="btn" id="options" href="">
+                                                <i class="fa-solid fa-pencil"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -90,71 +83,102 @@
 
 
         <!-- Table Peluqueros -->
-        <div class="col-12 col-xl-6 mb-3">
+        <div class="col-12 col-xl-4 mb-3">
             <!-- Card -->
-            <div class="card px-3 py-2">
+            <div class="card px-3 py-2 shadow">
                 <!-- Card Title -->
-                <h3 class="">Peluqueros Activos</h3>
+                <h3 class="text-center">Peluqueros</h3>
                 <!-- Card Body -->
                 <div class="card-body p-0">
-                    <!-- Table Container -->
-                    <div class="table-responsive">
-                        <table class="table table-hover border rounded">
-                            <!-- Table head -->
-                            <thead>
-                                <tr>
-                                    <!-- Head labels -->
-                                    <th>Nombre</th>
-                                    <th class="d-none d-md-table-cell">Rut</th>
-                                    <th class="d-none d-md-table-cell">Email</th>
-                                    <th class="d-none d-md-table-cell">Fono</th>
-                                    <th>Rol</th>
-                                    <th id="options">Opciones</th>
-                                </tr>
-                            </thead>
-                            <!-- Table body -->
-                            <tbody>
-                                <tr>
-                                    <!-- Name -->
-                                    <td>Fancy</td>
-                                    <!-- Rut -->
-                                    <td class="d-none d-md-table-cell">21.268.821-2</td>
-                                    <!-- Email -->
-                                    <td class="d-none d-md-table-cell">Admin@petsfancy.cl</td>
-                                    <!-- Phone -->
-                                    <td class="d-none d-md-table-cell">950502525</td>
-                                    <!-- Role -->
-                                    <td>Administrador</td>
-                                    <!-- Manage options -->
-                                    <td id="options">
-                                        <!-- Options dropdown -->
-                                        <div class="dropdown">
-                                            <!-- Dropdown toggle button -->
-                                            <button class="btn" type="button" data-bs-toggle="dropdown"
-                                                aria-expanded="false">
-                                                <i class="fa-solid fa-ellipsis"></i>
-                                            </button>
-                                            <!-- Dropdown items -->
-                                            <ul class="dropdown-menu">
-                                                <!-- More details button -->
-                                                <li><a class="dropdown-item" href="#">Mas detalles</a></li>
-                                                <!-- User editor button -->
-                                                <li><a class="dropdown-item" href="#">Editar usuario</a></li>
-                                                <!-- Erase a user button -->
-                                                <li><a class="dropdown-item" href="#">Borrar usuario</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <ul class="list-group">
+                        @foreach($usuarios as $usuario)
+                        @if($usuario->rol == 'Peluquero')
+                        <li class="list-unstyled">
+                            <a class="btn mb-2 p-2" href="#" id="itemLista">
+                                <p class="mb-0">{{$usuario->nombre}}</p>
+                                <p class="mb-0">{{$usuario->email}}</p>
+                            </a>
+                        </li>
+                        @endif
+                        @endforeach
+                        
+                        <li class="list-unstyled">
+                            <a class="btn mb-2" href="#" id="btnAdd">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </li>
+
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Table Secretarios -->
-        <div class="col-12 col-xl-6"></div>
+        <!-- Table Peluqueros -->
+        <div class="col-12 col-xl-4 mb-3 ">
+            <!-- Card -->
+            <div class="card px-3 py-2 shadow">
+                <!-- Card Title -->
+                <h3 class="text-center">Secretarios</h3>
+                <!-- Card Body -->
+                <div class="card-body p-0">
+                    <ul class="list-group">
+                        @foreach($usuarios as $usuario)
+                        @if($usuario->rol == 'Secretario')
+                        <li class="list-unstyled">
+                            <a class="btn mb-2 p-2" href="#" id="itemLista">
+                                <p class="mb-0">{{$usuario->nombre}}</p>
+                                <p class="mb-0">{{$usuario->email}}</p>
+                            </a>
+                        </li>
+                        @endif
+                        @endforeach
+
+                        <li class="list-unstyled">
+                            <a class="btn mb-2" href="#" id="btnAdd">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Peluqueros -->
+        <div class="col-12 col-xl-4 mb-3">
+            <!-- Card -->
+            <div class="card px-3 py-2 shadow">
+                <!-- Card Title -->
+                <h3 class="text-center">Administradores</h3>
+                <!-- Card Body -->
+                <div class="card-body p-0">
+                    <!-- Table Container -->
+                    <ul class="list-group">
+                        @foreach($usuarios as $usuario)
+                        @if($usuario->rol == 'Administrador')
+                        <li class="list-unstyled">
+                            <a class="btn mb-2 p-2" href="#" id="itemLista">
+                                <p class="mb-0">{{$usuario->nombre}}</p>
+                                <p class="mb-0">{{$usuario->email}}</p>
+                            </a>
+                        </li>
+                        @endif
+                        @endforeach
+
+                        <li class="list-unstyled">
+                            <a class="btn mb-2" href="#" id="btnAdd">
+                                <i class="fa-solid fa-plus"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
 

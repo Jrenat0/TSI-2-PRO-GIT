@@ -7,14 +7,20 @@ table th {
 table td {
     vertical-align: middle;
     white-space: nowrap;
-    /* Evita que el texto se divida en varias líneas */
     overflow: hidden;
-    /* Oculta el desbordamiento */
     text-overflow: ellipsis;
 }
 
+
 table #options {
-    text-align: center;
+    background-color: #fb6f92;
+    color: white;
+}
+
+table #options:hover{
+    background: transparent;
+    color: #fb6f92;
+    border: #fb6f92 solid 1px;
 }
 
 #options button:hover,
@@ -25,4 +31,37 @@ table #options {
 
 .navbar-toggler i {
     color: black;
+}
+
+#itemLista {
+    display: flex;
+    justify-content: space-between;
+    border: 0px;
+    background: #fb6f92;
+    color: #fff;
+    transition: background 0.3s ease, color 0.3s ease, border 0.2s ease-in-out;
+}
+
+#itemLista:hover {
+    background: #fff;
+    color: #fb6f92;
+    border: #fb6f92 solid 1px;
+}
+
+
+
+#btnAdd {
+    display: flex;
+    justify-content: center;
+    border: 0px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    color: #FD8EA9;
+    background: #fff;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+#btnAdd:hover {
+    background: #fb6f92;
+    color: #fff;
 }

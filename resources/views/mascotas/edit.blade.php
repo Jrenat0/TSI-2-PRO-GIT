@@ -12,7 +12,7 @@
 
 
 
-<div class="container-fluid col-10 mb-5 bg-light rounded">
+<div class="container-fluid col-lg-10 col-12 mb-5 bg-light rounded">
 
     <form action="{{route('mascotas.update',$mascota)}}" method="POST" id="formEdit">
         @csrf

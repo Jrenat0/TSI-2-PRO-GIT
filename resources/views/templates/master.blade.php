@@ -21,7 +21,7 @@
 
     <nav class="navbar navbar-expand-md navbar-light">
 
-        <div class="container-fluid col-10 py-2 px-4 shadow" id="navbar-container">
+        <div class="container-fluid col-12 col-lg-10 py-2 px-4 shadow" id="navbar-container">
             <!-- Navbar Logo -->
             <a class="navbar-brand" href="{{ route('home.index') }}">
                 <i class="fa-solid fa-dog"></i>

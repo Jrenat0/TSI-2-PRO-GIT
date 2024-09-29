@@ -8,7 +8,7 @@
 @endpush
 
 @section('content')
-<div class="container-fluid col-10 bg-light rounded shadow">
+<div class="container-fluid col-lg-10 col-12 bg-light rounded shadow">
     <div class="row">
         {{-- Formulario para crear una nueva mascota --}}
         <div class="col-12 mb-3 p-3">

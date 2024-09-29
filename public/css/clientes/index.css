@@ -1,27 +1,45 @@
-
 /* Table */
 
 table th {
     font-weight: bold;
 }
 
-table td{
+table td {
     vertical-align: middle;
-    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
-    overflow: hidden;     /* Oculta el desbordamiento */
+    white-space: nowrap;
+    /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;
+    /* Oculta el desbordamiento */
     text-overflow: ellipsis;
 }
 
-table #options{
-    text-align: center;
+table #options {
+    background-color: #fb6f92;
+    color: white;
+    padding:0%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 
-#options button:hover, #options button:focus{
+table #options i{
+    width: 18px;
+    height: 16px;
+}
+
+table #options:hover {
+    background: transparent;
+    color: #fb6f92;
+    border: #fb6f92 solid 1px;
+}
+
+#options button:hover,
+#options button:focus {
     background-color: #fb6f92;
     color: white;
 }
 
-.navbar-toggler i{
+.navbar-toggler i {
     color: black;
 }
-

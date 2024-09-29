@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-<div class="container-fluid col-10">
+<div class="container-fluid col-lg-10 col-12">
     {{-- Botón para ir a la vista create --}}
     <div class="col-12 mb-3 text-end">
         <a href="{{route('mascotas.create')}}" class="btn" id="addButton">Agregar Nueva Mascota</a>

@@ -13,7 +13,7 @@
 @section('content')
 
 <!-- Search Container -->
-<div class="container-fluid col-10 bg-light rounded shadow">
+<div class="container-fluid col-lg-10 col-12 bg-light rounded shadow">
 
     <!-- Row -->
     <div class="row">
@@ -45,38 +45,27 @@
                         <th>Rut</th>
                         <th class="">Email</th>
                         <th class="">Direccion</th>
-                        <th id="options">Opciones</th>
+                        <th>Opciones</th>
                     </thead>
 
                     <!-- Table body -->
                     <tbody>
-                        <!-- Name -->
-                        <td>Ejemplo</td>
-                        <!-- Rut -->
-                        <td>21.268.821-2</td>
-                        <!-- eMail -->
-                        <td class="">example@mail.cl</td>
-                        <!-- Address -->
-                        <td class="">Los olivos 104-A</td>
-                        <!-- Manage options -->
-                        <td id="options">
-                            <!-- Options dropdown -->
-                            <div class="dropdown">
-                                <!-- Dropdown toggle button -->
-                                <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </button>
-                                <!-- Dropdown items -->
-                                <ul class="dropdown-menu">
-                                    <!-- More details button -->
-                                    <li><a class="dropdown-item" href="#">Mas detalles</a></li>
-                                    <!-- Client editor button -->
-                                    <li><a class="dropdown-item" href="#">Editar cliente</a></li>
-                                    <!-- Erase a client button -->
-                                    <li><a class="dropdown-item" href="#">Borrar cliente</a></li>
-                                </ul>
-                            </div>
-                        </td>
+                        @foreach($clientes as $cliente)
+                        <tr>
+                            <td>{{$cliente->nombre}}</td>
+                            <td>{{$cliente->rut}}</td>
+                            <td>{{$cliente->email}}</td>
+                            <td>{{$cliente->direccion}}</td>
+                            <td>
+                                <a class="btn" id="options" href="{{route('clientes.show',$cliente)}}">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <a class="btn" id="options" href="{{route('clientes.edit',$cliente)}}">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -9,7 +9,7 @@
 
 @section('content')
 
-<div class="container-fluid col-10">
+<div class="container-fluid col-lg-10 col-12">
 
     <div class="row">
 
