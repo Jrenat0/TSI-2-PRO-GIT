@@ -94,7 +94,7 @@
                         @foreach($usuarios as $usuario)
                         @if($usuario->rol == 'Peluquero')
                         <li class="list-unstyled">
-                            <a class="btn mb-2 p-2" href="#" id="itemLista">
+                            <a class="btn mb-2 p-2" href="{{route('usuarios.show',$usuario)}}" id="itemLista">
                                 <p class="mb-0">{{$usuario->nombre}}</p>
                                 <p class="mb-0">{{$usuario->email}}</p>
                             </a>
@@ -103,7 +103,7 @@
                         @endforeach
                         
                         <li class="list-unstyled">
-                            <a class="btn mb-2" href="#" id="btnAdd">
+                            <a class="btn mb-2" href="{{route('usuarios.create')}}" id="btnAdd">
                                 <i class="fa-solid fa-plus"></i>
                             </a>
                         </li>
@@ -125,7 +125,7 @@
                         @foreach($usuarios as $usuario)
                         @if($usuario->rol == 'Secretario')
                         <li class="list-unstyled">
-                            <a class="btn mb-2 p-2" href="#" id="itemLista">
+                            <a class="btn mb-2 p-2" href="{{route('usuarios.show',$usuario)}}" id="itemLista">
                                 <p class="mb-0">{{$usuario->nombre}}</p>
                                 <p class="mb-0">{{$usuario->email}}</p>
                             </a>
@@ -134,7 +134,7 @@
                         @endforeach
 
                         <li class="list-unstyled">
-                            <a class="btn mb-2" href="#" id="btnAdd">
+                            <a class="btn mb-2" href="{{route('usuarios.create')}}" id="btnAdd">
                                 <i class="fa-solid fa-plus"></i>
                             </a>
                         </li>
@@ -157,7 +157,7 @@
                         @foreach($usuarios as $usuario)
                         @if($usuario->rol == 'Administrador')
                         <li class="list-unstyled">
-                            <a class="btn mb-2 p-2" href="#" id="itemLista">
+                            <a class="btn mb-2 p-2" href="{{route('usuarios.show',$usuario)}}" id="itemLista">
                                 <p class="mb-0">{{$usuario->nombre}}</p>
                                 <p class="mb-0">{{$usuario->email}}</p>
                             </a>
@@ -166,7 +166,7 @@
                         @endforeach
 
                         <li class="list-unstyled">
-                            <a class="btn mb-2" href="#" id="btnAdd">
+                            <a class="btn mb-2" href="{{route('usuarios.create')}}" id="btnAdd">
                                 <i class="fa-solid fa-plus"></i>
                             </a>
                         </li>

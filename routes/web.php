@@ -29,13 +29,16 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
 
-    Route::get('/clientes/show/{cliente}', [ClientesController::class, 'show'])->name('clientes.show'); //Falta traspasar el "{id}" a la ruta.
+    // Falta el create y el store.
+
+    Route::get('/clientes/show/{cliente}', [ClientesController::class, 'show'])->name('clientes.show');
 
     Route::get('/clientes/edit/{cliente}', [ClientesController::class, 'edit'])->name('clientes.edit');
     Route::put('/clientes/update/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
 
     Route::delete('/clientes/destroy/{cliente}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
 });
+
 //Mascotas routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/mascotas', [MascotasController::class, 'index'])->name('mascotas.index');
@@ -59,6 +62,18 @@ Route::middleware(['auth'])->group(function () {
 //Usuarios routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/usuarios', [UsuariosController::class, 'index'])->name('usuarios.index');
+
+    Route::get('/usuarios/show/{usuario}', [UsuariosController::class, 'show'])->name('usuarios.show');
+
+    Route::get('/usuarios/create' ,[UsuariosController::class, 'create'])->name('usuarios.create');
+    Route::post('/usuarios/store', [UsuariosController::class, 'store'])->name('usuarios.store');
+
+    Route::get('/usuarios/edit/{usuario}', [UsuariosController::class, 'edit'])->name('usuarios.edit');
+    
+    Route::put('/usuarios/update/{usuario}', [UsuariosController::class, 'update'])->name('usuarios.update');
+
+    Route::delete('/usuarios/destroy/{usuario}', [UsuariosController::class, 'destroy'])->name('usuarios.destroy');
+
 });
 // Auth routes
 

@@ -1,0 +1,31 @@
+/* Information Container Labels */
+#formCreate label {
+    color: rgba(43, 43, 43);
+}
+
+
+/* #formCreate input {
+    border: none;
+    border-bottom: 1px solid rgba(43, 43, 43, 0.2);
+    color: rgba(43, 43, 43);
+} */
+
+
+
+#formCreate button {
+    border-radius: 12px;
+    color: #fb6f92;
+    background-color: #fff;
+    outline: auto;
+    outline-color: #fb6f92;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 50%;
+
+}
+
+#formCreate button:hover {
+    color: #fff;
+    background-color: #fb6f92;
+    transition-delay: 0.05s;
+}

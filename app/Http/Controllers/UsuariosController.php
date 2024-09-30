@@ -20,7 +20,7 @@ class UsuariosController extends Controller
 
         $usuarios = Usuario::get();
 
-        return view('usuarios.index',compact('usuarios'));
+        return view('usuarios.index', compact('usuarios'));
     }
 
     /**
@@ -31,6 +31,10 @@ class UsuariosController extends Controller
         if (Gate::denies('admin-gestion')) {
             return redirect()->route('home.index');
         }
+
+        $roles = ['Peluquero', 'Secretario', 'Administrador'];
+
+        return view('usuarios.create', compact('roles'));
     }
 
     /**
@@ -46,21 +50,35 @@ class UsuariosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Usuario $usuario)
     {
         if (Gate::denies('admin-gestion')) {
             return redirect()->route('home.index');
         }
+
+        $citas = null;
+
+        if ($usuario->rol == 'Peluquero') {
+            $citas = $usuario->citas;
+        }
+
+
+        return view('usuarios.show', compact(['usuario','citas']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Usuario $usuario)
     {
         if (Gate::denies('admin-gestion')) {
             return redirect()->route('home.index');
         }
+
+        $roles = ['Peluquero', 'Secretario', 'Administrador'];
+
+        return view('usuarios.edit',compact(['usuario','roles']));
+
     }
 
     /**
