@@ -29,9 +29,12 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
 
-    Route::get('/clientes/show', [ClientesController::class, 'show'])->name('clientes.show'); //Falta traspasar el "{id}" a la ruta.
+    Route::get('/clientes/show/{cliente}', [ClientesController::class, 'show'])->name('clientes.show'); //Falta traspasar el "{id}" a la ruta.
 
-    Route::get('/clientes/edit', [ClientesController::class, 'edit'])->name('clientes.edit');
+    Route::get('/clientes/edit/{cliente}', [ClientesController::class, 'edit'])->name('clientes.edit');
+    Route::put('/clientes/update/{cliente}', [ClientesController::class, 'update'])->name('clientes.update');
+
+    Route::delete('/clientes/destroy/{cliente}', [ClientesController::class, 'destroy'])->name('clientes.destroy');
 });
 //Mascotas routes
 Route::middleware(['auth'])->group(function () {

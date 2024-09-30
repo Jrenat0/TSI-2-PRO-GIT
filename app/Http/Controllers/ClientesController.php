@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cita;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
@@ -37,25 +38,32 @@ class ClientesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(Cliente $cliente)
     {
-        return view('clientes.show');
+        $citas = collect();
+        foreach ($cliente->mascotas as $mascota) {
+            $citas = $citas->merge(Cita::where('id_mascota', $mascota->id)
+                ->where('estado', 'T')
+                ->get());
+        }
+
+        return view('clientes.show', compact(['cliente', 'citas']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
-    {
-        return view('clientes.edit');
+    public function edit(Cliente $cliente)
+    {   
+        return view('clientes.edit',compact('cliente'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Cliente $cliente)
     {
-        //
+        
     }
 
     /**

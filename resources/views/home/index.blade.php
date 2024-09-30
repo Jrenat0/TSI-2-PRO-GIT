@@ -12,7 +12,6 @@
 <div class="container-fluid col-lg-10 col-12">
 
     <div class="row">
-
         {{-- Seccion Mascotas --}}
         <div class="col-12 col-xxl-6 mb-3">
             {{-- Tabla de las mascotas nuevas --}}
@@ -208,16 +207,7 @@
             </a>
         </div> 
         @endif
-        
-
-
-
-
     </div>
-
-
-
-
 </div>
 
 

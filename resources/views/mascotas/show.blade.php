@@ -67,7 +67,6 @@
                 </div>
 
                 <form action="{{route('mascotas.edit',$mascota)}}" method="GET">
-                    @csrf
                     <button class="btn w-100" id="buttonEdit" type="submit">Editar a {{$mascota->nombre}}</button>
                 </form>
                 

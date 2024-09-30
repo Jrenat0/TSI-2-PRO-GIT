@@ -91,3 +91,20 @@
     overflow: hidden;     /* Oculta el desbordamiento */
     text-overflow: ellipsis;
 }
+
+
+#buttonEdit {
+    border-radius: 12px;
+    color: #fb6f92;
+    background-color: #fff;
+    outline: auto;
+    outline-color: #fb6f92;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#buttonEdit:hover{
+    color: #fff;
+    background-color: #fb6f92;
+    transition-delay: 0.05s;
+}
