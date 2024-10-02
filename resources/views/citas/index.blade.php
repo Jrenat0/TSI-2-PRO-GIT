@@ -9,7 +9,7 @@
 
 @section('content')
 
-<div class="container-fluid col-10 px-2 py-4 rounded">
+<div class="container-fluid col-lg-10 col-12 px-2 py-4 rounded">
     <div class="row">
         <div class="col-12 col-xl-4 mb-3">
             <div class="calendar">

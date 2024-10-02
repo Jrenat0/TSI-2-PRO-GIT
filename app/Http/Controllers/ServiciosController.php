@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Servicio;
 use Illuminate\Http\Request;
 
 class ServiciosController extends Controller
@@ -10,8 +11,10 @@ class ServiciosController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('servicios.index');
+    {   
+        $servicios = Servicio::get();
+
+        return view('servicios.index', compact('servicios'));
     }
 
     /**
@@ -33,17 +36,17 @@ class ServiciosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Servicio $servicio)
     {
-        //
+        return view('servicios.show',compact('servicio'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Servicio $servicio)
     {
-        //
+        return view('servicios.edit',compact('servicio'));
     }
 
     /**

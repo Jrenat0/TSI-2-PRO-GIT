@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre',20);
             $table->string('descripcion',100)->nullable();
-            $table->string('duracion_estimada',40);
+            $table->unsignedBigInteger('duracion_estimada');
             $table->unsignedBigInteger('costo');
         });
     }

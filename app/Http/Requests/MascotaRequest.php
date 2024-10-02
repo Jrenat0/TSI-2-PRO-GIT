@@ -26,11 +26,12 @@ class MascotaRequest extends FormRequest
             'color' => 'required|string|regex:/^[\pL\s]+$/u|min:3|max:50',
             'peso' => 'required|numeric|min:0.1|max:999.99',
             'fecha_nacimiento' => 'required|date|before:today',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
         // Reglas adicionales para el store
         if ($this->isMethod('post')) {
             $rules['rut_cliente'] = 'required|string|alpha_dash|min:9|max:10';
+            $rules['imagen'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
         }
         return $rules;
     }

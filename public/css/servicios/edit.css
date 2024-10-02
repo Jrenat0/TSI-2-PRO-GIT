@@ -1,0 +1,36 @@
+#buttonEdit {
+    border-radius: 12px;
+    color: #fb6f92;
+    background-color: #fff;
+    outline: auto;
+    outline-color: #fb6f92;
+    margin-bottom: 10px;
+}
+
+#buttonEdit:hover {
+    color: #fff;
+    background-color: #fb6f92;
+    transition-delay: 0.05s;
+}
+
+
+#buttonDelete {
+    background: linear-gradient(#272727, #111111);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    width: 100%;
+    transition: 0.3s;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+#buttonDelete:hover {
+    color: #ffc2d1;
+}
+
+#buttonDelete i {
+    margin-right: 10px;
+}

@@ -56,36 +56,22 @@
             <div class="col-12 mb-1">
                 <button class="btn w-100" type="submit" id="confirmar">Confirmar Cambios</button>
             </div>
-
         </div>
-
-
     </form>
-
 </div>
 
 <div class="container-fluid col-lg-10 col-12 p-0">
     <form action="{{route('usuarios.destroy',$usuario)}}" method="POST" id="formDelete">
         @csrf
-
         @method('DELETE')
-
         <div class="row">
-
             <div class="col-12">
-
                 <button class="btn" type="submit">
                     <h2><i class="fa-solid fa-trash"></i>Eliminar a <strong>{{$usuario->nombre}}</strong></h2>
                 </button>
-
             </div>
-
-
         </div>
-
     </form>
-
-
 </div>
 
 @endsection

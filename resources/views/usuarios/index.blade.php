@@ -8,7 +8,7 @@
 
 @section('content')
 
-<div class="container-fluid col-10 px-2">
+<div class="container-fluid col-lg-10 col-12 px-2">
     <!-- Row -->
     <div class="row">
         <!-- Form Consultar Usuario-->

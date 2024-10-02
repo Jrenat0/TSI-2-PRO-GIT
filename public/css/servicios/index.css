@@ -1,0 +1,29 @@
+a .card {
+    background-color: #fff;
+    color: #000;
+    transition: background-color 0.3s ease-in-out;
+}
+
+a .card p {
+    font-size: 20px;
+}
+
+
+a:hover .card {
+    background-color: #fb6f92;
+    color: #fff;
+}
+
+#buttonEdit {
+    border-radius: 12px;
+    color: #fb6f92;
+    background-color: #fff;
+    outline: auto;
+    outline-color: #fb6f92;
+}
+
+#buttonEdit:hover {
+    color: #fff;
+    background-color: #fb6f92;
+    transition-delay: 0.05s;
+}
