@@ -22,7 +22,7 @@ class MascotaRequest extends FormRequest
         $rules = [
             'nombre' => 'required|string|alpha|min:2|max:20',
             'raza' => 'required|string|alpha|min:3|max:50',
-            'sexo' => 'required|string|alpha|in:M,H,m,h|size:1',
+            'sexo' => 'required|string|alpha|in:M,H,m,h|max:1',
             'color' => 'required|string|alpha|min:3|max:50',
             'peso' => 'required|numeric|min:0.1|max:999.99',
             'fecha_nacimiento' => 'required|date|before:today',

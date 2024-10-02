@@ -50,7 +50,7 @@
 
             <div class="col-12 mb-4">
                 <label for="peso" class="form-label">Peso</label>
-                <input type="number" class="form-control" id="peso" name="peso" placeholder="Ingrese el peso" required
+                <input type="number" class="form-control" id="peso" name="peso" step="0.1" placeholder="Ingrese el peso" 
                     value="{{$mascota->peso}}">
             </div>
 
