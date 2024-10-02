@@ -26,7 +26,17 @@ class MascotasController extends Controller
 
     public function store(MascotaRequest $request)
     {
-        Mascota::create($request->validated());
+        $mascota = new Mascota();
+        $mascota->nombre = $request->nombre;
+        $mascota->raza = $request->raza;
+        $mascota->sexo = $request->sexo;
+        $mascota->color = $request->color;
+        $mascota->peso = $request->peso;
+        $mascota->fecha_nacimiento = $request->fecha_nacimiento;
+        $mascota->rut_cliente = $request->rut_cliente;
+        $mascota->imagen = $request->file('imagen')->store('mascotas', 'public');
+
+        $mascota->save();
 
         return redirect()->route('mascotas.index')->with('success', 'Mascota creada de manera exitosa!');
     }

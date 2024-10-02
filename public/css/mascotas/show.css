@@ -14,13 +14,6 @@
     color: grey;
 }
 
-#infoContainer input {
-    border: none;
-    background: transparent;
-    border-bottom: 1px solid rgba(43, 43, 43, 0.2);
-}
-
-
 
 #citasContainer a {
     text-decoration: none;
@@ -35,12 +28,6 @@
 
 #citasContainer label {
     color: grey;
-}
-
-#citasContainer input {
-    border: none;
-    background: transparent;
-    border-bottom: 1px solid rgba(43, 43, 43, 0.2);
 }
 
 
@@ -64,7 +51,6 @@
     overflow: hidden;     /* Oculta el desbordamiento */
     text-overflow: ellipsis;
 }
-
 
 #buttonEdit {
     border-radius: 12px;

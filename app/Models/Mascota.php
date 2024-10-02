@@ -13,7 +13,7 @@ class Mascota extends Model
     // defino el identificador de la tabla como 'mascotas'.
     protected $table = 'mascotas';
     // defino los atributos de la tabla con '$fillable' para permitir el uso de las funciones 'Illuminate'.
-    protected $fillable = ['nombre','raza','sexo','color','peso','fecha_nacimiento','rut_cliente'];
+    protected $fillable = ['nombre','raza','sexo','color','peso','imagen','fecha_nacimiento','rut_cliente'];
     //activo los timestamps
     public $timestamps = true;
 

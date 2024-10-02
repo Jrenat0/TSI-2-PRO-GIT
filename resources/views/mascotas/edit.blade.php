@@ -24,34 +24,81 @@
                 <h2 class="text-center fw-bold">Editando a {{$mascota->nombre}}</h2>
             </div>
 
+            <div class="col-lg-6 col-12">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="my-0">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+            </div>
+
+
             <div class="col-12 mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre"
-                    placeholder="Ingrese el nombre de la mascota" required value="{{$mascota->nombre}}">
+                <input type="text" class="form-control @error('nombre')
+                    is-invalid @enderror" id="nombre" name="nombre" placeholder="Ingrese el nombre de la mascota"
+                    required value="{{ old('nombre', $mascota->nombre) }}">
+
+                @error('nombre')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
             <div class="col-12 mb-3">
                 <label for="raza" class="form-label">Raza</label>
-                <input type="text" class="form-control" id="raza" name="raza" placeholder="Ingrese el raza" required
-                    value="{{$mascota->raza}}">
+                <input type="text" class="form-control @error('raza') is-invalid @enderror" id="raza" name="raza"
+                    placeholder="Ingrese el raza" required value="{{ old('raza', $mascota->raza) }}">
+
+                @error('raza')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+
             </div>
 
             <div class="col-12 mb-3">
                 <label for="sexo" class="form-label">Sexo</label>
-                <input type="text" class="form-control" id="sexo" name="sexo" placeholder="Ingrese el sexo" required
-                    value="{{$mascota->sexo}}">
+                <input type="text" class="form-control @error('sexo') is-invalid @enderror" id="sexo" name="sexo"
+                    placeholder="Ingrese el sexo" required value="{{ old('sexo', $mascota->sexo) }}">
+
+                @error('sexo')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+
             </div>
 
             <div class="col-12 mb-3">
                 <label for="color" class="form-label">Color</label>
-                <input type="text" class="form-control" id="color" name="color" placeholder="Ingrese el color" required
-                    value="{{$mascota->color}}">
+                <input type="text" class="form-control @error('color') is-invalid @enderror" id="color" name="color"
+                    placeholder="Ingrese el color" required value="{{ old('color', $mascota->color) }}">
+
+                @error('color')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
             </div>
 
             <div class="col-12 mb-4">
                 <label for="peso" class="form-label">Peso</label>
-                <input type="number" class="form-control" id="peso" name="peso" step="0.1" placeholder="Ingrese el peso" 
-                    value="{{$mascota->peso}}">
+                <input type="number" class="form-control @error('peso') is-invalid @enderror" id="peso" name="peso"
+                    step="0.1" placeholder="Ingrese el peso" value="{{ old('peso', $mascota->peso) }}">
+
+                @error('peso')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+
             </div>
 
             <div class="col-12 mb-4">
@@ -61,9 +108,9 @@
             </div>
 
             <div class="col-12 mb-4">
-                <label for="rut_cliente" class="form-label">Fecha de nacimiento</label>
+                <label for="rut_cliente" class="form-label">Dueño de la mascota</label>
                 <input type="text" class="form-control" id="rut_cliente" name="rut_cliente"
-                    placeholder="Ingrese el dueño de la mascota" readonly value="{{$mascota->rut_cliente}}">
+                    placeholder="Ingrese el dueño de la mascota" readonly value="{{$mascota->cliente->nombre}}">
             </div>
 
             <div class="col-12 mb-1">

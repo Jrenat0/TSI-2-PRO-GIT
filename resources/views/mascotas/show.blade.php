@@ -20,7 +20,7 @@
     <div class="collapse show" id="informacionCollapse">
         <div class="row">
             <div class="col-4 d-none d-md-block ">
-                <img src="{{asset('images/perrito.png')}}" alt="" class="img-fluid rounded shadow border">
+                <img src="{{Storage::url($mascota->imagen)}}" alt="" class="img-fluid rounded shadow border">
             </div>
 
             <div class="col-12 col-md-8">
