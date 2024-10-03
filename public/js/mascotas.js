@@ -43,7 +43,7 @@ $(document).ready(function () {
 
                     var gestionarUrl = '/mascotas/show/' + data.id;
                     $('#gestionarButton').empty();
-                    $('#gestionarButton').append('<a href="' + gestionarUrl + '" class="btn btn-outline-primary">Gestionar a ' + data.nombre + '</a>');
+                    $('#gestionarButton').append('<a href="' + gestionarUrl + '" class="btn"  id="gestionButton">Gestionar a ' + data.nombre + '</a>');
                 },
                 error: function (xhr, status, error) {
                     console.log("Error al obtener los detalles de la mascota: ", error);
