@@ -91,7 +91,7 @@
                                 <strong>Color: </strong>{{$mascota->color}} <br>
                                 <strong>Peso: </strong>{{$mascota->peso}} kg. <br>
                                 <strong>Nacimiento: </strong>{{$mascota->fecha_nacimiento}} <br>
-                                <strong>Dueño: </strong>{{$mascota->cliente->nombre}}
+                                {{-- <strong>Dueño: </strong>{{$mascota->mascotacliente->cliente->nombre}} --}}
                             </p>
                             <a href="{{route('mascotas.show',$mascota)}}" class="btn" id="gestionButton">Gestionar</a>
                         </div>

@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use App\Models\Mascota;
 use Illuminate\Http\Request;
 use App\Http\Requests\MascotaRequest;
+use App\Models\MascotaCliente;
 
 class MascotasController extends Controller
 {
