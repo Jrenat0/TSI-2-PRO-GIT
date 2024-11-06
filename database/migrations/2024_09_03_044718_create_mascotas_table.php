@@ -23,14 +23,6 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps(); 
 
-
-            //Foreign Key
-            $table->string('rut_cliente',10);
-            $table->foreign('rut_cliente')->references('rut')->on('clientes')->onDelete('cascade');
-
-
-
-
         });
     }
 
