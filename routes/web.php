@@ -29,7 +29,8 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
 
-    // Falta el create y el store.
+    Route::get('/clientes/create', [ClientesController::class, 'create'])->name('clientes.create');
+    Route::post('/clientes/store', [ClientesController::class, 'store'])->name('clientes.store');
 
     Route::get('/clientes/show/{cliente}', [ClientesController::class, 'show'])->name('clientes.show');
 

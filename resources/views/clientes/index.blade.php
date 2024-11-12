@@ -12,6 +12,9 @@
 
 @section('content')
 
+<div class="col-12 mb-3 text-end">
+    <a href="{{route('clientes.create')}}" class="btn btn-outline-light" >Agregar un Nuevo cliente</a>
+</div>
 <!-- Search Container -->
 <div class="container-fluid col-lg-10 col-12 bg-light rounded shadow">
     <!-- Row -->

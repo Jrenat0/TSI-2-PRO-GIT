@@ -24,7 +24,7 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
     /**
@@ -32,7 +32,8 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cliente::create($request->all());
+        return redirect()->route('clientes.index')->with('success', 'El cliente se creo de manera exitosa!');
     }
 
     /**
@@ -40,14 +41,16 @@ class ClientesController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        $citas = collect();
-        foreach ($cliente->mascotas as $mascota) {
-            $citas = $citas->merge(Cita::where('id_mascota', $mascota->id)
-                ->where('estado', 'T')
-                ->get());
-        }
+        // $citas = collect();
+        // foreach ($cliente->mascotas as $mascota) {
+        //     $citas = $citas->merge(Cita::where('id_mascota', $mascota->id)
+        //         ->where('estado', 'T')
+        //         ->get());
+        // }
 
-        return view('clientes.show', compact(['cliente', 'citas']));
+        // return view('clientes.show', compact(['cliente', 'citas']));
+
+        return view('clientes.show', compact(['cliente']));
     }
 
     /**
@@ -69,8 +72,9 @@ class ClientesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+        return redirect()->route('clientes.index');
     }
 }

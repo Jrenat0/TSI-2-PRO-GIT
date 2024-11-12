@@ -73,7 +73,7 @@
 
                 <!-- Table body -->
                 <tbody>
-                    @foreach($cliente->mascotas as $mascota)
+                    {{-- @foreach($cliente->mascotas as $mascota)
                     <tr>
                         <td>{{$mascota->nombre}}</td>
                         <td>{{$mascota->raza}}</td>
@@ -82,7 +82,7 @@
                         <td>{{$mascota->peso}}</td>
                         <td>{{$mascota->fecha_nacimiento}}</td>
                     </tr>
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
             </table>
         </div>
@@ -110,7 +110,7 @@
 
                 <!-- Table body -->
                 <tbody>
-                    @foreach($citas as $cita)
+                    {{-- @foreach($citas as $cita)
                     <tr>
                         <td>{{$cita->fecha}}// {{$cita->hora}}</td>
                         <td>{{$cita->pesaje}} kg</td>
@@ -118,7 +118,7 @@
                         <td>{{$cita->mascota->nombre}}</td>
                         <td>{{$cita->usuario->nombre}}</td>
                     </tr>
-                    @endforeach
+                    @endforeach --}}
 
                 </tbody>
             </table>
