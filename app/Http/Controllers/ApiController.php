@@ -12,7 +12,7 @@ class ApiController extends Controller
     // Obtener las mascotas de un cliente utilizando la tabla intermedia
     public function fetchMascotas($rut_cliente)
     {
-        // Buscar el cliente por su rut
+        // Buscar al cliente por su rut
         $cliente = Cliente::where('rut', $rut_cliente)->first();
 
         // Verificar si el cliente existe
@@ -20,14 +20,14 @@ class ApiController extends Controller
             return response()->json(['message' => 'Cliente no encontrado'], 404);
         }
 
-        // Obtener las mascotas asociadas a este cliente utilizando la tabla intermedia
+        // Obtener las mascotas asociadas a este cliente utilizando la relación en la tabla intermedia
         $mascotasCliente = MascotaCliente::where('rut_cliente', $rut_cliente)
-            ->with('mascotas') // Cargamos las mascotas asociadas
+            ->with('mascota')  // Cargamos las mascotas asociadas
             ->get();
 
         // Extraer solo los datos de las mascotas (sin la tabla intermedia)
         $mascotas = $mascotasCliente->map(function ($item) {
-            return $item->mascotas;
+            return $item->mascota; // Accedemos a la relación definida en el modelo MascotaCliente
         });
 
         // Retornar las mascotas en formato JSON
@@ -38,7 +38,7 @@ class ApiController extends Controller
     public function fillMascotas($id)
     {
         // Buscar la mascota por su ID
-        $mascota = Mascota::where('id', $id)->first();
+        $mascota = Mascota::find($id);
 
         // Verificar si la mascota existe
         if (!$mascota) {

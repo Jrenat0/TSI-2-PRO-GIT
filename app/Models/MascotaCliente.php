@@ -17,11 +17,11 @@ class MascotaCliente extends Model
     public $incrementing = false;
 
 
-    public function mascotas(){// defino la relacion 1 a 1 entre la tabla 'mascotacliente' y la tabla 'usuarios'.
+    public function mascota(){// defino la relacion 1 a 1 entre la tabla 'mascotacliente' y la tabla 'usuarios'.
         return $this->belongsTo('App\Models\Mascota','id_mascota','id');
     }
 
-    public function clientes(){// defino la relacion 1 a 1 entre la tabla 'mascotacliente' y la tabla 'usuarios'.
+    public function cliente(){// defino la relacion 1 a 1 entre la tabla 'mascotacliente' y la tabla 'usuarios'.
         return $this->belongsTo('App\Models\Cliente','rut_cliente','rut');
     }
 

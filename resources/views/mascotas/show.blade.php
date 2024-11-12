@@ -60,9 +60,13 @@
                 </div>
 
                 <div class="col-12 mb-3">
-                    <label class="form-label" for="clientesSelect">Dueño de la mascota</label>
+                    <label class="form-label" for="clientesSelect">Dueños de la mascota</label>
                     <select class="form-select" id="clientesSelect" name="clientesSelect" readonly>
-                        <option selected>{{$mascota->cliente->nombre}}</option>
+                        @foreach($mascota->mascota_cliente as $mascota_cliente)
+                        <option value="{{ $mascota_cliente->cliente->rut }}">
+                            {{ $mascota_cliente->cliente->nombre }}
+                        </option>
+                        @endforeach 
                     </select>
                 </div>
 

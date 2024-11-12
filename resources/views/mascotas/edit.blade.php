@@ -108,9 +108,16 @@
             </div>
 
             <div class="col-12 mb-4">
-                <label for="rut_cliente" class="form-label">Dueño de la mascota</label>
-                <input type="text" class="form-control" id="rut_cliente" name="rut_cliente"
-                    placeholder="Ingrese el dueño de la mascota" readonly value="{{$mascota->cliente->nombre}}">
+                <div class="col-12 mb-3">
+                    <label class="form-label" for="clientesSelect">Dueños de la mascota</label>
+                    <select class="form-select" id="clientesSelect" name="clientesSelect" readonly>
+                        @foreach($mascota->mascota_cliente as $mascota_cliente)
+                        <option value="{{ $mascota_cliente->cliente->rut }}">
+                            {{ $mascota_cliente->cliente->nombre }}
+                        </option>
+                        @endforeach 
+                    </select>
+                </div>
             </div>
 
             <div class="col-12 mb-1">

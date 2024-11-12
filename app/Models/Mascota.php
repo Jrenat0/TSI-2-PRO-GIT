@@ -20,7 +20,7 @@ class Mascota extends Model
     //**omito la primary-key ya que automaticamente se define como un atributo auto-incrementable, de tipo unsignedBigInteger, con nombre 'id'.**
     
 
-    public function mascotacliente(){ // defino la relacion 1 a M, entre la tabla 'mascotas' y la tabla 'citas.
+    public function mascota_cliente(){
         return $this->hasMany('App\Models\MascotaCliente','id_mascota','id');
     }
 
