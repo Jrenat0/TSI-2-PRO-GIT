@@ -66,3 +66,13 @@
     background-color: #fb6f92;
     transition-delay: 0.05s;
 }
+
+#addOwnerButton {
+    color: white;
+    background-color: black;
+    border-radius: 40px;
+}
+
+#addOwnerButton:hover {
+    background-color: #fb6f92;
+}

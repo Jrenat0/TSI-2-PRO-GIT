@@ -58,8 +58,8 @@
                     <input class="form-control" id="fecha_nacimientoInput" name="fecha_nacimientoInput" type="date"
                         value="{{$mascota->fecha_nacimiento}}" readonly>
                 </div>
-
-                <div class="col-12 mb-3">
+                
+                <div class="col-6 mb-3">
                     <label class="form-label" for="clientesSelect">Dueños de la mascota</label>
                     <select class="form-select" id="clientesSelect" name="clientesSelect" readonly>
                         @foreach($mascota->mascota_cliente as $mascota_cliente)
@@ -68,6 +68,12 @@
                         </option>
                         @endforeach 
                     </select>
+                </div>
+
+                <div class="col-3 mb-3">
+                    <button class="btn" type="button" id="addOwnerButton">
+                        Agregar un dueño
+                    </button>
                 </div>
 
                 <form action="{{route('mascotas.edit',$mascota)}}" method="GET">

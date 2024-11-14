@@ -34,10 +34,16 @@ class MascotasController extends Controller
         $mascota->color = $request->color;
         $mascota->peso = $request->peso;
         $mascota->fecha_nacimiento = $request->fecha_nacimiento;
-        $mascota->rut_cliente = $request->rut_cliente;
         $mascota->imagen = $request->file('imagen')->store('mascotas', 'public');
 
         $mascota->save();
+
+        // Conexion al dueño de la mascota
+        $mascota_cliente = new MascotaCliente();
+        $mascota_cliente->id_mascota = $mascota->id;
+        $mascota_cliente->rut_cliente = $request->rut_cliente;
+        $mascota_cliente->save();
+
 
         return redirect()->route('mascotas.index')->with('success', 'Mascota creada de manera exitosa!');
     }
