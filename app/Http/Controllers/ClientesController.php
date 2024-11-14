@@ -41,16 +41,16 @@ class ClientesController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        // $citas = collect();
-        // foreach ($cliente->mascotas as $mascota) {
-        //     $citas = $citas->merge(Cita::where('id_mascota', $mascota->id)
-        //         ->where('estado', 'T')
-        //         ->get());
-        // }
+        $citas = collect();
+        foreach ($cliente->mascota_cliente as $mascota_cliente) {
+            $citas = $citas->merge(Cita::where('id_mascota', $mascota_cliente->mascota->id)
+                ->where('estado', 'T')
+                ->get());
+        }
 
-        // return view('clientes.show', compact(['cliente', 'citas']));
+        return view('clientes.show', compact(['cliente', 'citas']));
 
-        return view('clientes.show', compact(['cliente']));
+        
     }
 
     /**

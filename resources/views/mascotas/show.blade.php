@@ -80,7 +80,6 @@
                     <button class="btn w-100" id="buttonEdit" type="submit">Editar a {{$mascota->nombre}}</button>
                 </form>
                 
-                
             </div>
 
             
