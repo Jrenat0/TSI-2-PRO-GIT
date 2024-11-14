@@ -58,7 +58,6 @@
     background-color: #fff;
     outline: auto;
     outline-color: #fb6f92;
-    margin-bottom: 20px;
 }
 
 #buttonEdit:hover{
@@ -75,4 +74,16 @@
 
 #addOwnerButton:hover {
     background-color: #fb6f92;
+}
+
+#deshacerCambios {
+    color: white;
+    background-color: black;
+    border-radius: 40px;
+    border-color: black;
+}
+
+#deshacerCambios:hover {
+    background-color: rgb(255, 0, 0);
+    border-color: rgb(255, 0, 0);
 }

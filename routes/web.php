@@ -9,11 +9,7 @@ use App\Http\Controllers\MascotasController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ClientesController;
-
-
-
-
-
+use App\Http\Controllers\MascotaClienteController;
 
 //Home routes
 
@@ -98,10 +94,12 @@ Route::middleware(['guest'])->group(function () {
     Route::put('/auth/change/{usuario}', [AuthController::class, 'storePass'])->name('auth.storePass');
 });
 
-
 Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/mascotacliente/store/{mascota}', [MascotaClienteController::class,'store'])->name('mascotacliente.store');
+});
 
 
 

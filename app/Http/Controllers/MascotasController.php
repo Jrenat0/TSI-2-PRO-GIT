@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\MascotaRequest;
 use App\Models\MascotaCliente;
 
+use Illuminate\Support\Facades\DB;
+
 class MascotasController extends Controller
 {
     public function index()
@@ -52,11 +54,25 @@ class MascotasController extends Controller
     {
         $citas = Cita::where('id_mascota', $mascota->id)->orderBy('fecha', 'asc')->get();
 
-        return view('mascotas.show', compact(['mascota', 'citas']));
+        $idMascota = $mascota->id;
+
+        // Crea una coleccion con todos los clientes que NO se encuentran ligados a la mascota, o sea que no son dueños de ella.
+        $clientes = DB::table('clientes')
+            ->leftJoin('mascota_cliente', function ($join) use ($idMascota) {
+                $join->on('clientes.rut', '=', 'mascota_cliente.rut_cliente')
+                    ->where('mascota_cliente.id_mascota', '=', $idMascota);
+            })
+            ->whereNull('mascota_cliente.id_mascota')
+            ->select('clientes.*')
+            ->get();
+
+
+        return view('mascotas.show', compact(['mascota', 'citas', 'clientes']));
     }
 
 
-    public function edit(Mascota $mascota){
+    public function edit(Mascota $mascota)
+    {
         return view('mascotas.edit', compact('mascota'));
     }
 
