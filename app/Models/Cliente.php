@@ -24,9 +24,15 @@ class Cliente extends Model
     public $timestamps = true;
 
 
-    public function mascotacliente(){ // defino la relacion 1 a M, entre la tabla 'mascotas' y la tabla 'citas.
-        return $this->hasMany('App\Models\MascotaCliente','rut_cliente','rut');
-    }
+    // public function mascotacliente(){ // defino la relacion 1 a M, entre la tabla 'mascotas' y la tabla 'citas.
+    //     return $this->hasMany('App\Models\MascotaCliente','rut_cliente','rut');
+    // }
+
+    public function mascotas()
+{
+    return $this->belongsToMany(Mascota::class, 'mascota_cliente', 'rut_cliente', 'id_mascota');
+}
+
 
 
 }
