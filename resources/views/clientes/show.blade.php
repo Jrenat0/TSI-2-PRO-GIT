@@ -73,7 +73,7 @@
 
                 <!-- Table body -->
                 <tbody>
-                    {{-- @foreach($cliente->mascotas as $mascota)
+                    @foreach($cliente->mascotas as $mascota)
                     <tr>
                         <td>{{$mascota->nombre}}</td>
                         <td>{{$mascota->raza}}</td>
@@ -82,7 +82,7 @@
                         <td>{{$mascota->peso}}</td>
                         <td>{{$mascota->fecha_nacimiento}}</td>
                     </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>
