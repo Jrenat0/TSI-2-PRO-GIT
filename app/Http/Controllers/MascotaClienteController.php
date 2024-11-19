@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mascota;
+use App\Models\Cliente;
 
 class MascotaClienteController extends Controller
 {
@@ -25,4 +26,12 @@ class MascotaClienteController extends Controller
 
         return redirect()->back()->with("success","");
     }
+
+    public function destroy2(Request $request, Mascota $mascota)
+{
+    $mascota->clientes()->detach($request->rut_cliente);
+    // Redireccionar con un mensaje de éxito
+    return redirect()->back()->with('success', 'La mascota ha sido desligada del cliente con éxito.');
+}
+
 }

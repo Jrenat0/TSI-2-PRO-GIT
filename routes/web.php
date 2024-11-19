@@ -102,6 +102,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('/mascotacliente/destroy', [MascotaClienteController::class,'destroy'])->name('mascotacliente.destroy');
 
+    Route::delete('/mascotacliente/destroy2/{mascota}', [MascotaClienteController::class,'destroy2'])->name('mascotacliente.destroy2');
+
 });
 
 

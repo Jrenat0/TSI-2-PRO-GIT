@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cita;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use App\Models\Mascota;
+use App\Models\MascotaCliente;
 
 class ClientesController extends Controller
 {
@@ -50,7 +52,21 @@ class ClientesController extends Controller
 
         // return view('clientes.show', compact(['cliente', 'citas']));
 
-        return view('clientes.show', compact(['cliente']));
+
+        $mascotas = Mascota::get();
+
+        $mascotasnoligadas = [];
+
+        foreach($mascotas as $mascota)
+        {
+            $relacion = MascotaCliente::findByComposite($mascota->id, $cliente->rut);
+            if ($relacion === null){
+                $mascotasnoligadas[] = $mascota;
+            }
+        }
+
+
+        return view('clientes.show', compact(['cliente','mascotasnoligadas']));
     }
 
     /**
