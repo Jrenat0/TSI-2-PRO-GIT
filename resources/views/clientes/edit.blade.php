@@ -59,7 +59,40 @@
 </div>
 
 <div class="container-fluid col-lg-10 col-12 p-0">
-    <form action="{{route('clientes.destroy',$cliente)}}" method="POST" id="formDelete">
+
+    <div class="col-12 mb-3">
+        <button class="btn" type="submit" id="buttonDelete" data-bs-toggle="modal" data-bs-target="#borrarClienteModal">
+            <h2><i class="fa-solid fa-trash"></i>Eliminar al Cliente</h2>
+        </button>
+    </div>
+
+    <div class="container-fluid col-lg-10 col-12 shadow p-0">
+        <div class="modal fade" id="borrarClienteModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Eliminación</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Desea eliminar permanentemente a {{$cliente->nombre}}?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+    
+                        <form action="{{route('clientes.destroy',$cliente)}}" method="POST" id="formDelete">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger">Confirmar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {{-- <form action="{{route('clientes.destroy',$cliente)}}" method="POST" id="formDelete">
         @csrf
         @method('DELETE')
         <div class="row">
@@ -69,7 +102,14 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> --}}
 </div>
+
+
+
+
+
+
+
 
 @endsection
