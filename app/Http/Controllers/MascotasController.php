@@ -67,7 +67,7 @@ class MascotasController extends Controller
             ->get();
 
 
-        return view('mascotas.show', compact(['mascota', 'citas', 'clientes']));
+         return view('mascotas.show', compact(['mascota', 'citas', 'clientes']));
     }
 
 
