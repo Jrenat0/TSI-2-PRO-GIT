@@ -24,8 +24,21 @@
             <h4 class="fw-bold">Gestionar clientes</h4>
         </div>
         <!-- Name input -->
+
+        {{-- BUSQUEDA --}}
         <div class="col-12 col-md-6 mb-4">
-            <input type="text" class="form-control" id="nombre" placeholder="Buscar por nombre o rut">
+
+            <form method="GET" action="{{route('clientes.index')}}" >
+                @csrf
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Buscar por nombre o RUT" value="{{old('search', $search ?? '')}}">
+                </div>   
+                <div>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+
+            {{-- <input type="text" class="form-control" id="nombre" placeholder="Buscar por nombre o rut"> --}}
         </div>
         <!-- Search results label -->
         <div class="col-12">
@@ -48,19 +61,26 @@
 
                     <!-- Table body -->
                     <tbody>
-                        @foreach($clientes as $cliente)
-                        <tr>
-                            <td>{{$cliente->nombre}}</td>
-                            <td>{{$cliente->rut}}</td>
-                            <td>{{$cliente->email}}</td>
-                            <td>{{$cliente->direccion}}</td>
-                            <td>
-                                <a class="btn" id="options" href="{{route('clientes.show',$cliente)}}">
-                                    <i class="fa-solid fa-eye"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        @endforeach
+
+                        @if($clientes->isEmpty())
+                            <tr>
+                                <td colspan="5" class="text-center">No se encontraron clientes que coincidan con la busqueda!!</td>
+                            </tr>
+                        @else
+                            @foreach($clientes as $cliente)
+                            <tr>
+                                <td>{{$cliente->nombre}}</td>
+                                <td>{{$cliente->rut}}</td>
+                                <td>{{$cliente->email}}</td>
+                                <td>{{$cliente->direccion}}</td>
+                                <td>
+                                    <a class="btn" id="options" href="{{route('clientes.show',$cliente)}}">
+                                        <i class="fa-solid fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

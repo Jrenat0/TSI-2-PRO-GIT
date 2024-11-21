@@ -11,12 +11,23 @@ class ClientesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        $clientes = Cliente::get();
+        $search = $request->input('search');
 
-        return view('clientes.index', compact('clientes'));
+        $clientes = Cliente::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where('nombre', 'like', "%{$search}%")
+                ->orWhere('rut', 'like', "%{$search}%");
+            })
+            ->get();
+
+        return view('clientes.index', compact('clientes', 'search'));
+
+        // $clientes = Cliente::get();
+
+        // return view('clientes.index', compact('clientes'));
     }
 
     /**
