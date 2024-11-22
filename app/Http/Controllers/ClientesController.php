@@ -69,6 +69,7 @@ class ClientesController extends Controller
      */
     public function edit(Cliente $cliente)
     {   
+        
         return view('clientes.edit',compact('cliente'));
     }
 
