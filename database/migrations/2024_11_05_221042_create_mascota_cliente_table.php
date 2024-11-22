@@ -16,12 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_mascota');
             $table->string('rut_cliente',10);
 
-            $table->primary(['rut_cliente','id_mascota']);
-
-
             $table->foreign('id_mascota')->references('id')->on('mascotas')->onDelete('cascade');
             $table->foreign('rut_cliente')->references('rut')->on('clientes')->onDelete('cascade');
             
+
+            $table->primary(['rut_cliente','id_mascota']);
         });
     }
 

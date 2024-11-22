@@ -10,20 +10,25 @@ class MascotaCliente extends Model
     use HasFactory;
 
     protected $table = 'mascota_cliente';
-    protected $fillable = ['id_mascota','rut_cliente'];
+    protected $fillable = ['id_mascota', 'rut_cliente'];
     protected $primaryKey = ['id_mascota', 'rut_cliente'];
-
     public $timestamps = false;
     public $incrementing = false;
 
-
-    public function mascota(){// defino la relacion 1 a 1 entre la tabla 'mascotacliente' y la tabla 'usuarios'.
-        return $this->belongsTo('App\Models\Mascota','id_mascota','id');
+    public function mascota()
+    {
+        return $this->belongsTo(Mascota::class, 'id_mascota', 'id');
     }
 
-    public function cliente(){// defino la relacion 1 a 1 entre la tabla 'mascotacliente' y la tabla 'usuarios'.
-        return $this->belongsTo('App\Models\Cliente','rut_cliente','rut');
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'rut_cliente', 'rut');
     }
 
-
+    public static function findByComposite($idMascota, $rutCliente)
+    {
+        return self::where('id_mascota', $idMascota)
+                   ->where('rut_cliente', $rutCliente)
+                   ->first();
+    }
 }

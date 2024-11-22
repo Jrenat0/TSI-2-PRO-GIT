@@ -5,29 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Cita;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use App\Models\Mascota;
+use App\Models\MascotaCliente;
 
 class ClientesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
 
-        $search = $request->input('search');
+        $clientes = Cliente::get();
 
-        $clientes = Cliente::query()
-            ->when($search, function ($query) use ($search) {
-                $query->where('nombre', 'like', "%{$search}%")
-                ->orWhere('rut', 'like', "%{$search}%");
-            })
-            ->get();
-
-        return view('clientes.index', compact('clientes', 'search'));
-
-        // $clientes = Cliente::get();
-
-        // return view('clientes.index', compact('clientes'));
+        return view('clientes.index', compact('clientes'));
     }
 
     /**
@@ -52,16 +43,30 @@ class ClientesController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        $citas = collect();
-        foreach ($cliente->mascota_cliente as $mascota_cliente) {
-            $citas = $citas->merge(Cita::where('id_mascota', $mascota_cliente->mascota->id)
-                ->where('estado', 'T')
-                ->get());
+        // $citas = collect();
+        // foreach ($cliente->mascotas as $mascota) {
+        //     $citas = $citas->merge(Cita::where('id_mascota', $mascota->id)
+        //         ->where('estado', 'T')
+        //         ->get());
+        // }
+
+        // return view('clientes.show', compact(['cliente', 'citas']));
+
+
+        $mascotas = Mascota::get();
+
+        $mascotasnoligadas = [];
+
+        foreach($mascotas as $mascota)
+        {
+            $relacion = MascotaCliente::findByComposite($mascota->id, $cliente->rut);
+            if ($relacion === null){
+                $mascotasnoligadas[] = $mascota;
+            }
         }
 
-        return view('clientes.show', compact(['cliente', 'citas']));
 
-        
+        return view('clientes.show', compact(['cliente','mascotasnoligadas']));
     }
 
     /**
