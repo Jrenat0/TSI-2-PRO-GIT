@@ -25,7 +25,7 @@
 }
 
 
-#formDelete button {
+#buttonDelete {
     background: linear-gradient(#272727, #111111);
     color: #fff;
     display: flex;
@@ -38,7 +38,7 @@
     padding-bottom: 5px;
 }
 
-#formDelete button:hover {
+#buttonDelete:hover {
     color: #ffc2d1;
 }
 

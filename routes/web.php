@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
 
+    Route::post('/clientes', [ClientesController::class,'search'])->name('clientes.search');
+
     Route::get('/clientes/create', [ClientesController::class, 'create'])->name('clientes.create');
     Route::post('/clientes/store', [ClientesController::class, 'store'])->name('clientes.store');
 

@@ -43,3 +43,18 @@ table #options:hover {
 .navbar-toggler i {
     color: black;
 }
+
+
+#buscar {
+    border-radius: 12px;
+    color: #fb6f92;
+    background-color: #fff;
+    outline: auto;
+    outline-color: #fb6f92;
+}
+
+#buscar:hover {
+    color: #fff;
+    background-color: #fb6f92;
+    transition-delay: 0.05s;
+}

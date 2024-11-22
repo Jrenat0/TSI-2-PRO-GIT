@@ -15,10 +15,22 @@ class ClientesController extends Controller
      */
     public function index()
     {
+        $clientes = Cliente::all();
+        return view("clientes.index",compact("clientes"));
+    }
 
-        $clientes = Cliente::get();
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
 
-        return view('clientes.index', compact('clientes'));
+        $clientes = Cliente::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where('nombre', 'like', "%{$search}%")
+                    ->orWhere('rut', 'like', "%{$search}%");
+            })
+            ->get();
+
+        return view('clientes.index', compact('clientes', 'search'));
     }
 
     /**
@@ -57,25 +69,24 @@ class ClientesController extends Controller
 
         $mascotasnoligadas = [];
 
-        foreach($mascotas as $mascota)
-        {
+        foreach ($mascotas as $mascota) {
             $relacion = MascotaCliente::findByComposite($mascota->id, $cliente->rut);
-            if ($relacion === null){
+            if ($relacion === null) {
                 $mascotasnoligadas[] = $mascota;
             }
         }
 
 
-        return view('clientes.show', compact(['cliente','mascotasnoligadas']));
+        return view('clientes.show', compact(['cliente', 'mascotasnoligadas']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Cliente $cliente)
-    {   
-        
-        return view('clientes.edit',compact('cliente'));
+    {
+
+        return view('clientes.edit', compact('cliente'));
     }
 
     /**
@@ -83,7 +94,7 @@ class ClientesController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        
+
     }
 
     /**

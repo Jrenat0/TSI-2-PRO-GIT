@@ -91,18 +91,6 @@
         </div>
     </div>
 
-
-    {{-- <form action="{{route('clientes.destroy',$cliente)}}" method="POST" id="formDelete">
-        @csrf
-        @method('DELETE')
-        <div class="row">
-            <div class="col-12">
-                <button class="btn" type="submit">
-                    <h2><i class="fa-solid fa-trash"></i>Eliminar al Cliente</h2>
-                </button>
-            </div>
-        </div>
-    </form> --}}
 </div>
 
 

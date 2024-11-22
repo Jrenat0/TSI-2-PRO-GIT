@@ -26,16 +26,26 @@
         <!-- Name input -->
 
         {{-- BUSQUEDA --}}
-        <div class="col-12 col-md-6 mb-4">
+        <div class="col-12 col-md-9 mb-4">
 
-            <form method="GET" action="{{route('clientes.index')}}" >
+            <form method="POST" action="{{route('clientes.search')}}" >
                 @csrf
-                <div class="input-group">
-                    <input type="text" name="search" class="form-control" placeholder="Buscar por nombre o RUT" value="{{old('search', $search ?? '')}}">
-                </div>   
-                <div>
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+
+                <div class="row">
+
+                    <div class="col-9">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Buscar por nombre o RUT" value="{{old('search', $search ?? '')}}">
+                        </div> 
+                    </div>
+                    
+                    <div class="col-3">
+                        <button type="submit" class="btn w-100" id="buscar">Buscar <i class="fa-solid fa-magnifying-glass" style="margin-left: 2px"></i></button>
+                    </div>
+                    
                 </div>
+                 
+                
             </form>
 
             {{-- <input type="text" class="form-control" id="nombre" placeholder="Buscar por nombre o rut"> --}}
