@@ -57,20 +57,17 @@ class MascotasController extends Controller
         $idMascota = $mascota->id;
 
         // Crea una coleccion con todos los clientes que NO se encuentran ligados a la mascota, o sea que no son dueños de ella.
-        $clientes = Cliente::get();
-
-        $clientesnoligados = [];
-
-        foreach($clientes as $cliente)
-        {
-            $relacion = MascotaCliente::findByComposite($mascota->id, $cliente->rut);
-            if ($relacion === null){
-                $clientesnoligados[] = $cliente;
-            }
-        }
+        $clientes = DB::table('clientes')
+            ->leftJoin('mascota_cliente', function ($join) use ($idMascota) {
+                $join->on('clientes.rut', '=', 'mascota_cliente.rut_cliente')
+                    ->where('mascota_cliente.id_mascota', '=', $idMascota);
+            })
+            ->whereNull('mascota_cliente.id_mascota')
+            ->select('clientes.*')
+            ->get();
 
 
-        return view('mascotas.show', compact(['mascota', 'citas', 'clientesnoligados']));
+         return view('mascotas.show', compact(['mascota', 'citas', 'clientes']));
     }
 
 

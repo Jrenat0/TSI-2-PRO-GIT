@@ -65,12 +65,12 @@
                                 type="date" value="{{ $mascota->fecha_nacimiento }}" readonly>
                         </div>
 
-                        <div class="col-12 col-xl-6 mb-2">
+                        <div class="col-12 col-xl-9 mb-2">
                             <label class="form-label" for="clientesSelect">Dueños de la mascota</label>
                             <select class="form-select" id="clientesSelect" name="clientesSelect" readonly>
-                                @foreach ($mascota->clientes as $cliente)
-                                    <option value="{{ $cliente->rut }}">
-                                        {{ $cliente->nombre }}
+                                @foreach ($mascota->mascota_cliente as $mascota_cliente)
+                                    <option value="{{ $mascota_cliente->cliente->rut }}">
+                                        {{ $mascota_cliente->cliente->nombre }}
                                     </option>
                                 @endforeach
                             </select>
@@ -80,13 +80,6 @@
                             <button class="btn w-100" type="button" id="addOwnerButton" data-bs-toggle="modal"
                                 data-bs-target="#addOwnerModal">
                                 Agregar un dueño
-                            </button>
-                        </div>
-
-                        <div class="col-12 col-xl-3 mb-2 d-flex align-items-end">
-                            <button class="btn w-100" type="button" id="deleteOwnerButton" data-bs-toggle="modal"
-                                data-bs-target="#deleteOwnerModal">
-                                Eliminar un dueño
                             </button>
                         </div>
 
@@ -117,22 +110,20 @@
 
 
                 <div class="modal-body">
-                    <form action="{{route('mascotacliente.store')}}" method="POST">
+                    <form action="{{route('mascotacliente.store',$mascota)}}" method="POST">
                         @csrf
                         <div class="col-12 mb-3">
-                            <select class="form-select" aria-label="Seleccionar cliente para agregar como dueño"
-                                name="rut_cliente">
+                            <select class="form-select" aria-label="Seleccionar cliente para agregar como dueño" name="rut_cliente">
                                 <option selected value="">Seleccione el cliente que desea agregar como dueño</option>
-                                @foreach ($clientesnoligados as $cliente)
+                                @foreach ($clientes as $cliente)
                                     <option value="{{ $cliente->rut }}">{{ $cliente->nombre }}</option>
                                 @endforeach
                             </select>
-
-                            <input type="hidden" value="{{$mascota->id}}" id="id_mascota" name="id_mascota">
-
                         </div>
 
                 </div>
+
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         id="deshacerCambios">Cancelar cambios</button>
@@ -142,49 +133,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="deleteOwnerModal" tabindex="-1" aria-labelledby="deleteOwnerModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar dueño a {{ $mascota->nombre }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-
-                <div class="modal-body">
-                    <form action="{{ route('mascotacliente.destroy') }}" method="POST">
-                        @csrf
-
-                        @method('DELETE')
-
-                        <div class="col-12 mb-3">
-                            <select class="form-select" aria-label="Seleccionar cliente para agregar como dueño"
-                                name="rut_cliente">
-                                <option selected value="">Seleccione el dueño que desvincular de la mascota</option>
-                                @foreach ($mascota->clientes as $cliente)
-                                    <option value="{{ $cliente->rut }}">{{ $cliente->nombre }}</option>
-                                @endforeach
-                            </select>
-
-                            <input type="hidden" value="{{$mascota->id}}" id="id_mascota" name="id_mascota">
-
-                        </div>
-
-                </div>
-
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                        id="deshacerCambios">Cancelar cambios</button>
-                    <button type="submit" class="btn btn-primary" id="buttonEdit">Desvincular dueño</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 
     {{-- Ventana de informacion de las citas concretadas de la mascota --}}

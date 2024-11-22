@@ -20,15 +20,9 @@ class Mascota extends Model
     //**omito la primary-key ya que automaticamente se define como un atributo auto-incrementable, de tipo unsignedBigInteger, con nombre 'id'.**
     
 
-    // public function mascota_cliente(){
-    //     return $this->hasMany('App\Models\MascotaCliente','id_mascota','id');
-    // }
-
-    public function clientes()
-{
-    return $this->belongsToMany(Cliente::class, 'mascota_cliente', 'id_mascota', 'rut_cliente');
-}
-
+    public function mascota_cliente(){
+        return $this->hasMany('App\Models\MascotaCliente','id_mascota','id');
+    }
 
     public function citas(){ // defino la relacion 1 a M, entre la tabla 'mascotas' y la tabla 'citas.
         return $this->hasMany('App\Models\Cita','id_mascota','id');

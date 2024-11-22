@@ -84,19 +84,6 @@
 }
 
 #deshacerCambios:hover {
-    background-color: #BF2626;
-    border-color: #BF2626;
-}
-
-#deleteOwnerButton{
-    color: white;
-    background-color: #BF2626;
-    border-radius: 40px;
-}
-
-#deleteOwnerButton:hover {
-    color: #BF2626;
-    background-color: rgb(255, 255, 255 , 0.3);
-    border-color: #BF2626;
-    border: solid 2px;
+    background-color: rgb(255, 0, 0);
+    border-color: rgb(255, 0, 0);
 }

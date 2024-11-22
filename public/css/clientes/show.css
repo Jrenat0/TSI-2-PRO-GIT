@@ -108,26 +108,3 @@
     background-color: #fb6f92;
     transition-delay: 0.05s;
 }
-
-#addPetButton {
-    color: white;
-    background-color: black;
-    border-radius: 40px;
-}
-
-#addPetButton:hover {
-    background-color: #fb6f92;
-}
-
-#deletePetButton {
-    color: white;
-    background-color: #BF2626;
-    border-radius: 10px;
-}
-
-#deletePetButton:hover {
-    color: #BF2626;
-    background-color: rgb(255, 255, 255 , 0.3);
-    border-color: #BF2626;
-    border: solid 2px;
-}

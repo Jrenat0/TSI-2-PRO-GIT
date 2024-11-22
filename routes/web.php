@@ -98,12 +98,7 @@ Route::get('/auth/logout', [AuthController::class, 'logout'])->name('auth.logout
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/mascotacliente/store', [MascotaClienteController::class,'store'])->name('mascotacliente.store');
-
-    Route::delete('/mascotacliente/destroy', [MascotaClienteController::class,'destroy'])->name('mascotacliente.destroy');
-
-    Route::delete('/mascotacliente/destroy2/{mascota}', [MascotaClienteController::class,'destroy2'])->name('mascotacliente.destroy2');
-
+    Route::post('/mascotacliente/store/{mascota}', [MascotaClienteController::class,'store'])->name('mascotacliente.store');
 });
 
 

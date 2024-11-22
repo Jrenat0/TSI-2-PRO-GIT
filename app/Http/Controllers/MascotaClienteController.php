@@ -2,36 +2,75 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MascotaCliente;
 use Illuminate\Http\Request;
 use App\Models\Mascota;
-use App\Models\Cliente;
 
 class MascotaClienteController extends Controller
 {
-
-    public function store(Request $request)
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
     {
-        $mascota = Mascota::where("id", $request->id_mascota)->first();
-
-        $mascota->clientes()->attach($request->rut_cliente);
-
-        return redirect()->back()->with("success","");
+        //
     }
 
-    public function destroy(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        $mascota = Mascota::where("id", $request->id_mascota)->first();
-
-        $mascota->clientes()->detach($request->rut_cliente);
-
-        return redirect()->back()->with("success","");
+        //
     }
 
-    public function destroy2(Request $request, Mascota $mascota)
-{
-    $mascota->clientes()->detach($request->rut_cliente);
-    // Redireccionar con un mensaje de éxito
-    return redirect()->back()->with('success', 'La mascota ha sido desligada del cliente con éxito.');
-}
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request, Mascota $mascota)
+    {
 
+
+        $mascota_cliente = new MascotaCliente;
+
+        $mascota_cliente->id_mascota = $mascota->id;
+        $mascota_cliente->rut_cliente = $request->rut_cliente;
+
+        $mascota_cliente->save();
+
+        return redirect()->route("mascotas.show",$mascota)->with("success","");
+
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }
