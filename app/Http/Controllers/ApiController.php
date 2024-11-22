@@ -20,15 +20,7 @@ class ApiController extends Controller
             return response()->json(['message' => 'Cliente no encontrado'], 404);
         }
 
-        // Obtener las mascotas asociadas a este cliente utilizando la relación en la tabla intermedia
-        $mascotasCliente = MascotaCliente::where('rut_cliente', $rut_cliente)
-            ->with('mascota')  // Cargamos las mascotas asociadas
-            ->get();
-
-        // Extraer solo los datos de las mascotas (sin la tabla intermedia)
-        $mascotas = $mascotasCliente->map(function ($item) {
-            return $item->mascota; // Accedemos a la relación definida en el modelo MascotaCliente
-        });
+        $mascotas = $cliente->mascotas;
 
         // Retornar las mascotas en formato JSON
         return response()->json($mascotas);
