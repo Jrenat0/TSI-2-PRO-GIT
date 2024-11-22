@@ -20,6 +20,9 @@ Route::middleware(['auth'])->group(function () {
 //Citas routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/citas', [CitasController::class, 'index'])->name('citas.index');
+
+    Route::get('/citas/show/{id}', [CitasController::class,'show'])->name('citas.show');
+
 });
 //Clientes routes
 Route::middleware(['auth'])->group(function () {
@@ -115,4 +118,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/api/fetchMascotas/{rut_cliente}', [ApiController::class, 'fetchMascotas']);
     Route::get('/api/fillMascotas/{id}', [ApiController::class, 'fillMascotas']);
+
+    Route::get('/api/fillCitas/{fecha}', [ApiController::class,'fillCitas']);
+
 });

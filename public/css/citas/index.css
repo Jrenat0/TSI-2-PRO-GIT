@@ -124,3 +124,30 @@
 #editBtn i {
     margin-right: 10px;
 }
+
+
+
+#dias{
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#dias:hover{
+    background-color: #fb6f92;
+    color: #fff;
+    transition: background-color ease-in-out 0.3s, color ease-in-out 0.3s;
+}
+
+#dias:focus{
+    background-color: #fb6f92;
+    color: #fff;
+}
+
+#dias.active{
+    background-color: #fb6f92;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

@@ -21,6 +21,7 @@ class Servicio extends Model
 
     public function detalle_cita(){ //defino la relacion 1 a M, entre la tabla 'servicios' y la tabla 'detalle_cita'.
         return $this->hasMany('App\Models\DetalleCita','id_servicio','id');
+
     }
 
 }

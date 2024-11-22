@@ -15,7 +15,7 @@
             <div class="calendar">
 
                 <header>
-                    <h3></h3>
+                    <h3 id="mes"></h3>
                     <nav>
                         <button id="prev"></button>
                         <button id="next"></button>
@@ -44,28 +44,14 @@
         </div>
 
         <div class="col-12 col-xl-8 mb-3">
-            <ol class="list-group list-group-numbered">
-                <li class="list-group-item d-flex justify-content-between align-items-start">
+            <ol class="list-group list-group-numbered" id="listaCitas">
+                {{-- <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Cita para Sparky de Juanito Perez</div>
-                        Baño, Corte de pelo y corte de uñas.
+                        <div class="fw-bold" id="citaTitle">Cita para Sparky de Juanito Perez</div>
+                        <p class="mb-0" id="citaDesc">Baño, Corte de pelo y corte de uñas.</p>
                     </div>
                     <span class="badge text-bg-primary rounded-pill">14:30</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Cita para Nene de Marcos Soto</div>
-                        Baño.
-                    </div>
-                    <span class="badge text-bg-primary rounded-pill">15:45</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Cita para Brian de Peter Griffin</div>
-                        Baño y corte de pelo.
-                    </div>
-                    <span class="badge text-bg-primary rounded-pill">16:30</span>
-                </li>
+                </li> --}}
             </ol>
         </div>
 
@@ -91,5 +77,11 @@
 @endsection
 
 @push('script')
-<script src="{{asset('js/citas/citas.js')}}"></script>    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="{{asset('js/citas/citas.js')}}"></script>
+
+<script>
+    var citaUrl = "{{ route('citas.show', ':id') }}";
+</script>
+
 @endpush

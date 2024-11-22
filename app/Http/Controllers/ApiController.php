@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\MascotaCliente;
 use App\Models\Mascota;
 use App\Models\Cliente;
+use App\Models\Cita;
+
+use Carbon\Carbon;
 
 class ApiController extends Controller
 {
@@ -40,4 +43,40 @@ class ApiController extends Controller
         // Retornar los detalles de la mascota en formato JSON
         return response()->json($mascota);
     }
+
+
+    public function fillCitas($fecha)
+    {
+
+        $fecha = Carbon::parse($fecha);
+
+        $citas = Cita::where('fecha', $fecha)->get();
+
+        if ($citas->isEmpty()) {
+            return response()->json(['message' => 'No hay citas disponibles'], 404);
+        }
+
+        return response()->json($citas->map(function ($cita) {
+            return [
+                'id' => $cita->id,
+                'fecha' => $cita->fecha,
+                'hora' => $cita->hora,
+                'mascota' => [
+                    'nombre' => $cita->mascota->nombre,
+                    'id' => $cita->mascota->id,
+                ],
+                'cliente' => [
+                    'nombre' => $cita->usuario->nombre,
+                    'rut' => $cita->usuario->rut,
+                ],
+                'detalle_cita' => $cita->detalle_cita->isNotEmpty() ?
+                    $cita->detalle_cita->map(function ($detalle) {
+                        return $detalle->servicio;  // Solo devolver el nombre del servicio
+                    })->implode(', ') : 'No hay servicios disponibles',  // Si no hay detalles de cita, mostrar mensaje
+            ];
+        }));
+
+
+    }
+
 }

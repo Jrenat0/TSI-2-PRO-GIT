@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Cita;
 
 class CitasController extends Controller
 {
@@ -11,6 +13,8 @@ class CitasController extends Controller
      */
     public function index()
     {
+
+        
         return view('citas.index');
     }
 
@@ -35,7 +39,9 @@ class CitasController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $cita = Cita::where('id', $id)->first();
+
+        return view('citas.show', compact('cita'));
     }
 
     /**
