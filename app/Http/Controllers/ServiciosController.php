@@ -22,7 +22,7 @@ class ServiciosController extends Controller
      */
     public function create()
     {
-        //
+        return view('servicios.create');
     }
 
     /**

@@ -17,8 +17,7 @@ class Cita extends Model
     //desactivo los 'timestamps' de la tabla.
     public $timestamps = false;
 
-    //**omito la primary-key ya que automaticamente se define como un atributo auto-incrementable, de tipo unsignedBigInteger, con nombre 'id'.**
-
+    protected $with = ['mascota', 'usuario', 'servicios'];
 
 
     public function mascota(){ //defino la relacion 1 a 1, entre la tabla 'citas' y la tabla 'mascotas'.
@@ -29,8 +28,8 @@ class Cita extends Model
         return $this->belongsTo('App\Models\Usuario','rut_usuario','rut');
     }
 
-    public function detalle_cita(){ //defino la relacion 1 a M, entre la tabla 'citas' y la tabla 'detalle_cita'.
-        return $this->hasMany('App\Models\DetalleCita','id_cita','id');
+    public function servicios(){
+        return $this->belongsToMany('App\Models\Servicio','detalle_cita','id_cita','id_servicio');
     }
 
 }

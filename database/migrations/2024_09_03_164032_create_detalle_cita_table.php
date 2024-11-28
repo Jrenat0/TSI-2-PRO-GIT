@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -16,21 +15,13 @@ return new class extends Migration
             //Variables
             $table->unsignedBigInteger('id_cita');
             $table->unsignedBigInteger('id_servicio');
-            $table->string('rut_usuario',10);
-            $table->unsignedBigInteger('valor_a_cancelar')->nullable();
-
-
-            //Primaria compuesta
-            $table->primary(['id_cita','id_servicio']);
-
-
-            //Foreign Key
+            $table->string('rut_usuario', 10);
 
             $table->foreign('id_cita')->references('id')->on('citas')->onDelete('cascade');
             $table->foreign('id_servicio')->references('id')->on('servicios')->onDelete('cascade');
-
-
             $table->foreign('rut_usuario')->references('rut')->on('usuarios')->onDelete('cascade');
+
+            $table->unique(['id_cita', 'id_servicio'], 'detalle_cita_unique');
 
         });
     }
