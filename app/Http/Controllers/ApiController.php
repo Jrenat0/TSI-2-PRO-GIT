@@ -69,12 +69,19 @@ class ApiController extends Controller
                     'nombre' => $cita->usuario->nombre,
                     'rut' => $cita->usuario->rut,
                 ],
-                'detalle_cita' => $cita->detalle_cita->isNotEmpty() ?
-                    $cita->detalle_cita->map(function ($detalle) {
-                        return $detalle->servicio;  // Solo devolver el nombre del servicio
-                    })->implode(', ') : 'No hay servicios disponibles',  // Si no hay detalles de cita, mostrar mensaje
+                'servicios' => $cita->servicios->isNotEmpty() ? 
+                    $cita->servicios->map(function ($servicio) {
+                        return [
+                            'id' => $servicio->id,
+                            'nombre' => $servicio->nombre,
+                            'descripcion' => $servicio->descripcion,
+                            'duracion_estimada' => $servicio->duracion_estimada,
+                            'costo' => $servicio->costo,
+                        ];
+                    }) : 'No hay servicios disponibles',  // Si no hay servicios, mostrar mensaje
             ];
         }));
+        
 
 
     }
