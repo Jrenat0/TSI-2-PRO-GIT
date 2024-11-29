@@ -51,7 +51,7 @@ function renderCalendar() {
 
 
         const formattedDay = i.toString().padStart(2, '0');
-        datesHtml += `<li><a class="text-decoration-none ${className}" href="#" id="dias">${formattedDay}</a></li>`;
+        datesHtml += `<li><a class="btn ${className}" href="#" id="dias">${formattedDay}</a></li>`;
     }
 
     for (let i = end; i < 6; i++) {
@@ -140,7 +140,7 @@ function renderCitas(fecha) {
 
                     var serviciosTexto = Array.isArray(value.servicios) && value.servicios.length > 0
                         ? value.servicios.map(servicio => `${servicio.nombre}`).join(', ') // Convierte el array en una lista de nombres separados por comas
-                        : 'No hay servicios disponibles';
+                        : 'Ninguno';
                     
                     
 
@@ -149,23 +149,35 @@ function renderCitas(fecha) {
                     var url = citaUrl.replace(':id', id);
 
                     listaCitas.insertAdjacentHTML('beforeend', `
-                        <a class="text-decoration-none rounded mb-2" href="${url}" id="citas">
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <a class="text-decoration-none rounded mb-2" href="${url}" id="">
+                        <li class="list-group-item d-flex justify-content-between align-items-start border-0 shadow">
                           <div class="ms-2 me-auto">
                             <div class="fw-bold">Cita para ${mascotaNombre} de ${clienteNombre}</div>
                             <p class="mb-0"><em>Servicios de la cita: ${serviciosTexto}</em></p>
                           </div>
-                          <span class="badge text-bg-primary rounded-pill">${hora}</span>
+                          <span class="badge text-bg-dark rounded-pill">${hora}</span>
                         </li>
                         </a>
                     `);
                 });
+
+                listaCitas.insertAdjacentHTML('beforeend', `
+                    <a class="btn btn-dark rounded mb-2" href="" id="addCita">
+                        Agregar una nueva cita
+                    </a>
+                `);
+
             },
             error: function (xhr, status, error) {
                 console.error("No hay citas disponibles:", error);
                 while (listaCitas.firstChild) {
                     listaCitas.removeChild(listaCitas.firstChild);
                 }
+                listaCitas.insertAdjacentHTML('beforeend', `
+                    <a class="btn btn-dark rounded mb-2" href="" id="addCita">
+                        Agregar una nueva cita
+                    </a>
+                `);
             }
         });
     } else {
@@ -173,6 +185,7 @@ function renderCitas(fecha) {
         while (listaCitas.firstChild) {
             listaCitas.removeChild(listaCitas.firstChild);
         }
+
     }
 }
 
