@@ -12,6 +12,9 @@
         <div class="col-12 mb-3">
             <h1 class="text-center fw-bold">Servicios Disponibles</h1>
         </div>
+        <div class="text-end">
+            <a href="{{route('servicios.create')}}" class="btn btn-outline-dark">Crear nuevo servicio</a>
+        </div>
         @foreach($servicios as $servicio)
         <div class="col-lg-4 col-12 mb-3">
             <a href="" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal{{$servicio->id}}">

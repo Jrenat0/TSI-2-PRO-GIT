@@ -22,7 +22,8 @@ class ServiciosController extends Controller
      */
     public function create()
     {
-        //
+        // dd("enelcreate");
+        return view('servicios.create');
     }
 
     /**
@@ -30,7 +31,8 @@ class ServiciosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Servicio::create($request->all());
+        return redirect()->route('servicios.index')->with('success', 'El servicio se creo de manera exitosa!');
     }
 
     /**
@@ -52,16 +54,19 @@ class ServiciosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Servicio $servicio)
     {
-        //
+        $servicio->update($request->all());
+
+        return redirect()->route('servicios.index')->with('success', 'Servicio Editado de manera exitosa!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Servicio $servicio)
     {
-        //
+        $servicio->delete();
+        return redirect()->route('servicios.index');
     }
 }

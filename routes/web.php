@@ -63,6 +63,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Route::get('/servicios/show/{servicio}', [ServiciosController::class, 'show'])->name('servicios.show');
 
+    Route::get('/servicios/create', [ServiciosController::class, 'create'])->name('servicios.create');
+    
+    Route::post('/servicios/store', [ServiciosController::class, 'store'])->name('servicios.store');
+
     Route::get('/servicios/edit/{servicio}', [ServiciosController::class, 'edit'])->name('servicios.edit');
     Route::put('/servicios/update/{servicio}', [ServiciosController::class, 'update'])->name('servicios.update');
 
