@@ -16,12 +16,10 @@ class Servicio extends Model
     //desactivo los 'timestamps'.
     public $timestamps = false;
 
-    //**omito la primary-key ya que automaticamente se define como un atributo auto-incrementable, de tipo unsignedBigInteger, con nombre 'id'.**
 
 
-    public function detalle_cita(){ //defino la relacion 1 a M, entre la tabla 'servicios' y la tabla 'detalle_cita'.
-        return $this->hasMany('App\Models\DetalleCita','id_servicio','id');
-
+    public function citas(){
+        return $this->belongsToMany('App\Models\Cita','detalle_cita','id_servicio','id_cita');
     }
 
 }

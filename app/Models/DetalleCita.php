@@ -12,7 +12,7 @@ class DetalleCita extends Model
     // defino el identificador de la tabla como 'detalle_cita'
     protected $table = 'detalle_cita';
     // defino los atributos de la tabla con '$fillable, para permitir el uso de funciones 'Illuminate'.
-    protected $fillable = ['id_cita','id_servicio','rut_usuario','valor_a_cancelar'];
+    protected $fillable = ['id_cita','id_servicio','rut_usuario'];
     // defino la primaryKey como compuesta.
     protected $primaryKey = ['id_cita','id_servicio'];
     // desactivo los 'timestamps' de la tabla.

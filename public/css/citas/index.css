@@ -1,29 +1,45 @@
-/* Calendar */
+@media (max-width: 480px) {
+    .dates li.inactive {
+        font-size: 10px !important;
+    }
+
+    .days li {
+        font-size: 15px !important;
+    }
+
+    #dias {
+        font-size: 10px !important;
+    }
+}
+
+/* Mes del calendario */
 .calendar h3 {
     font-weight: 600;
 }
 
+/* Cuerpo del calendario */
 .calendar {
-    margin: auto;
-    width: 98%;
-    max-width: 380px;
+    width: 100%;
     padding: 1rem;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Contenedor del mes y los botones para cambiar el mes */
 .calendar header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+
 .calendar nav {
     display: flex;
     align-items: center;
 }
 
+/* Lista de los dias */
 .calendar ul {
     list-style: none;
     display: flex;
@@ -32,13 +48,17 @@
     padding-left: 0;
 }
 
+/* Items de la lista de los dias */
 .calendar ul li {
     width: calc(100% / 7);
-    margin-top: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     position: relative;
     z-index: 2;
 }
 
+
+/* Boton para cambiar de mes */
 #prev,
 #next {
     width: 20px;
@@ -62,6 +82,7 @@
     border-color: #ccc;
 }
 
+
 #next::before {
     transform: translate(-50%, -50%) rotate(45deg);
 }
@@ -75,79 +96,44 @@
     border-color: #000;
 }
 
+/* /Boton para cambiar de mes */
+.days {
+    margin-bottom: 0;
+}
+
 .days li {
     font-weight: 600;
-}
-
-.dates li.today {
-    color: #fff;
-}
-
-.dates li.today::before {
-    content: "";
-    width: 2rem;
-    height: 2rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #000;
-    border-radius: 50%;
-    z-index: -1;
+    font-size: 20px;
 }
 
 .dates li.inactive {
-    color: #ccc;
-}
-
-
-#addBtn,
-#editBtn {
-    background: linear-gradient(#272727, #111111);
-    color: #fff;
     display: flex;
+    color: #ccc;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    width: 100%;
-    transition: 0.3s;
-    padding-top: 10px;
-    padding-bottom: 5px;
+    font-size: 18px;
 }
 
-#addBtn:hover,
-#editBtn:hover {
-    color: #ffc2d1;
-}
-
-#addBtn i,
-#editBtn i {
-    margin-right: 10px;
-}
-
-
-
-#dias{
+#dias {
     background-color: #fff;
     color: #000;
     border-radius: 5px;
-    padding: 10px;
+    font-size: 18px;
 }
 
-#dias:hover{
+#dias:hover {
     background-color: #fb6f92;
     color: #fff;
     transition: background-color ease-in-out 0.3s, color ease-in-out 0.3s;
 }
 
-#dias:focus{
+#dias:focus {
     background-color: #fb6f92;
     color: #fff;
 }
 
-#dias.active{
+#dias.active {
     background-color: #fb6f92;
     color: white;
-    padding: 10px;
-    border-radius: 5px;
 }
+

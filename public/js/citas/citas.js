@@ -2,6 +2,13 @@ const header = document.querySelector(".calendar h3");
 const dates = document.querySelector(".dates");
 const navs = document.querySelectorAll("#prev, #next");
 
+const fechaActual = new Date();
+const año = fechaActual.getFullYear();
+const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Meses empiezan en 0
+const dia = String(fechaActual.getDate()).padStart(2, '0');
+
+const fechaSinHora = `${año}-${mes}-${dia}`;
+
 const months = [
     "Enero",
     "Febrero",
@@ -44,7 +51,7 @@ function renderCalendar() {
 
 
         const formattedDay = i.toString().padStart(2, '0');
-        datesHtml += `<li><a class="text-decoration-none ${className}" href="#" id="dias">${formattedDay}</a></li>`;
+        datesHtml += `<li><a class="btn ${className}" href="#" id="dias">${formattedDay}</a></li>`;
     }
 
     for (let i = end; i < 6; i++) {
@@ -89,6 +96,8 @@ function handleDiaClick(element) {
     // Remover el estado activo de todos los días
     document.querySelectorAll('[id^="dias"]').forEach(dia => dia.classList.remove('active'));
 
+    var listaCitas = document.getElementById('listaCitas');
+
     // Agregar la clase activa al día clickeado
     element.classList.add('active');
 
@@ -103,6 +112,10 @@ function handleDiaClick(element) {
     fecha = formatFecha(fecha);
 
     renderCitas(fecha);
+
+    
+
+    
 }
 
 
@@ -110,13 +123,11 @@ function renderCitas(fecha) {
     var listaCitas = document.getElementById('listaCitas');
 
     if (fecha) {
-        // Realizo la llamada AJAX si se proporciona una fecha
         $.ajax({
             url: '/api/fillCitas/' + fecha,
             type: "GET",
             dataType: "json",
             success: function (data) {
-                // Limpio la lista de las citas anteriores
                 while (listaCitas.firstChild) {
                     listaCitas.removeChild(listaCitas.firstChild);
                 }
@@ -127,27 +138,46 @@ function renderCitas(fecha) {
                     var clienteNombre = value.cliente ? value.cliente.nombre : 'Cliente no disponible';
                     var hora = value.hora || 'Hora no disponible';
 
+                    var serviciosTexto = Array.isArray(value.servicios) && value.servicios.length > 0
+                        ? value.servicios.map(servicio => `${servicio.nombre}`).join(', ') // Convierte el array en una lista de nombres separados por comas
+                        : 'Ninguno';
+                    
+                    
+
                     var id = value.id || 'Id no disponible';
 
                     var url = citaUrl.replace(':id', id);
 
                     listaCitas.insertAdjacentHTML('beforeend', `
-                        <a class="text-decoration-none rounded" href="${url}" id="citas">
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <a class="text-decoration-none rounded mb-2" href="${url}" id="">
+                        <li class="list-group-item d-flex justify-content-between align-items-start border-0 shadow">
                           <div class="ms-2 me-auto">
                             <div class="fw-bold">Cita para ${mascotaNombre} de ${clienteNombre}</div>
+                            <p class="mb-0"><em>Servicios de la cita: ${serviciosTexto}</em></p>
                           </div>
-                          <span class="badge text-bg-primary rounded-pill">${hora}</span>
+                          <span class="badge text-bg-dark rounded-pill">${hora}</span>
                         </li>
                         </a>
                     `);
                 });
+
+                listaCitas.insertAdjacentHTML('beforeend', `
+                    <a class="btn btn-dark rounded mb-2" href="" id="addCita">
+                        Agregar una nueva cita
+                    </a>
+                `);
+
             },
             error: function (xhr, status, error) {
                 console.error("No hay citas disponibles:", error);
                 while (listaCitas.firstChild) {
                     listaCitas.removeChild(listaCitas.firstChild);
                 }
+                listaCitas.insertAdjacentHTML('beforeend', `
+                    <a class="btn btn-dark rounded mb-2" href="" id="addCita">
+                        Agregar una nueva cita
+                    </a>
+                `);
             }
         });
     } else {
@@ -155,6 +185,7 @@ function renderCitas(fecha) {
         while (listaCitas.firstChild) {
             listaCitas.removeChild(listaCitas.firstChild);
         }
+
     }
 }
 
@@ -184,3 +215,4 @@ navs.forEach((nav) => {
 
 renderCalendar();
 attachEventListeners();
+renderCitas(fechaSinHora);

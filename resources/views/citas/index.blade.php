@@ -9,9 +9,9 @@
 
 @section('content')
 
-<div class="container-fluid col-lg-10 col-12 px-2 py-4 rounded">
+<div class="container-fluid col-lg-10 col-12 px-4 py-4 rounded" style="background: rgba(255, 255, 255, 0.8)">
     <div class="row">
-        <div class="col-12 col-xl-4 mb-3">
+        <div class="col-12 col-xl-6 mb-3 d-flex justify-content-start">
             <div class="calendar">
 
                 <header>
@@ -43,7 +43,7 @@
 
         </div>
 
-        <div class="col-12 col-xl-8 mb-3">
+        <div class="col-12 col-xl-6 mb-3">
             <ol class="list-group list-group-numbered" id="listaCitas">
                 {{-- <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
@@ -54,21 +54,6 @@
                 </li> --}}
             </ol>
         </div>
-
-        <div class="col-12 col-xl-6 mb-3">
-            <a class="btn" type="submit" id="addBtn">
-                <h2 class="fb6f92"><i class="fa-solid fa-plus"></i>Agregar una Cita</h2>
-            </a>
-        </div>
-
-        <div class="col-12 col-xl-6 mb-4">
-            <a class="btn" id="editBtn">
-                <h2 class="fb6f92"><i class="fa-solid fa-pencil"></i>Editar una Cita</h2>
-            </a>
-        </div>
-
-
-
     </div>
 
 
