@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Cita;
+use App\Models\Mascota;
+use App\Models\Usuario;
+use App\Models\Servicio;
 
 class CitasController extends Controller
 {
@@ -21,7 +24,13 @@ class CitasController extends Controller
      */
     public function create()
     {
-        //
+        $mascotas = Mascota::get();
+
+        $usuarios = Usuario::where('rol','Peluquero')->get();
+
+        $servicios = Servicio::get();
+
+        return view('citas.create', compact(['mascotas','usuarios','servicios']));
     }
 
     /**
@@ -29,7 +38,26 @@ class CitasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cita = new Cita();
+
+        $cita->fecha = Carbon::parse($request->fecha);
+        $cita->hora = Carbon::parse($request->hora);
+        $cita->observaciones = $request->observaciones;
+        $cita->estado = 'P';
+        $cita->id_mascota = $request->id_mascota;
+        $cita->rut_usuario = $request->rut_usuario;
+
+        $cita->save();
+
+        $servicios = $request->input('id_servicio');
+
+        foreach ($servicios as $servicio) {
+            $cita->servicios()->attach($servicio, ['rut_usuario' => $request->rut_usuario]);
+        }
+        
+
+        return redirect()->route('citas.index')->with('success','');
+
     }
 
     /**

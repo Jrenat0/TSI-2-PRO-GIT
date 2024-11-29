@@ -23,6 +23,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/citas/show/{id}', [CitasController::class,'show'])->name('citas.show');
 
+    Route::get('/citas/create', [CitasController::class,'create'])->name('citas.create');
+
+    Route::post('/citas/store', [CitasController::class,'store'])->name('citas.store');
+ 
 });
 //Clientes routes
 Route::middleware(['auth'])->group(function () {
