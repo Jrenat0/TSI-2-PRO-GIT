@@ -41,10 +41,7 @@ class MascotasController extends Controller
         $mascota->save();
 
         // Conexion al dueño de la mascota
-        $mascota_cliente = new MascotaCliente();
-        $mascota_cliente->id_mascota = $mascota->id;
-        $mascota_cliente->rut_cliente = $request->rut_cliente;
-        $mascota_cliente->save();
+        $mascota->clientes()->attach($request->rut_cliente);
 
 
         return redirect()->route('mascotas.index')->with('success', 'Mascota creada de manera exitosa!');

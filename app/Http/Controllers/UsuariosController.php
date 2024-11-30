@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Gate;
 
 class UsuariosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         if (Gate::denies('admin-gestion')) {
@@ -45,6 +43,13 @@ class UsuariosController extends Controller
         if (Gate::denies('admin-gestion')) {
             return redirect()->route('home.index');
         }
+
+        $usuario = new Usuario();
+        $usuario->fill($request->all());
+        $usuario->save();
+
+        return redirect()->route('usuarios.index');
+
     }
 
     /**

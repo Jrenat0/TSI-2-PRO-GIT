@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 
 class ServiciosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {   
         $servicios = Servicio::get();
@@ -17,12 +15,9 @@ class ServiciosController extends Controller
         return view('servicios.index', compact('servicios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        // dd("enelcreate");W
         return view('servicios.create');
     }
 
@@ -35,25 +30,19 @@ class ServiciosController extends Controller
         return redirect()->route('servicios.index')->with('success', 'El servicio se creo de manera exitosa!');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Servicio $servicio)
     {
         return view('servicios.show',compact('servicio'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Servicio $servicio)
     {
         return view('servicios.edit',compact('servicio'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Servicio $servicio)
     {
         $servicio->update($request->all());
@@ -61,9 +50,7 @@ class ServiciosController extends Controller
         return redirect()->route('servicios.index')->with('success', 'Servicio Editado de manera exitosa!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Servicio $servicio)
     {
         $servicio->delete();

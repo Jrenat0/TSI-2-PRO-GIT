@@ -11,17 +11,13 @@ use App\Models\Servicio;
 
 class CitasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         return view('citas.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $mascotas = Mascota::get();
@@ -33,9 +29,7 @@ class CitasController extends Controller
         return view('citas.create', compact(['mascotas','usuarios','servicios']));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $cita = new Cita();
@@ -60,9 +54,7 @@ class CitasController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         $cita = Cita::where('id', $id)->first();
@@ -70,27 +62,28 @@ class CitasController extends Controller
         return view('citas.show', compact('cita'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+
+    public function edit(Cita $cita)
     {
-        //
+        return view('citas.edit', compact('cita'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    public function update(Request $request, Cita $cita)
     {
-        //
+        $cita->update($request->all());
+
+        $servicios = $request->input('id_servicio');
+        // Hacer que si un servicio se desmarca, aplicar un detach del servicio, y si un servicio nuevo se marca, aplicarle una attach.
+
+        return redirect()->route('citas.show',$cita)->with('success','');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    public function destroy(Cita $cita)
     {
-        //
+        $cita->delete();
+        return redirect()->route('citas.index')->with('success','');
     }
 }
