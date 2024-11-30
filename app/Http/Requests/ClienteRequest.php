@@ -6,9 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ClienteRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+
     public function authorize(): bool
     {
         return true;
@@ -16,14 +14,21 @@ class ClienteRequest extends FormRequest
 
 
     public function rules(): array
-    {
-        return [
-            'rut' => 'required|string|alpha_dash|min:9|max:10',
-            'nombre' => 'required|string|regex:/^[\pL\s]+$/u|min:3|max:50',
+    {   
+
+        $rules = [
+            // 'rut' => 'required|string|alpha_dash|min:9|max:10',
+            'nombre' => 'required|string|regex:/^[\pL\s]+$/u|min:3|max:60',
             'fono' => 'required|string|regex:/^\d{9}$/',
             'email' => 'required|email|unique:usuarios,email|max:255',
-            'direccion' => 'required|string|regex:/^[\pL\pN\s,.#-]+$/u|min:3|max:50',
+            'direccion' => 'required|string|regex:/^[\pL\pN\s,.#-]+$/u|min:3|max:255',
         ];
+
+        if ($this->isMethod('post')) {
+            $rules['rut'] = 'required|string|alpha_dash|min:9|max:10';
+        }
+
+        return $rules;
     }
 
     public function messages()

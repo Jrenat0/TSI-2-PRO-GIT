@@ -7,12 +7,11 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Models\Mascota;
 use App\Models\MascotaCliente;
+use App\Http\Requests\ClienteRequest;
 
 class ClientesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $clientes = Cliente::all();
@@ -33,26 +32,20 @@ class ClientesController extends Controller
         return view('clientes.index', compact('clientes', 'search'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('clientes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    public function store(ClienteRequest $request)
     {
-        Cliente::create($request->all());
+        $cliente = Cliente::create($request->validated());
+
         return redirect()->route('clientes.index')->with('success', 'El cliente se creo de manera exitosa!');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Cliente $cliente)
     {
         // $citas = collect();
@@ -80,28 +73,22 @@ class ClientesController extends Controller
         return view('clientes.show', compact(['cliente', 'mascotasnoligadas']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Cliente $cliente)
     {
 
         return view('clientes.edit', compact('cliente'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Cliente $cliente)
-    {
-        $cliente->update($request->all());
 
-        return redirect()->route('clientes.index')->with('success', 'Cliente Editado de manera exitosa!');
+    public function update(ClienteRequest $request, Cliente $cliente)
+    {
+        $cliente->update($request->validated());
+
+        return redirect()->route('clientes.index')->with('success', 'El cliente ha sido editado de manera exitosa!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Cliente $cliente)
     {
         $cliente->delete();
