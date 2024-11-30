@@ -4,7 +4,7 @@ const navs = document.querySelectorAll("#prev, #next");
 
 const fechaActual = new Date();
 const año = fechaActual.getFullYear();
-const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Meses empiezan en 0
+const mes = String(fechaActual.getMonth() + 1).padStart(2, '0');
 const dia = String(fechaActual.getDate()).padStart(2, '0');
 
 const fechaSinHora = `${año}-${mes}-${dia}`;
@@ -113,14 +113,21 @@ function handleDiaClick(element) {
 
     renderCitas(fecha);
 
-    
 
-    
+
+
 }
 
 
 function renderCitas(fecha) {
     var listaCitas = document.getElementById('listaCitas');
+
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = String(fechaActual.getMonth() + 1).padStart(2, '0');
+    const dia = String(fechaActual.getDate()).padStart(2, '0');
+
+    const fechaSinHora = `${año}-${mes}-${dia}`;
 
     if (fecha) {
         $.ajax({
@@ -141,8 +148,8 @@ function renderCitas(fecha) {
                     var serviciosTexto = Array.isArray(value.servicios) && value.servicios.length > 0
                         ? value.servicios.map(servicio => `${servicio.nombre}`).join(', ') // Convierte el array en una lista de nombres separados por comas
                         : 'Ninguno';
-                    
-                    
+
+
 
                     var id = value.id || 'Id no disponible';
 
@@ -161,11 +168,13 @@ function renderCitas(fecha) {
                     `);
                 });
 
-                listaCitas.insertAdjacentHTML('beforeend', `
-                    <a class="btn btn-dark rounded mb-2" href="" id="addCita">
-                        Agregar una nueva cita
-                    </a>
-                `);
+                if (fecha >= fechaSinHora) {
+                    listaCitas.insertAdjacentHTML('beforeend', `
+                        <a class="btn btn-dark rounded mb-2" href="" id="addCita">
+                            Agregar una nueva cita
+                        </a>
+                    `);
+                }
 
             },
             error: function (xhr, status, error) {
@@ -173,11 +182,13 @@ function renderCitas(fecha) {
                 while (listaCitas.firstChild) {
                     listaCitas.removeChild(listaCitas.firstChild);
                 }
-                listaCitas.insertAdjacentHTML('beforeend', `
-                    <a class="btn btn-dark rounded mb-2" href="" id="addCita">
-                        Agregar una nueva cita
-                    </a>
-                `);
+                if (fecha >= fechaSinHora) {
+                    listaCitas.insertAdjacentHTML('beforeend', `
+                        <a class="btn btn-dark rounded mb-2" href="" id="addCita">
+                            Agregar una nueva cita
+                        </a>
+                    `);
+                }
             }
         });
     } else {
