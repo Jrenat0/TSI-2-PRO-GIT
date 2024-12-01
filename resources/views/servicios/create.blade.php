@@ -44,8 +44,6 @@
 
                     <div class="col-12 mb-2">
                         <label class="form-label" for="descripcion">Descripcion</label>
-                        {{-- <input class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" type="text"
-                            name="descripcion" value="{{old('descripcion')}}" required> --}}
                         <textarea class="form-control @error('descripcion') is-invalid @enderror" placeholder="Ingrese la descripcion del servicio" id="descripcion" name="descripcion" value="{{old('descripcion')}}"></textarea>
                             @error('descripcion')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -54,7 +52,7 @@
 
                     <div class="col-12 mb-2">
                         <label class="form-label" for="duracion_estimada">Duracion estimada (en minutos)</label>
-                        <input class="form-control @error('email') is-invalid @enderror" id="duracion_estimada" type="text"
+                        <input class="form-control @error('duracion_estimada') is-invalid @enderror" id="duracion_estimada" type="text"
                             name="duracion_estimada" value="{{old('duracion_estimada')}}" required>
                         @error('duracion_estimada')
                         <div class="invalid-feedback">{{ $message }}</div>

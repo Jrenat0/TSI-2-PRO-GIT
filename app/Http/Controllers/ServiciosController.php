@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Servicio;
 use Illuminate\Http\Request;
+use App\Http\Requests\ServicioRequest;
 
 class ServiciosController extends Controller
 {
@@ -24,9 +25,9 @@ class ServiciosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ServicioRequest $request)
     {
-        Servicio::create($request->all());
+        $servicio = Servicio::create($request->validated());
         return redirect()->route('servicios.index')->with('success', 'El servicio se creo de manera exitosa!');
     }
 
@@ -43,9 +44,9 @@ class ServiciosController extends Controller
     }
 
 
-    public function update(Request $request, Servicio $servicio)
+    public function update(ServicioRequest $request, Servicio $servicio)
     {
-        $servicio->update($request->all());
+        $servicio->update($request->validated());
 
         return redirect()->route('servicios.index')->with('success', 'Servicio Editado de manera exitosa!');
     }
@@ -54,6 +55,6 @@ class ServiciosController extends Controller
     public function destroy(Servicio $servicio)
     {
         $servicio->delete();
-        return redirect()->route('servicios.index');
+        return redirect()->route('servicios.index')->with('success', 'Servicio Eliminado de manera exitosa!');
     }
 }

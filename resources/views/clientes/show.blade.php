@@ -189,7 +189,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         id="deshacerCambios">Cancelar cambios</button>
-                    <button type="submit" class="btn btn-primary" id="buttonEdit">Agregar dueño</button>
+                    <button type="submit" class="btn btn-primary" id="buttonEdit">Agregar mascota a {{$cliente->nombre}}</button>
                     </form>
                 </div>
             </div>

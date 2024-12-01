@@ -119,21 +119,25 @@
     color: #000;
     border-radius: 5px;
     font-size: 18px;
+    border-bottom: 1px solid #aaa;
 }
 
 #dias:hover {
     background-color: #fb6f92;
     color: #fff;
     transition: background-color ease-in-out 0.3s, color ease-in-out 0.3s;
+    border-bottom: none;
 }
 
 #dias:focus {
     background-color: #fb6f92;
     color: #fff;
+    border-bottom: none;
 }
 
 #dias.active {
     background-color: #fb6f92;
     color: white;
+    border-bottom: none;
 }
 
