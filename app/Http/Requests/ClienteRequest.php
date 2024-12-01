@@ -20,7 +20,7 @@ class ClienteRequest extends FormRequest
             // 'rut' => 'required|string|alpha_dash|min:9|max:10',
             'nombre' => 'required|string|regex:/^[\pL\s]+$/u|min:3|max:60',
             'fono' => 'required|string|regex:/^\d{9}$/',
-            'email' => 'required|email|unique:usuarios,email|max:255',
+            'email' => 'required|email|unique:clientes,email|max:255',
             'direccion' => 'required|string|regex:/^[\pL\pN\s,.#-]+$/u|min:3|max:255',
         ];
 
@@ -45,8 +45,8 @@ class ClienteRequest extends FormRequest
             'nombre.required' => 'El nombre del cliente es obligatorio.',
             'nombre.string' => 'El nombre del cliente debe ser una cadena de texto.',
             'nombre.regex' => 'El nombre del cliente solo puede contener letras y espacios.',
-            'nombre.min' => 'El nombre del cliente debe contener minimo 2 caracteres',
-            'nombre.max' => 'El nombre del cliente debe contener como maximo 20 caracteres',
+            'nombre.min' => 'El nombre del cliente debe contener minimo :min caracteres',
+            'nombre.max' => 'El nombre del cliente debe contener como maximo :max caracteres',
             
             'fono.required' => 'El numero telefonico del cliente es obligatorio.',
             'fono.string' => 'El numero telefonico del cliente debe corresponder a una cadena de texto.',

@@ -6,6 +6,8 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UsuarioRequest;
 
 class UsuariosController extends Controller
 {
@@ -35,26 +37,27 @@ class UsuariosController extends Controller
         return view('usuarios.create', compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    public function store(UsuarioRequest $request)
     {
+
         if (Gate::denies('admin-gestion')) {
             return redirect()->route('home.index');
         }
 
-        $usuario = new Usuario();
-        $usuario->fill($request->all());
-        $usuario->save();
+        $data = $request->validated();
 
-        return redirect()->route('usuarios.index');
+        if (isset($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        $usuario = Usuario::create($data);
+
+        return redirect()->route('usuarios.index')->with('success', 'Se ha creado el nuevo usuario!');
 
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Usuario $usuario)
     {
         if (Gate::denies('admin-gestion')) {
@@ -68,7 +71,7 @@ class UsuariosController extends Controller
         }
 
 
-        return view('usuarios.show', compact(['usuario','citas']));
+        return view('usuarios.show', compact(['usuario', 'citas']));
     }
 
     /**
@@ -82,27 +85,48 @@ class UsuariosController extends Controller
 
         $roles = ['Peluquero', 'Secretario', 'Administrador'];
 
-        return view('usuarios.edit',compact(['usuario','roles']));
+        return view('usuarios.edit', compact(['usuario', 'roles']));
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    public function update(UsuarioRequest $request, Usuario $usuario)
     {
         if (Gate::denies('admin-gestion')) {
             return redirect()->route('home.index');
         }
+
+        $usuario->update($request->validated());
+
+        return redirect()->route('usuarios.index')->with('success', 'Se ha modificado al usuario con exito!');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+
+    public function destroy(Usuario $usuario)
     {
         if (Gate::denies('admin-gestion')) {
             return redirect()->route('home.index');
         }
+
+        if ($usuario->rol !== 'Peluquero' && $usuario->rut !== Auth::user()->rut) {
+            try {
+                $usuario->delete();
+                return redirect()->back()->with('success', 'Usuario eliminado correctamente.');
+            } catch (\Exception $e) {
+                return redirect()->back()->with('error', 'Ocurrió un error al intentar eliminar al usuario.');
+            }
+        } else {
+            // Validar que el peluquero no le queden citas pendientes.
+            // En ese hipotetico caso, no permitir que se elimine al peluquero.
+            if($usuario->rol == 'Peluquero'){
+                return redirect()->back()->with('warning', 'Este Peluquero tiene citas pendientes!!');
+            } else{
+                return redirect()->back()->with('warning', 'No tienes permiso para eliminar este usuario.');
+            }
+
+        }
+
     }
 }
