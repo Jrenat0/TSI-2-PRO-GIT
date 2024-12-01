@@ -120,9 +120,29 @@ class UsuariosController extends Controller
         } else {
             // Validar que el peluquero no le queden citas pendientes.
             // En ese hipotetico caso, no permitir que se elimine al peluquero.
-            if($usuario->rol == 'Peluquero'){
-                return redirect()->back()->with('warning', 'Este Peluquero tiene citas pendientes!!');
-            } else{
+            if ($usuario->rol == 'Peluquero') {
+
+                $pendientes = false;
+
+                foreach ($usuario->citas as $cita) {
+                    if ($cita->estado == 'P') {
+                        $pendientes = true;
+                    }
+                }
+
+                if ($pendientes) {
+                    return redirect()->back()->with('warning', 'Este Peluquero tiene citas pendientes!!');
+                } else {
+                    try {
+                        $usuario->delete();
+                        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente.');
+                    } catch (\Exception $e) {
+                        return redirect()->back()->with('error', 'Ocurrió un error al intentar eliminar al usuario.');
+                    }
+                }
+
+
+            } else {
                 return redirect()->back()->with('warning', 'No tienes permiso para eliminar este usuario.');
             }
 
