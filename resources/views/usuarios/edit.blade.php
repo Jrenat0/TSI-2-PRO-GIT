@@ -10,7 +10,7 @@
 @section('content')
     <div class="container-fluid col-lg-10 col-12 mb-5 bg-light rounded">
 
-        <form action="{{ route('usuarios.update', $usuario) }}" method="POST" id="formEdit">
+        <form action="{{ route('usuarios.update', $usuario->rut) }}" method="POST" id="formEdit">
             @csrf
 
             @method('PUT')

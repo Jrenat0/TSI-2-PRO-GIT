@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class UsuarioRequest extends FormRequest
 {
     /**
@@ -24,15 +24,26 @@ class UsuarioRequest extends FormRequest
 
         $rules = [
             'nombre' => 'required|string|regex:/^[\pL\s]+$/u|min:3|max:60',
-            'email' => 'required|email|unique:usuarios,email|max:255',
             'fono' => 'required|string|regex:/^\d{9}$/',
             'rol' => 'required|string|in:Peluquero,Secretario,Administrador',
         ];
 
         if ($this->isMethod('post')) {
+            $rules['email'] = 'required|email|unique:usuarios,email|max:255';
             $rules['rut'] = 'required|string|alpha_dash|min:9|max:10';
             $rules['password'] ='required|min:4';
         }
+
+        if ($this->isMethod('put') || $this->isMethod('patch')) {
+            $usuarioId = $this->route('usuario');
+            $rules['email'] = [
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('usuarios', 'email')->ignore($usuarioId),
+            ];
+        }
+        
 
         return $rules;
     }

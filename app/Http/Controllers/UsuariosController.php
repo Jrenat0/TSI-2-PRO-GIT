@@ -74,9 +74,7 @@ class UsuariosController extends Controller
         return view('usuarios.show', compact(['usuario', 'citas']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Usuario $usuario)
     {
         if (Gate::denies('admin-gestion')) {
