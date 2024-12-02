@@ -25,10 +25,27 @@
                         <div class="col-12 mt-4">
                             <h5 class="fw-bold">Buscar a un usuario específico</h5>
                         </div>
-                        <!-- Name input -->
-                        <div class="col-12 col-md-6 mb-4">
-                            <input type="text" class="form-control" id="nombre" placeholder="Buscar por nombre o RUT">
-                        </div>
+                        <form method="POST" action="{{route('usuarios.search') }}">
+                            @csrf
+        
+                            <div class="row">
+        
+                                <div class="col-12 col-md-6 mb-4">
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control"
+                                            placeholder="Buscar por nombre o RUT" value="{{ old('search', $search ?? '') }}">
+                                    </div>
+                                </div>
+        
+                                <div class="col-3">
+                                    <button type="submit" class="btn w-100" id="buscar">Buscar</button>
+                                </div>
+        
+                            </div>
+        
+        
+                        </form>
+                        
                         <!-- Search results label -->
                         <div class="col-12">
                             <h5 class="fw-bold">Resultados de la búsqueda</h5>
@@ -51,28 +68,32 @@
                                 </thead>
                                 <!-- Table body -->
                                 <tbody>
-                                    <tr>
-                                        <!-- Name -->
-                                        <td>Fancy</td>
-                                        <!-- Rut -->
-                                        <td class="d-none d-md-table-cell">21.268.821-2</td>
-                                        <!-- Email -->
-                                        <td class="d-none d-md-table-cell text-truncate" style="max-width: 150px;">
-                                            Admin@petsfancy.cl</td>
-                                        <!-- Phone -->
-                                        <td class="d-none d-md-table-cell">950502525</td>
-                                        <!-- Role -->
-                                        <td>Administrador</td>
-                                        <!-- Manage options -->
-                                        <td>
-                                            <a class="btn" id="options" href="">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                            <a class="btn" id="options" href="">
-                                                <i class="fa-solid fa-pencil"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($usuarios_search as $usuario )
+                                        <tr>
+                                            <!-- Name -->
+                                            <td>{{ $usuario->nombre }}</td>
+                                            <!-- Rut -->
+                                            <td class="d-none d-md-table-cell">{{ $usuario->rut }}</td>
+                                            <!-- Email -->
+                                            <td class="d-none d-md-table-cell text-truncate" style="max-width: 150px;">
+                                                {{ $usuario->email }}
+                                            </td>
+                                            <!-- Phone -->
+                                            <td class="d-none d-md-table-cell">{{ $usuario->fono }}</td>
+                                            <!-- Role -->
+                                            <td>{{ $usuario->rol }}</td>
+                                            <!-- Manage options -->
+                                            <td>
+                                                <a class="btn" id="options" href="{{ route('usuarios.show', $usuario->rut) }}">
+                                                    <i class="fa-solid fa-eye"></i>
+                                                </a>
+                                                <a class="btn" id="options" href="{{ route('usuarios.edit', $usuario->rut) }}">
+                                                    <i class="fa-solid fa-pencil"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach ($usuarios as $usuario)
+                                    
                                 </tbody>
                             </table>
                         </div>

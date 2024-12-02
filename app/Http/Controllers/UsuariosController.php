@@ -19,8 +19,28 @@ class UsuariosController extends Controller
         }
 
         $usuarios = Usuario::get();
+        $usuarios_search = Usuario::all();
 
-        return view('usuarios.index', compact('usuarios'));
+        return view('usuarios.index', compact('usuarios', 'usuarios_search'));
+    }
+
+    public function search(Request $request)
+    {
+
+        $usuarios = Usuario::get();
+
+        $search = $request->input('search');
+
+        if ($search) {
+            $usuarios_search = Usuario::where('nombre', 'LIKE', "%{$search}%")
+                            ->orWhere('rut', 'LIKE', "%{$search}%")
+                            ->get();
+        } else {
+            // Si no hay búsqueda, trae todos los usuarios
+            $usuarios_search = Usuario::all();
+        }
+
+        return view('usuarios.index', compact('usuarios','usuarios_search',  'search'));
     }
 
     /**
