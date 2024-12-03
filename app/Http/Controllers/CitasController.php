@@ -18,7 +18,7 @@ class CitasController extends Controller
     }
 
 
-    public function create()
+    public function create(string $fecha)
     {
         $mascotas = Mascota::get();
 
@@ -26,7 +26,7 @@ class CitasController extends Controller
 
         $servicios = Servicio::get();
 
-        return view('citas.create', compact(['mascotas','usuarios','servicios']));
+        return view('citas.create', compact(['mascotas','usuarios','servicios','fecha']));
     }
 
 
@@ -39,14 +39,16 @@ class CitasController extends Controller
         $cita->observaciones = $request->observaciones;
         $cita->estado = 'P';
         $cita->id_mascota = $request->id_mascota;
-        $cita->rut_usuario = $request->rut_usuario;
+
 
         $cita->save();
 
         $servicios = $request->input('id_servicio');
 
         foreach ($servicios as $servicio) {
-            $cita->servicios()->attach($servicio, ['rut_usuario' => $request->rut_usuario]);
+            $rutusuarioKey = "rut_usuario" . $servicio;
+
+            $cita->servicios()->attach($servicio, ['rut_usuario' => $request->$rutusuarioKey]);
         }
         
 

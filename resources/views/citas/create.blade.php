@@ -14,7 +14,7 @@
             <h4 class="fw-bold">Ingresar una nueva cita</h4>
 
             <label for="fecha" class="form-label">Fecha</label>
-            <input type="date" class="form-control mb-2" id="fecha" name="fecha">
+            <input type="date" class="form-control mb-2" id="fecha" name="fecha" value="{{ $fecha }}">
 
             <label for="hora" class="form-label">Hora</label>
             <input type="time" class="form-control mb-2" id="hora" name="hora">
@@ -26,29 +26,37 @@
                 @endforeach
             </select>
 
-            <label for="rut_usuario" class="form-label">Encargado de la cita</label>
-            <select class="form-control mb-2" name="rut_usuario" id="rut_usuario">
-                @foreach ($usuarios as $usuario)
-                    <option value="{{ $usuario->rut }}">{{ $usuario->nombre }}</option>
-                @endforeach
-            </select>
-
-
             <div class="row">
-                <div class="col-3">
+                <div class="col-12">
                     <label for="id_servicio" class="form-label">Servicios Requeridos</label>
                     <div class="border px-3 py-2 rounded mb-3">
-                        @foreach ($servicios as $servicio)
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $servicio->id }}"
-                                    name="id_servicio[]" id="servicio{{ $servicio->id }}">
-                                <label for="servicio{{ $servicio->id }}" class="form-label">{{ $servicio->nombre }}</label>
-                            </div>
-                        @endforeach
+                        <div class="row">
+                            @foreach ($servicios as $servicio)
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="{{ $servicio->id }}"
+                                            name="id_servicio[]" id="servicio{{ $servicio->id }}">
+                                        <label for="servicio{{ $servicio->id }}"
+                                            class="form-label">{{ $servicio->nombre }}</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <select class="form-select form-select-sm mb-2" name="rut_usuario{{$servicio->id}}" id="rut_usuario{{$servicio->id}}">
+                                        <option value="" disabled selected>Peluquero para {{$servicio->nombre}}</option>
+                                        @foreach ($usuarios as $usuario)
+                                            <option value="{{ $usuario->rut }}">Nombre: {{ $usuario->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endforeach
+
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="col-9">
+                <div class="col-12">
                     <label for="observaciones" class="form-label">Observaciones</label>
                     <textarea class="form-control mb-3" id="observaciones" rows="6" name="observaciones"
                         placeholder="Ingrese sus observaciones para el encargado"></textarea>

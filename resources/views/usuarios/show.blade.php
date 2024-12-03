@@ -54,7 +54,6 @@
                     <th>Pesaje</th>
                     <th>Estado</th>
                     <th>Mascota</th>
-                    <th>Peluquero</th>
                 </thead>
 
                 <!-- Table body -->
@@ -65,7 +64,6 @@
                         <td>{{$cita->pesaje}} kg</td>
                         <td>{{$cita->estado}}</td>
                         <td>{{$cita->mascota->nombre}}</td>
-                        <td>{{$cita->usuario->nombre}}</td>
                     </tr>
                     @endforeach
 

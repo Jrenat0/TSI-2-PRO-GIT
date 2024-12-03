@@ -65,10 +65,6 @@ class ApiController extends Controller
                     'nombre' => $cita->mascota->nombre,
                     'id' => $cita->mascota->id,
                 ],
-                'cliente' => [
-                    'nombre' => $cita->usuario->nombre,
-                    'rut' => $cita->usuario->rut,
-                ],
                 'servicios' => $cita->servicios->isNotEmpty() ? 
                     $cita->servicios->map(function ($servicio) {
                         return [

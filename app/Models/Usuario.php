@@ -25,14 +25,8 @@ class Usuario extends Authenticatable
     public $timestamps = true;
 
 
-    public function citas()
-    { //defino la relacion 1 a M, entre la tabla 'usuarios' y la tabla 'citas'.
-        return $this->hasMany('App\Models\Cita', 'rut_usuario', 'rut');
-    }
-
-    public function detalle_cita()
-    { //defino la relacion 1 a M, entre la tabla 'usuarios'  y la tabla 'detalle_cita'.
-        return $this->hasMany('App\Models\DetalleCita', 'rut_usuario', 'rut');
+    public function citas(){
+        return $this->belongsToMany('App\Models\Cita','detalle_cita','rut_usuario','id_cita');
     }
 
     // Auth 

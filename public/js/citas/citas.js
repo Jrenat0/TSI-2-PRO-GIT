@@ -159,7 +159,7 @@ function renderCitas(fecha) {
                         <a class="text-decoration-none rounded mb-2" href="${url}" id="">
                         <li class="list-group-item d-flex justify-content-between align-items-start border-0 shadow">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Cita para ${mascotaNombre} de ${clienteNombre}</div>
+                            <div class="fw-bold">Cita para ${mascotaNombre}</div>
                             <p class="mb-0"><em>Servicios de la cita: ${serviciosTexto}</em></p>
                           </div>
                           <span class="badge text-bg-dark rounded-pill">${hora}</span>
@@ -169,8 +169,11 @@ function renderCitas(fecha) {
                 });
 
                 if (fecha >= fechaSinHora) {
+
+                    var añadirUrl = '/citas/create/' + fecha;
+
                     listaCitas.insertAdjacentHTML('beforeend', `
-                        <a class="btn btn-dark rounded mb-2" href="" id="addCita">
+                        <a class="btn btn-dark rounded mb-2" href="${añadirUrl}" id="addCita">
                             Agregar una nueva cita
                         </a>
                     `);
@@ -183,8 +186,10 @@ function renderCitas(fecha) {
                     listaCitas.removeChild(listaCitas.firstChild);
                 }
                 if (fecha >= fechaSinHora) {
+                    var añadirUrl = '/citas/create/' + fecha;
+
                     listaCitas.insertAdjacentHTML('beforeend', `
-                        <a class="btn btn-dark rounded mb-2" href="" id="addCita">
+                        <a class="btn btn-dark rounded mb-2" href="${añadirUrl}" id="addCita">
                             Agregar una nueva cita
                         </a>
                     `);

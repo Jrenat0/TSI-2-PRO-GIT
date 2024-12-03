@@ -23,11 +23,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('id_mascota');
             $table->foreign('id_mascota')->references('id')->on('mascotas')->onDelete('cascade');
-
-            $table->string('rut_usuario',10);
-            $table->foreign('rut_usuario')->references('rut')->on('usuarios')->onDelete('cascade');
-
-            
+          
         });
     }
 
