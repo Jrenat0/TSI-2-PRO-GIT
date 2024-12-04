@@ -42,7 +42,7 @@
             @endforeach
         </select>
 
-        <form action="" method="GET" class="mb-2">
+        <form action="{{route('citas.edit', $cita)}}" method="GET" class="mb-2">
             <button class="btn w-100" id="buttonEdit" type="submit">Editar Cita {{ $cita->id }}</button>
         </form>
 

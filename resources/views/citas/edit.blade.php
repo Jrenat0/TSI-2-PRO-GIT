@@ -8,9 +8,9 @@
 
 @section('content')
     <div class="container-fluid col-lg-10 col-12 bg-white px-3 py-2 border-0 shadow rounded my-2">
-        <form action="{{ route('citas.store') }}" method="POST" class="mb-2">
+        <form action="{{ route('citas.update', $cita->id) }}" method="POST" class="mb-2">
             @csrf
-
+            @method('PUT')
             <h4 class="fw-bold">Editando cita para el {{$cita->fecha}} a las {{$cita->hora}} hrs.</h4>
 
             <label for="fecha" class="form-label">Fecha</label>
@@ -51,11 +51,13 @@
                 <div class="col-9">
                     <label for="observaciones" class="form-label">Observaciones</label>
                     <textarea class="form-control mb-3" id="observaciones" rows="6" name="observaciones"
-                        placeholder="Ingrese sus observaciones para el encargado"></textarea>
+                        >{{$cita->observaciones}}</textarea>
+
+                        {{-- placeholder="Ingrese sus observaciones para el encargado" --}}
                 </div>
             </div>
 
-            <button class="btn w-100" id="buttonEdit" type="submit">Ingresar Cita</button>
+            <button class="btn w-100" id="buttonEdit" type="submit">Editar Cita</button>
         </form>
 
     </div>

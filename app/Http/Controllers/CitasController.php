@@ -67,7 +67,12 @@ class CitasController extends Controller
 
     public function edit(Cita $cita)
     {
-        return view('citas.edit', compact('cita'));
+        $mascotas = Mascota::all();
+
+        $usuarios = Usuario::all();
+
+        $servicios = Servicio::all();
+        return view('citas.edit', compact('cita', 'mascotas', 'usuarios', 'servicios'));
     }
 
 
@@ -78,7 +83,7 @@ class CitasController extends Controller
         $servicios = $request->input('id_servicio');
         // Hacer que si un servicio se desmarca, aplicar un detach del servicio, y si un servicio nuevo se marca, aplicarle una attach.
 
-        return redirect()->route('citas.show',$cita)->with('success','');
+        return redirect()->route('citas.index',$cita)->with('success','');
 
     }
 
