@@ -96,17 +96,39 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <form action="{{ route('usuarios.destroy', $usuario) }}" method="POST" id="formDelete">
+        {{-- <form action="{{ route('usuarios.destroy', $usuario) }}" method="POST" id="formDelete">
             @csrf
             @method('DELETE')
             <div class="row">
-                <div class="col-12">
-                    <button class="btn" type="submit" id="buttonDelete">
+                <div class="col-12"> --}}
+                    <button class="btn" type="submit" id="buttonDelete"  data-bs-toggle="modal" data-bs-target="#borrarModal">
                         <h2><i class="fa-solid fa-trash"></i>Eliminar a <strong>{{ $usuario->nombre }}</strong></h2>
                     </button>
+                {{-- </div>
+            </div>
+        </form> --}}
+        <div class="modal fade" id="borrarModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Eliminación</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Desea eliminar permanentemente a {{$usuario->nombre}}?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+    
+                        <form action="{{ route('usuarios.destroy', $usuario) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger">Confirmar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 
 @endsection

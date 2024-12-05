@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
  
     Route::put('/citas/update/{cita}', [CitasController::class, 'update'])->name('citas.update');
 
+    Route::delete('/citas/destroy/{cita}', [CitasController::class, 'destroy'])->name('citas.destroy');
+
 });
 //Clientes routes
 Route::middleware(['auth'])->group(function () {

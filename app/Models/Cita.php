@@ -32,4 +32,9 @@ class Cita extends Model
         return $this->belongsToMany('App\Models\Usuario','detalle_cita','id_cita','rut_usuario');
     }
 
+    public function detalle_cita()
+    {
+        return $this->hasMany(DetalleCita::class, 'id_cita');
+    }
+
 }

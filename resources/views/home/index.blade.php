@@ -131,12 +131,25 @@
                                 @foreach($citas as $cita)
                                 <tr>
                                     <td>{{$cita->mascota->nombre}}</td>
-                                    <td>{{$cita->usuario->nombre}}</td>
+                                    {{-- <td>{{$cita->detalle_cita->rut_usuario}}</td> --}}
+                                    <td>
+                                        @if ($cita->detalle_cita->isNotEmpty())
+                                            @foreach ($cita->detalle_cita as $detalle)
+                                                {{ $detalle->rut_usuario }}{{ $loop->last ? '' : ', ' }}
+                                            @endforeach
+                                        @else
+                                            Sin peluquero asignado
+                                        @endif
+                                    </td>
                                     <td>{{$cita->hora}}</td>
                                     <td>
-                                        @foreach($cita->detalle_cita as $detalle)
-                                        {{$detalle->servicio->nombre}}{{ $loop->last ? '.' : ',' }}
-                                        @endforeach
+                                        @if ($cita->detalle_cita)
+                                            @foreach($cita->detalle_cita as $detalle)
+                                            {{$detalle->servicio->nombre}}{{ $loop->last ? '.' : ',' }}
+                                            @endforeach
+                                        @else
+                                            Sin cita
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

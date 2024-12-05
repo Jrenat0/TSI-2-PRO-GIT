@@ -57,9 +57,45 @@
                 </div>
             </div>
 
-            <button class="btn w-100" id="buttonEdit" type="submit">Editar Cita</button>
+            <button class="btn w-100" id="buttonEdit" type="submit">Confrimar Cambios</button>
         </form>
 
+    </div>
+
+    <div class="container-fluid col-lg-10 col-12 p-0">
+        {{-- <form action="{{ route('usuarios.destroy', $usuario) }}" method="POST" id="formDelete">
+            @csrf
+            @method('DELETE')
+            <div class="row">
+                <div class="col-12"> --}}
+                    <button class="btn" type="submit" id="buttonDelete"  data-bs-toggle="modal" data-bs-target="#borrarModal">
+                        <h2><i class="fa-solid fa-trash"></i>Cancelar la cita de <strong>{{ $cita->mascota->nombre }}</strong></h2>
+                    </button>
+                {{-- </div>
+            </div>
+        </form> --}}
+        <div class="modal fade" id="borrarModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmar Eliminación</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Desea eliminar permanentemente la cita N° {{$cita->id}}?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+    
+                        <form action="{{ route('citas.destroy', $cita->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger">Confirmar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection

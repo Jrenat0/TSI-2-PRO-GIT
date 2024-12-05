@@ -131,7 +131,7 @@ class UsuariosController extends Controller
         if ($usuario->rol !== 'Peluquero' && $usuario->rut !== Auth::user()->rut) {
             try {
                 $usuario->delete();
-                return redirect()->back()->with('success', 'Usuario eliminado correctamente.');
+                return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente.');
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Ocurrió un error al intentar eliminar al usuario.');
             }
