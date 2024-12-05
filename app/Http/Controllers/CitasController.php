@@ -61,7 +61,9 @@ class CitasController extends Controller
     {
         $cita = Cita::where('id', $id)->first();
 
-        return view('citas.show', compact('cita'));
+        $servicios = Servicio::get();
+
+        return view('citas.show', compact('cita','servicios'));
     }
 
 
@@ -69,7 +71,7 @@ class CitasController extends Controller
     {
         $mascotas = Mascota::all();
 
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::where('rol','Peluquero')->get();
 
         $servicios = Servicio::all();
         return view('citas.edit', compact('cita', 'mascotas', 'usuarios', 'servicios'));
@@ -81,7 +83,14 @@ class CitasController extends Controller
         $cita->update($request->all());
 
         $servicios = $request->input('id_servicio');
-        // Hacer que si un servicio se desmarca, aplicar un detach del servicio, y si un servicio nuevo se marca, aplicarle una attach.
+
+        $cita->servicios()->detach();
+
+        foreach ($servicios as $servicio) {
+            $rutusuarioKey = "rut_usuario" . $servicio;
+
+            $cita->servicios()->attach($servicio, ['rut_usuario' => $request->$rutusuarioKey]);
+        }
 
         return redirect()->route('citas.index',$cita)->with('success','');
 
