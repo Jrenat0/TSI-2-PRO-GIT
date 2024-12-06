@@ -8,6 +8,23 @@
 @endpush
 
 @section('content')
+
+    <div class="container-fluid col-lg-10 col-12 px-0">
+        <div class="">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </div>
+
+        @if (session('error'))
+            <div class="alert alert-danger fade show">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
+
     <div class="container-fluid col-lg-10 col-12 mb-5 bg-light rounded">
 
         <form action="{{ route('clientes.update', $cliente) }}" method="POST" id="formEdit">

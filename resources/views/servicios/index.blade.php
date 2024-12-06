@@ -16,6 +16,12 @@
                 </div>
             @endif
         </div>
+
+        @if (session('error'))
+            <div class="alert alert-danger fade show">
+                {{ session('error') }}
+            </div>
+        @endif
     </div>
 
     <div class="container-fluid col-lg-10 col-12 rounded p-4" style="background: rgba(255, 255, 255, 0.8)">
@@ -65,27 +71,30 @@
                                             step="0.1" value="{{ $servicio->costo }}" readonly>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <form action="{{ route('servicios.edit', $servicio) }}" method="GET">
-                                        <button class="btn" id="buttonEdit" type="submit">Editar a
-                                            {{ $servicio->nombre }}</button>
-                                    </form>
-                                </div>
+                                @can('admin-gestion')
+                                    <div class="modal-footer">
+                                        <form action="{{ route('servicios.edit', $servicio) }}" method="GET">
+                                            <button class="btn" id="buttonEdit" type="submit">Editar a
+                                                {{ $servicio->nombre }}</button>
+                                        </form>
+                                    </div>
+                                @endcan
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
 
-            <a href="{{ route('servicios.create') }}" class="text-decoration-none">
-                <div class="card w-100 border-0 shadow">
-                    <div class="card-body">
-                        <h2 class="card-title text-center fw-bold"><i class="fa-solid fa-plus"></i></h2>
-                        <p class="card-text text-center"><em>Agregar nuevo servicio</em></p>
+            @can('admin-gestion')
+                <a href="{{ route('servicios.create') }}" class="text-decoration-none">
+                    <div class="card w-100 border-0 shadow">
+                        <div class="card-body">
+                            <h2 class="card-title text-center fw-bold"><i class="fa-solid fa-plus"></i></h2>
+                            <p class="card-text text-center"><em>Agregar nuevo servicio</em></p>
+                        </div>
                     </div>
-                </div>
-            </a>
-
+                </a>
+            @endcan
 
 
         </div>

@@ -23,9 +23,19 @@
             @endif
         </div>
 
+        @if (session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ session('warning') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+
+        @can('secretario-gestion')
         <div class="mb-3 text-end">
             <a href="{{ route('clientes.create') }}" class="btn btn-outline-light">Agregar un Nuevo cliente</a>
         </div>
+        @endcan
 
     </div>
 

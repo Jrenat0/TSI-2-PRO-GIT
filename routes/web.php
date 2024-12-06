@@ -71,7 +71,6 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
 
-    // Route::get('/servicios/show/{servicio}', [ServiciosController::class, 'show'])->name('servicios.show');
 
     Route::get('/servicios/create', [ServiciosController::class, 'create'])->name('servicios.create');
     

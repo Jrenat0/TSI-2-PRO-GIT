@@ -121,7 +121,7 @@
                                 <tr>
                                     <!-- Head labels -->
                                     <th>Mascota</th>
-                                    <th>Peluquero</th>
+                                    <th>Peluquero(s)</th>
                                     <th>Horario</th>
                                     <th>Tipo de atencion</th>
                                 </tr>
@@ -133,13 +133,9 @@
                                     <td>{{$cita->mascota->nombre}}</td>
                                     {{-- <td>{{$cita->detalle_cita->rut_usuario}}</td> --}}
                                     <td>
-                                        @if ($cita->detalle_cita->isNotEmpty())
-                                            @foreach ($cita->detalle_cita as $detalle)
-                                                {{ $detalle->rut_usuario }}{{ $loop->last ? '' : ', ' }}
-                                            @endforeach
-                                        @else
-                                            Sin peluquero asignado
-                                        @endif
+                                        @foreach($cita->usuarios->unique('rut') as $usuario)
+                                        {{$usuario->nombre}}{{$loop->last ? '.' : ',' }}
+                                        @endforeach
                                     </td>
                                     <td>{{$cita->hora}}</td>
                                     <td>

@@ -58,10 +58,9 @@ class MascotasController extends Controller
 
         $clientesnoligados = [];
 
-        foreach($clientes as $cliente)
-        {
+        foreach ($clientes as $cliente) {
             $relacion = MascotaCliente::findByComposite($mascota->id, $cliente->rut);
-            if ($relacion === null){
+            if ($relacion === null) {
                 $clientesnoligados[] = $cliente;
             }
         }
@@ -86,6 +85,18 @@ class MascotasController extends Controller
 
     public function destroy(Mascota $mascota)
     {
+        $pendientes = false;
+        foreach ($mascota->citas as $cita) {
+            if ($cita->estado === 'P') {
+                $pendientes = true;
+            }
+        }
+
+        if ($pendientes){
+            return redirect()->back()->with('error', 'La mascota tiene citas pendientes, por lo que no puede ser eliminada.');
+        }
+
+
         $mascota->delete();
         return redirect()->route('mascotas.index');
     }

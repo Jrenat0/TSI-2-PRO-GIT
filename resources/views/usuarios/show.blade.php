@@ -58,7 +58,7 @@
 
                 <!-- Table body -->
                 <tbody>
-                    @foreach($citas as $cita)
+                    @foreach($citas->unique('id') as $cita)
                     <tr>
                         <td>{{$cita->fecha}}// {{$cita->hora}}</td>
                         <td>{{$cita->pesaje}} kg</td>

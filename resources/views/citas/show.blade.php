@@ -7,12 +7,37 @@
 @endpush
 
 @section('content')
+
+    <div class="container-fluid col-lg-10 col-12 px-0">
+        <div class="">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </div>
+
+        @if (session('warning'))
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ session('warning') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger fade show">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
+
     <div class="container-fluid col-lg-10 col-12 bg-white px-3 py-2 border-0 shadow rounded my-2">
         <div class="mb-2">
             <h4 class="fw-bold">Informacion de la cita para el {{ $cita->fecha }} a las {{ $cita->hora }} hrs</h4>
 
             <label for="fecha" class="form-label">Fecha</label>
-            <input type="date" class="form-control mb-2" id="fecha" name="fecha" value="{{ $cita->fecha }}" disabled>
+            <input type="date" class="form-control mb-2" id="fecha" name="fecha" value="{{ $cita->fecha }}"
+                disabled>
 
             <div class="row">
 
@@ -88,10 +113,11 @@
                         placeholder="Ingrese sus observaciones para el encargado" disabled>{{ $cita->observaciones }}</textarea>
                 </div>
 
-
-                <form action="{{ route('citas.edit', $cita) }}" method="GET">
-                    <button class="btn w-100" id="buttonEdit" type="submit">Editar la Cita {{ $cita->id }}</button>
-                </form>
+                @can('secretario-gestion')
+                    <form action="{{ route('citas.edit', $cita) }}" method="GET">
+                        <button class="btn w-100" id="buttonEdit" type="submit">Editar la Cita {{ $cita->id }}</button>
+                    </form>
+                @endcan
             </div>
         </div>
 

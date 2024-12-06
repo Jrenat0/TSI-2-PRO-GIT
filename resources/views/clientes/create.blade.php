@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="col-12 mt-2 text-center">
-                        <button type="submit" class="btn btn-outline-primary">Crear Mascota</button>
+                        <button type="submit" class="btn" id="confirmar">Crear Mascota</button>
                     </div>
                 </div>
             </form>

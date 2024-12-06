@@ -27,3 +27,24 @@ a:hover .card {
     background-color: #fb6f92;
     transition-delay: 0.05s;
 }
+
+#buttonDelete {
+    background: linear-gradient(#272727, #111111);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    width: 100%;
+    transition: 0.3s;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+#buttonDelete:hover {
+    color: #ffc2d1;
+}
+
+#buttonDelete i {
+    margin-right: 10px;
+}

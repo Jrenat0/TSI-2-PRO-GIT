@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 use App\Models\Mascota;
 use App\Models\MascotaCliente;
 use App\Http\Requests\ClienteRequest;
+use Illuminate\Support\Facades\Gate;
 
 class ClientesController extends Controller
 {
 
     public function index()
     {
+
         $clientes = Cliente::all();
-        return view("clientes.index",compact("clientes"));
+        return view("clientes.index", compact("clientes"));
     }
 
     public function search(Request $request)
@@ -35,12 +37,20 @@ class ClientesController extends Controller
 
     public function create()
     {
+        if (Gate::denies('secretario-gestion')) {
+            return redirect()->back()->with('warning', 'No tienes permiso para llevar a cabo esa accion');
+        }
+
         return view('clientes.create');
     }
 
 
     public function store(ClienteRequest $request)
     {
+        if (Gate::denies('secretario-gestion')) {
+            return redirect()->back()->with('warning', 'No tienes permiso para llevar a cabo esa accion');
+        }
+
         $cliente = Cliente::create($request->validated());
 
         return redirect()->route('clientes.index')->with('success', 'El cliente se creo de manera exitosa!');
@@ -48,15 +58,12 @@ class ClientesController extends Controller
 
     public function show(Cliente $cliente)
     {
-        // $citas = collect();
-        // foreach ($cliente->mascotas as $mascota) {
-        //     $citas = $citas->merge(Cita::where('id_mascota', $mascota->id)
-        //         ->where('estado', 'T')
-        //         ->get());
-        // }
 
-        // return view('clientes.show', compact(['cliente', 'citas']));
+        $mascotas = $cliente->mascotas;
 
+        $citas = $mascotas->flatMap(function ($mascota) {
+            return $mascota->citas;
+        });
 
         $mascotas = Mascota::get();
 
@@ -68,14 +75,15 @@ class ClientesController extends Controller
                 $mascotasnoligadas[] = $mascota;
             }
         }
-
-
-        return view('clientes.show', compact(['cliente', 'mascotasnoligadas']));
+        return view('clientes.show', compact(['cliente', 'mascotasnoligadas', 'citas']));
     }
 
 
     public function edit(Cliente $cliente)
     {
+        if (Gate::denies('secretario-gestion')) {
+            return redirect()->back()->with('warning', 'No tienes permiso para llevar a cabo esa accion');
+        }
 
         return view('clientes.edit', compact('cliente'));
     }
@@ -83,6 +91,11 @@ class ClientesController extends Controller
 
     public function update(ClienteRequest $request, Cliente $cliente)
     {
+
+        if (Gate::denies('secretario-gestion')) {
+            return redirect()->back()->with('warning', 'No tienes permiso para llevar a cabo esa accion');
+        }
+
         $cliente->update($request->validated());
 
         return redirect()->route('clientes.index')->with('success', 'El cliente ha sido editado de manera exitosa!');
@@ -91,6 +104,16 @@ class ClientesController extends Controller
 
     public function destroy(Cliente $cliente)
     {
+        if (Gate::denies('secretario-gestion')) {
+            return redirect()->back()->with('warning', 'No tienes permiso para llevar a cabo esa accion');
+        }
+
+        $cantidadMascotas = $cliente->mascotas()->count();
+
+        if ($cantidadMascotas >= 1){
+            return redirect()->back()->with('error','El cliente tiene mascotas ligadas, por lo que no puede ser eliminado');
+        }
+
         $cliente->delete();
         return redirect()->route('clientes.index');
     }

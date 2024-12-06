@@ -7,6 +7,23 @@
 @endpush
 
 @section('content')
+
+    <div class="container-fluid col-lg-10 col-12 px-0">
+        <div class="">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </div>
+
+        @if (session('error'))
+            <div class="alert alert-danger fade show">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
+
     <div class="container-fluid col-lg-10 col-12 bg-white px-3 py-2 border-0 shadow rounded mt-2 mb-4">
         <form action="{{ route('servicios.update', $servicio) }}" method="POST">
             @csrf

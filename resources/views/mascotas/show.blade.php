@@ -10,6 +10,22 @@
 
 @section('content')
 
+    <div class="container-fluid col-lg-10 col-12 px-0">
+        <div class="">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+        </div>
+
+        @if (session('error'))
+            <div class="alert alert-danger fade show">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
+
     {{-- Ventana de informacion de la mascota --}}
     <div class="container-fluid col-lg-10 col-12 bg-light rounded shadow py-2 mb-3" id="infoContainer">
         <a href="#informacionCollapse" data-bs-toggle="collapse" data-bs-target="#informacionCollapse">
