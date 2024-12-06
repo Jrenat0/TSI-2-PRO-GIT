@@ -13,7 +13,7 @@ class Cita extends Model
     //defino el identificador de la tabla como 'citas'.
     protected $table = 'citas';
     //defino los atributos de la tabla con '$fillable' para permitir el uso de funciones 'Illuminate'.
-    protected $fillable = ['fecha', 'hora', 'pesaje', 'observaciones', 'estado', 'id_mascota'];
+    protected $fillable = ['fecha', 'hora','hora_termino', 'pesaje', 'observaciones', 'estado', 'id_mascota'];
     //desactivo los 'timestamps' de la tabla.
     public $timestamps = false;
 

@@ -50,8 +50,17 @@ class CitasController extends Controller
 
             $cita->servicios()->attach($servicio, ['rut_usuario' => $request->$rutusuarioKey]);
         }
-        
 
+        $duracionCita = 0;
+
+        foreach($cita->servicios as $servicio){
+            $duracionCita += $servicio->duracion_estimada;
+        }   
+        
+        $hora_termino = $cita->hora->copy()->addMinutes($duracionCita);
+        
+        $cita->update(['hora_termino' => $hora_termino]);
+        
         return redirect()->route('citas.index')->with('success','');
 
     }

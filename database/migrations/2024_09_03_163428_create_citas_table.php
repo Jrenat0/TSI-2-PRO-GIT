@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->time('hora');
+            $table->time('hora_termino')->nullable();
             $table->unsignedBigInteger('pesaje')->nullable();
             $table->string('observaciones',100)->nullable();
             $table->char('estado',1)->nullable(); //'T' es terminada, 'P' es pendiente.

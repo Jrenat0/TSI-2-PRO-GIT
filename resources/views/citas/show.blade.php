@@ -14,12 +14,21 @@
             <label for="fecha" class="form-label">Fecha</label>
             <input type="date" class="form-control mb-2" id="fecha" name="fecha" value="{{ $cita->fecha }}" disabled>
 
-            <label for="hora" class="form-label">Hora</label>
-            <input type="time" class="form-control mb-2" id="hora" name="hora" value="{{ $cita->hora }}"
-                disabled>
-
-
             <div class="row">
+
+
+                <div class="col-6">
+                    <label for="hora" class="form-label">Hora</label>
+                    <input type="time" class="form-control mb-2" id="hora" name="hora"
+                        value="{{ $cita->hora }}" disabled>
+                </div>
+
+                <div class="col-6">
+                    <label for="hora_termino" class="form-label">Hora Termino</label>
+                    <input type="time" class="form-control mb-2" id="hora_termino" name="hora_termino"
+                        value="{{ $cita->hora_termino }}" disabled>
+                </div>
+
                 <div class="col-6">
                     <label for="id_mascota" class="form-label">Mascota atendida</label>
                     <select class="form-select mb-2" name="id_mascota" id="id_mascota" disabled>

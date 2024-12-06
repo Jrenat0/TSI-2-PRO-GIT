@@ -27,8 +27,6 @@
 
                     <div class="row">
 
-
-
                         <div class="col-12 mb-2">
                             <label class="form-label" for="nombreInput">Nombre</label>
                             <input class="form-control" id="nombreInput" name="nombreInput" type="text"
