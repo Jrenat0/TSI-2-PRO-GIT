@@ -117,7 +117,7 @@
 
 
                 <div class="modal-body">
-                    <form action="{{route('mascotacliente.store')}}" method="POST">
+                    <form action="{{ route('mascotacliente.store') }}" method="POST">
                         @csrf
                         <div class="col-12 mb-3">
                             <select class="form-select" aria-label="Seleccionar cliente para agregar como dueño"
@@ -128,7 +128,7 @@
                                 @endforeach
                             </select>
 
-                            <input type="hidden" value="{{$mascota->id}}" id="id_mascota" name="id_mascota">
+                            <input type="hidden" value="{{ $mascota->id }}" id="id_mascota" name="id_mascota">
 
                         </div>
 
@@ -168,7 +168,7 @@
                                 @endforeach
                             </select>
 
-                            <input type="hidden" value="{{$mascota->id}}" id="id_mascota" name="id_mascota">
+                            <input type="hidden" value="{{ $mascota->id }}" id="id_mascota" name="id_mascota">
 
                         </div>
 
@@ -199,7 +199,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Mascota</th>
-                            <th scope="col">Peluquero</th>
+                            <th scope="col">Peluquero(s)</th>
                             <th scope="col">Horario</th>
                             <th scope="col">Tipo de atencion</th>
                         </tr>
@@ -208,7 +208,11 @@
                         @foreach ($citas as $cita)
                             <tr>
                                 <td>{{ $cita->mascota->nombre }}</td>
-                                <td>{{ $cita->usuario->nombre }}</td>
+                                <td>
+                                    @foreach ($cita->usuarios->unique('rut') as $usuario)
+                                        {{ $usuario->nombre }}{{ $loop->last ? '.' : ',' }}
+                                    @endforeach
+                                </td>
                                 <td>{{ $cita->hora }}</td>
                                 <td>
                                     @foreach ($cita->detalle_cita as $detalle)
