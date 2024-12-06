@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="col-12 mt-2 text-center">
-                        <button type="submit" class="btn btn-outline-primary">Crear Servicio</button>
+                        <button type="submit" class="btn" id="confirmar">Crear Servicio</button>
                     </div>
                 </div>
             </form>

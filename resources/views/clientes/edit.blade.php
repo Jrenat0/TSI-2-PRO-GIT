@@ -78,7 +78,7 @@
                     @enderror
                 </div>
 
-                <div class="col-12 mb-1">
+                <div class="col-12 mb-3">
                     <button class="btn w-100" type="submit" id="confirmar">Confirmar Cambios</button>
                 </div>
 
