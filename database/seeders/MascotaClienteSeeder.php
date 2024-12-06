@@ -17,6 +17,7 @@ class MascotaClienteSeeder extends Seeder
             ['rut_cliente'=>'12345678-9', 'id_mascota' => '1'],
             ['rut_cliente'=>'87654321-0', 'id_mascota' => '2'], 
             ['rut_cliente'=>'21222324-k', 'id_mascota' => '3'],
+            ['rut_cliente'=>'21898565-5', 'id_mascota' => '4'],
         ]);
     }
 }

@@ -35,26 +35,31 @@
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                        <li>{{ $error }}</li>
                     @endforeach
                 </ul>
             </div>
-            @endif
+        @endif
 
         <form action="{{ route('citas.store') }}" method="POST" class="mb-2">
 
             @csrf
             <h4 class="fw-bold">Ingresar una nueva cita</h4>
 
+            <input type="hidden" value="P" name="estado">
+
+
             <label for="fecha" class="form-label">Fecha</label>
-            <input type="date" class="form-control mb-2 @error('fecha') is-invalid @enderror" id="fecha" name="fecha" value="{{ old('fecha') }}">
+            <input type="date" class="form-control mb-2 @error('fecha') is-invalid @enderror" id="fecha"
+                name="fecha" value="{{ old('fecha') }}">
 
             @error('fecha')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
             <label for="hora" class="form-label">Hora</label>
-            <input type="time" class="form-control mb-2 @error('hora') is-invalid @enderror" id="hora" name="hora" value="{{ old('hora') }}">
+            <input type="time" class="form-control mb-2 @error('hora') is-invalid @enderror" id="hora"
+                name="hora" value="{{ old('hora') }}">
 
             @error('hora')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -62,9 +67,11 @@
 
 
             <label for="id_mascota" class="form-label">Mascota atendida</label>
-            <select class="form-control mb-2 @error('id_mascota') is-invalid @enderror" name="id_mascota" id="id_mascota" value="{{ old('id_mascota') }}">
+            <select class="form-control mb-2 @error('id_mascota') is-invalid @enderror" name="id_mascota" id="id_mascota"
+                value="{{ old('id_mascota') }}">
                 @foreach ($mascotas as $mascota)
-                    <option value="{{ $mascota->id }}">Nombre: {{ $mascota->nombre }}; Raza: {{ $mascota->raza }}</option>
+                    <option value="{{ $mascota->id }}">Nombre: {{ $mascota->nombre }}; Raza: {{ $mascota->raza }}
+                    </option>
                 @endforeach
             </select>
 
@@ -91,29 +98,32 @@
                                 <div class="col-6">
                                     <select class="form-select form-select-sm mb-2" name="rut_usuario{{ $servicio->id }}"
                                         id="rut_usuario{{ $servicio->id }}">
-                                        <option value="" disabled selected>Peluquero para {{ $servicio->nombre }}
-                                        </option>
                                         @foreach ($usuarios as $usuario)
                                             <option value="{{ $usuario->rut }}">Nombre: {{ $usuario->nombre }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             @endforeach
-
+                            @if ($errors->has('id_servicio'))
+                                <div class="text-danger">
+                                    {{ $errors->first('id_servicio') }}
+                                </div>
+                            @endif
                         </div>
-
                     </div>
                 </div>
 
+
+
                 <div class="col-12">
                     <label for="observaciones" class="form-label">Observaciones</label>
-                    <textarea class="form-control mb-3 @error('observaciones') is-invalid @enderror" id="observaciones" rows="6" name="observaciones"
-                        placeholder="Ingrese sus observaciones para el encargado" value="{{ old('observaciones') }}"></textarea>
+                    <textarea class="form-control mb-3 @error('observaciones') is-invalid @enderror" id="observaciones" rows="6"
+                        name="observaciones" placeholder="Ingrese sus observaciones para el encargado" value="{{ old('observaciones') }}"></textarea>
                 </div>
 
                 @error('observaciones')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
 
             </div>
 

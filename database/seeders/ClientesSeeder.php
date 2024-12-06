@@ -22,6 +22,7 @@ class ClientesSeeder extends Seeder
             ['rut'=>'12345678-9','nombre'=>'Alberto','fono'=>'912345678','email'=>'albertito@gmail.com','direccion'=>'Los alamos 50', 'created_at'=> Carbon::now()],
             ['rut'=>'87654321-0','nombre'=>'Benjamin','fono'=>'987654321','email'=>'benja1212@gmail.com','direccion'=>'Los araucos 12', 'created_at'=> Carbon::now()],
             ['rut'=>'21222324-k','nombre'=>'Christian','fono'=>'912223444','email'=>'chris2004@gmail.com','direccion'=>'Los lagos 1000', 'created_at'=> Carbon::now()],
+            ['rut'=>'21898565-5','nombre'=>'Charlie Brown','fono'=>'976578928','email'=>'charlie@gmail.com','direccion'=>'Peanuts', 'created_at'=> Carbon::now()],
         ]);
 
 

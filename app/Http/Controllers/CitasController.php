@@ -9,6 +9,7 @@ use App\Models\Mascota;
 use App\Models\Usuario;
 use App\Models\Servicio;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\CitaRequest;
 
 class CitasController extends Controller
 {
@@ -36,7 +37,7 @@ class CitasController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CitaRequest $request)
     {
         if (Gate::denies('secretario-gestion')) {
             return redirect()->back()->with('warning', 'No tienes permiso para llevar a cabo esa accion');

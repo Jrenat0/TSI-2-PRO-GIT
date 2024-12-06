@@ -21,6 +21,7 @@ class MascotasSeeder extends Seeder
             ['nombre'=>'Sparky','raza'=>'Golden Retriever','sexo'=>'M','color'=>'Dorado','peso'=>40,'fecha_nacimiento'=>Carbon::parse('2024-08-13'), 'imagen'=>'mascotas/sparky.jpg', 'created_at'=> Carbon::now()],
             ['nombre'=>'Nene','raza'=>'Chihuahua','sexo'=>'H','color'=>'Dorado','peso'=>3,'fecha_nacimiento'=>Carbon::parse('2022-12-1'),'imagen'=>'mascotas/nene.jpg', 'created_at'=> Carbon::now()],
             ['nombre'=>'Brian Griffin','raza'=>'Labrador','sexo'=>'M','color'=>'Blanco','peso'=>30,'fecha_nacimiento'=>Carbon::parse('1999-01-31'),'imagen'=>'mascotas/brian.jpg', 'created_at'=> Carbon::now()],
+            ['nombre'=>'Snoopy','raza'=>'Beagle','sexo'=>'M','color'=>'Blanco y negro','peso'=>25,'fecha_nacimiento'=>Carbon::parse('1950-08-10'),'imagen'=>'mascotas/snoopy.jpg', 'created_at'=> Carbon::now()],
         ]);
     }
 }

@@ -38,7 +38,7 @@
                                 </div>
         
                                 <div class="col-3">
-                                    <button type="submit" class="btn w-100" id="buscar">Buscar</button>
+                                    <button type="submit" class="btn w-100" id="gestionButton">Buscar</button>
                                 </div>
         
                             </div>
