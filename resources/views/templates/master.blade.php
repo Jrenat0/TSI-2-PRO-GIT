@@ -11,9 +11,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 
-    {{-- <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css')}}"> --}}
-
-    {{-- <script src="https://kit.fontawesome.com/3d7887c41d.js" crossorigin="anonymous"></script> --}}
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css')}}">
 
     @stack('style')
 
